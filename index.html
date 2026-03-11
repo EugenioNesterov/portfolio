@@ -73,45 +73,44 @@
 
             <!-- Language Switcher -->
             <div
-                class="flex items-center gap-2 px-3 py-1.5 bg-zinc-900/80 backdrop-blur-xl border border-zinc-800/80 rounded-full shadow-[0_4px_20px_rgba(0,0,0,0.4)] sm:flex">
-                <span class="text-base cursor-pointer opacity-50 hover:opacity-100 transition-opacity" id="lang-ru"
-                    onclick="switchLanguage('ru')" title="Русский">🇷🇺</span>
-                <div class="relative w-8 h-4 bg-zinc-800 rounded-full cursor-pointer" onclick="toggleLanguage()">
-                    <div id="lang-toggle-dot"
-                        class="absolute left-[2px] top-[2px] w-3 h-3 bg-amber-500 rounded-full transition-transform duration-300 transform translate-x-4">
-                    </div>
-                </div>
-                <span class="text-base cursor-pointer" id="lang-en" onclick="switchLanguage('en')"
-                    title="English">🇺🇸</span>
+                class="flex items-center gap-4 px-4 py-1.5 bg-zinc-900/80 backdrop-blur-xl border border-zinc-800/80 rounded-full shadow-[0_4px_20px_rgba(0,0,0,0.4)] sm:flex">
+                <button class="text-sm font-medium text-zinc-300 opacity-50 hover:opacity-100 transition-opacity" id="lang-ru"
+                    onclick="switchLanguage('ru')" title="Русский">🇷🇺 RU</button>
+                <div class="w-px h-4 bg-zinc-700"></div>
+                <button class="text-sm font-medium text-zinc-300 opacity-100 hover:opacity-100 transition-opacity" id="lang-en" onclick="switchLanguage('en')"
+                    title="English">🇺🇸 US</button>
             </div>
 
-            <!-- Links Group -->
+            <!-- Links Group (Desktop) / Burger (Mobile) -->
             <div
-                class="px-5 sm:px-6 py-2.5 sm:py-3 bg-zinc-900/80 backdrop-blur-xl border border-zinc-800/80 rounded-full flex gap-4 sm:gap-8 items-center text-sm font-medium shadow-[0_4px_20px_rgba(0,0,0,0.4)]">
-                <a href="#hero" class="text-zinc-400 hover:text-zinc-100 transition-colors" title="Home">
+                class="px-5 md:px-6 py-2.5 md:py-3 bg-zinc-900/80 backdrop-blur-xl border border-zinc-800/80 rounded-full flex gap-4 md:gap-8 items-center text-sm font-medium shadow-[0_4px_20px_rgba(0,0,0,0.4)]">
+                <!-- Mobile Burger Icon -->
+                <button class="md:hidden text-zinc-400 hover:text-zinc-100 transition-colors" title="Menu" id="mobile-menu-btn">
+                    <i data-lucide="menu" class="w-5 h-5"></i>
+                </button>
+                
+                <!-- Desktop items (hidden on mobile) -->
+                <a href="#hero" class="hidden md:block text-zinc-400 hover:text-zinc-100 transition-colors" title="Home">
                     <i data-lucide="home" class="w-4 h-4"></i>
                 </a>
                 <a href="#work"
-                    class="text-zinc-400 hover:text-zinc-100 transition-colors tracking-wide flex items-center gap-1.5"
+                    class="hidden md:flex text-zinc-400 hover:text-zinc-100 transition-colors tracking-wide items-center gap-1.5"
                     title="Work">
-                    <i data-lucide="briefcase" class="w-4 h-4 sm:hidden"></i>
-                    <span class="hidden sm:inline" data-en="Work" data-ru="Работы">Work</span>
+                    <span data-en="Work" data-ru="Работы">Work</span>
                 </a>
                 <a href="#services-deep-dive"
-                    class="text-zinc-400 hover:text-zinc-100 transition-colors tracking-wide flex items-center gap-1.5"
+                    class="hidden md:flex text-zinc-400 hover:text-zinc-100 transition-colors tracking-wide items-center gap-1.5"
                     title="Capabilities">
-                    <i data-lucide="settings" class="w-4 h-4 sm:hidden"></i>
-                    <span class="hidden sm:inline" data-en="Capabilities" data-ru="Возможности">Capabilities</span>
+                    <span data-en="Capabilities" data-ru="Возможности">Capabilities</span>
                 </a>
                 <a href="#contact"
-                    class="text-zinc-400 hover:text-indigo-400 transition-colors tracking-wide flex items-center gap-2">
+                    class="hidden md:flex text-zinc-400 hover:text-indigo-400 transition-colors tracking-wide items-center gap-2">
                     <span class="relative flex h-2 w-2">
                         <span
                             class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                         <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
                     </span>
-                    <i data-lucide="message-square" class="w-4 h-4 sm:hidden text-indigo-400"></i>
-                    <span class="hidden sm:inline" data-en="Contact" data-ru="Связаться">Contact</span>
+                    <span data-en="Contact" data-ru="Связаться">Contact</span>
                 </a>
             </div>
         </div>
@@ -210,11 +209,10 @@
                                 data-en="RECENT WORKS" data-ru="ПОСЛЕДНИЕ РАБОТЫ">RECENT WORKS</p>
                             <ul class="space-y-2 mb-4">
                                 <li class="flex items-center text-zinc-300 font-medium text-sm">
-                                    <i data-lucide="shopping-cart" class="w-4 h-4 mr-2 text-indigo-400/80"></i> Smart
-                                    Basket Bot
+                                    <i data-lucide="shopping-cart" class="w-4 h-4 mr-2 text-indigo-400/80"></i> <span data-ru="Что на ужин?" data-en="What's for Dinner?">What's for Dinner?</span>
                                 </li>
                                 <li class="flex items-center text-zinc-300 font-medium text-sm">
-                                    <i data-lucide="bot" class="w-4 h-4 mr-2 text-indigo-400/80"></i> Grateful Coach
+                                    <i data-lucide="bot" class="w-4 h-4 mr-2 text-indigo-400/80"></i> <span data-ru="Ботик благодарности" data-en="Gratitude Bot">Gratitude Bot</span>
                                 </li>
                             </ul>
 
@@ -267,12 +265,11 @@
                                 data-en="RECENT WORKS" data-ru="ПОСЛЕДНИЕ РАБОТЫ">RECENT WORKS</p>
                             <ul class="space-y-2 mb-4">
                                 <li class="flex items-center text-zinc-300 font-medium text-sm">
-                                    <i data-lucide="smartphone" class="w-4 h-4 mr-2 text-emerald-400/80"></i> Smart
-                                    Basket Mobile
+                                    <i data-lucide="smartphone" class="w-4 h-4 mr-2 text-emerald-400/80"></i> <span data-ru="Что на ужин? (MVP)" data-en="What's for Dinner? (MVP)">Что на ужин? (MVP)</span>
                                 </li>
                                 <li class="flex items-center text-zinc-300 font-medium text-sm">
                                     <i data-lucide="message-square" class="w-4 h-4 mr-2 text-emerald-400/80"></i>
-                                    Pizdelniki Web
+                                    <span data-ru="Пиздельники (Web App)" data-en="Pizdelniki (Web App)">Пиздельники (Web App)</span>
                                 </li>
                             </ul>
 
@@ -325,10 +322,10 @@
                                 data-en="RECENT WORKS" data-ru="ПОСЛЕДНИЕ РАБОТЫ">RECENT WORKS</p>
                             <ul class="space-y-2 mb-4">
                                 <li class="flex items-center text-zinc-300 font-medium text-sm">
-                                    <i data-lucide="user" class="w-4 h-4 mr-2 text-amber-400/80"></i> Portfolio 2026
+                                    <i data-lucide="user" class="w-4 h-4 mr-2 text-amber-400/80"></i> <span data-ru="Портфолио" data-en="Portfolio">Portfolio</span>
                                 </li>
                                 <li class="flex items-center text-zinc-300 font-medium text-sm">
-                                    <i data-lucide="layout" class="w-4 h-4 mr-2 text-amber-400/80"></i> Landing Forge
+                                    <i data-lucide="layout" class="w-4 h-4 mr-2 text-amber-400/80"></i> <span data-ru="Landing Forge" data-en="Landing Forge">Landing Forge</span>
                                 </li>
                             </ul>
 
@@ -381,10 +378,10 @@
                                 data-en="RECENT WORKS" data-ru="ПОСЛЕДНИЕ РАБОТЫ">RECENT WORKS</p>
                             <ul class="space-y-2 mb-4">
                                 <li class="flex items-center text-zinc-300 font-medium text-sm">
-                                    <i data-lucide="sparkles" class="w-4 h-4 mr-2 text-violet-400/80"></i> SKU Launch
+                                    <i data-lucide="sparkles" class="w-4 h-4 mr-2 text-violet-400/80"></i> <span data-ru="Запуск товаров (SKU Launch)" data-en="SKU Launch">SKU Launch</span>
                                 </li>
                                 <li class="flex items-center text-zinc-300 font-medium text-sm">
-                                    <i data-lucide="image" class="w-4 h-4 mr-2 text-violet-400/80"></i> AI Graphics
+                                    <i data-lucide="image" class="w-4 h-4 mr-2 text-violet-400/80"></i> <span data-ru="AI Графика" data-en="AI Graphics">AI Graphics</span>
                                 </li>
                             </ul>
 
@@ -610,30 +607,20 @@
                     <h3 class="text-xl font-bold uppercase tracking-widest text-zinc-500 mb-8 pb-4 border-b border-zinc-800/50"
                         data-en="Telegram Bots" data-ru="Telegram Боты">Telegram Bots</h3>
                     <div class="space-y-16">
-                        <!-- Smart Basket Bot -->
+                        <!-- Что на ужин? -->
                         <div class="space-y-5">
                             <h4 class="text-2xl font-bold text-zinc-100 flex items-center gap-3">
-                                <i data-lucide="shopping-cart" class="w-6 h-6 text-indigo-400"></i> Smart Basket Bot
+                                <i data-lucide="shopping-cart" class="w-6 h-6 text-indigo-400"></i> <span data-ru="Что на ужин?" data-en="What's for Dinner?">Что на ужин?</span>
                             </h4>
                             <div class="space-y-3 text-zinc-400 text-[15px] leading-relaxed">
-                                <p><strong class="text-zinc-200 uppercase text-xs tracking-wider mr-2" data-en="The Ask"
-                                        data-ru="Запрос">The Ask</strong> <span
-                                        data-en="High cart abandonment rates on mobile platforms, struggling to retain user attention during checkout."
-                                        data-ru="Высокий процент брошенных корзин на мобильных платформах из-за сложности удержания внимания при оплате.">High
-                                        cart abandonment rates on mobile platforms, struggling to retain user attention
-                                        during checkout.</span></p>
+                                <p><strong class="text-zinc-200 uppercase text-xs tracking-wider mr-2" data-en="TASK"
+                                        data-ru="ЗАДАЧА">ЗАДАЧА</strong> <span
+                                        data-en="Developing a system for automatically generating a grocery basket considering budget and location."
+                                        data-ru="Разработка системы для автоматического формирования продуктовой корзины с учётом бюджета и локации.">Разработка системы для автоматического формирования продуктовой корзины с учётом бюджета и локации.</span></p>
                                 <p><strong class="text-zinc-200 uppercase text-xs tracking-wider mr-2"
-                                        data-en="The Build" data-ru="Сделано">The Build</strong> <span
-                                        data-en="Built an automated push notification and 1-click checkout system entirely within Telegram, leveraging native payment forms."
-                                        data-ru="Резработка автоматизированной системы push-уведомлений и чекаута в 1 клик полностью внутри Telegram с нативными формами оплаты.">Built
-                                        an automated push notification and 1-click checkout system entirely within
-                                        Telegram, leveraging native payment forms.</span></p>
-                                <p><strong class="text-zinc-200 uppercase text-xs tracking-wider mr-2" data-en="The Win"
-                                        data-ru="Итог">The Win</strong> <span
-                                        data-en="Recovered +35% of abandoned carts, drastically improving conversion rates and user retention."
-                                        data-ru="Восстановлено +35% брошенных корзин, резкий рост конверсии и удержания пользователей.">Recovered
-                                        +35% of abandoned carts, drastically improving conversion rates and user
-                                        retention.</span></p>
+                                        data-en="IMPLEMENTATION" data-ru="РЕАЛИЗАЦИЯ">РЕАЛИЗАЦИЯ</strong> <span
+                                        data-en="A Telegram bot for meal planning and budget optimization. Generates a grocery basket based on budget, city, and store chain. Integrated AI for calculations and recipe generation from ingredients already at home."
+                                        data-ru="Telegram-бот для планирования рациона и оптимизации бюджета. Собирает корзину под лимит средств, учитывая город и сеть магазинов. Интегрирована нейросеть для расчетов и генерации рецептов из продуктов, которые есть дома.">Telegram-бот для планирования рациона и оптимизации бюджета. Собирает корзину под лимит средств, учитывая город и сеть магазинов. Интегрирована нейросеть для расчетов и генерации рецептов из продуктов, которые есть дома.</span></p>
                             </div>
                             <div
                                 class="pt-5 border-t border-zinc-800/50 flex flex-wrap gap-6 text-[11px] tracking-widest uppercase font-semibold text-zinc-500">
@@ -645,32 +632,20 @@
                             </div>
                         </div>
 
-                        <!-- Grateful Coach -->
+                        <!-- Ботик благодарности -->
                         <div class="space-y-5">
                             <h4 class="text-2xl font-bold text-zinc-100 flex items-center gap-3">
-                                <i data-lucide="bot" class="w-6 h-6 text-indigo-400"></i> Grateful Coach
+                                <i data-lucide="bot" class="w-6 h-6 text-indigo-400"></i> <span data-ru="Ботик благодарности" data-en="Grateful Coach">Ботик благодарности</span>
                             </h4>
                             <div class="space-y-3 text-zinc-400 text-[15px] leading-relaxed">
-                                <p data-en="AI-driven wellness automation." data-ru="AI автоматизация в сфере велнеса.">
-                                    AI-driven wellness automation.</p>
-                                <p><strong class="text-zinc-200 uppercase text-xs tracking-wider mr-2" data-en="The Ask"
-                                        data-ru="Запрос">The Ask</strong> <span
-                                        data-en="Manual fitness tracking was highly inefficient, severely limiting the number of clients a single coach could manage."
-                                        data-ru="Ручной трекинг фитнеса был крайне неэффективен, жестко ограничивая количество клиентов у одного тренера.">Manual
-                                        fitness tracking was highly inefficient, severely limiting the number of clients
-                                        a single coach could manage.</span></p>
+                                <p><strong class="text-zinc-200 uppercase text-xs tracking-wider mr-2" data-en="TASK"
+                                        data-ru="ЗАДАЧА">ЗАДАЧА</strong> <span
+                                        data-en="Creating a tool for daily mindfulness practices with statistics tracking."
+                                        data-ru="Создание инструмента для ежедневных практик осознанности с трекингом статистики.">Создание инструмента для ежедневных практик осознанности с трекингом статистики.</span></p>
                                 <p><strong class="text-zinc-200 uppercase text-xs tracking-wider mr-2"
-                                        data-en="The Build" data-ru="Сделано">The Build</strong> <span
-                                        data-en="Designed an intelligent AI bot to deliver personalized diet and workout plans directly to users, automating check-ins and progress logging."
-                                        data-ru="Разработан интеллектуальный AI-бот для предоставления персональных планов питания и тренировок, автоматизирующий проверки и учет прогресса.">Designed
-                                        an intelligent AI bot to deliver personalized diet and workout plans directly to
-                                        users, automating check-ins and progress logging.</span></p>
-                                <p><strong class="text-zinc-200 uppercase text-xs tracking-wider mr-2" data-en="The Win"
-                                        data-ru="Итог">The Win</strong> <span
-                                        data-en="Reached 10k+ active users rapidly while eliminating manual tracking bottlenecks entirely."
-                                        data-ru="Стремительный охват 10к+ активных пользователей при полном устранении ручного трекинга.">Reached
-                                        10k+ active users rapidly while eliminating manual tracking bottlenecks
-                                        entirely.</span></p>
+                                        data-en="IMPLEMENTATION" data-ru="РЕАЛИЗАЦИЯ">РЕАЛИЗАЦИЯ</strong> <span
+                                        data-en="An automated assistant for building healthy habits. Sends reminders at set times with timezone support, tracks session counts, and maintains user achievement statistics."
+                                        data-ru="Автоматизированный ассистент для формирования полезных привычек. Присылает напоминания в заданное время с учётом часовых поясов, считает количество сессий и ведет статистику достижений пользователя.">Автоматизированный ассистент для формирования полезных привычек. Присылает напоминания в заданное время с учётом часовых поясов, считает количество сессий и ведет статистику достижений пользователя.</span></p>
                             </div>
                             <div
                                 class="pt-5 border-t border-zinc-800/50 flex flex-wrap gap-6 text-[11px] tracking-widest uppercase font-semibold text-zinc-500">
@@ -696,33 +671,17 @@
                             <div class="inline-block px-3 py-1 bg-emerald-500/10 text-emerald-400 text-[10px] font-bold tracking-widest uppercase rounded-full border border-emerald-500/20 mb-2"
                                 data-en="Flagship Case" data-ru="Флагманский Кейс">Flagship Case</div>
                             <h4 class="text-2xl font-bold text-zinc-100 flex items-center gap-3">
-                                <i data-lucide="smartphone" class="w-6 h-6 text-emerald-400"></i> Smart Basket Mobile
+                                <i data-lucide="smartphone" class="w-6 h-6 text-emerald-400"></i> <span data-ru="Что на ужин? (MVP Приложение)" data-en="What's for Dinner? (MVP App)">Что на ужин? (MVP Приложение)</span>
                             </h4>
                             <div class="space-y-3 text-zinc-400 text-[15px] leading-relaxed">
-                                <p data-en="Architectural migration from Telegram Bot interface to a full-scale Mobile App prototype, focusing on logic preservation and UX scaling."
-                                    data-ru="Масштабирование логики Telegram-бота в полноценный прототип мобильного приложения.">
-                                    Architectural migration from Telegram Bot interface to a full-scale Mobile App
-                                    prototype, focusing on logic preservation and UX scaling.</p>
-                                <p><strong class="text-zinc-200 uppercase text-xs tracking-wider mr-2" data-en="The Ask"
-                                        data-ru="Запрос">The Ask</strong> <span
-                                        data-en="The initial successful push-notification bot was outgrown by the user base, leading to scattered UX and complex cart state management across sessions."
-                                        data-ru="Успешный бот перерос себя из-за роста аудитории, что привело к фрагментированному UX и сложному управлению корзиной между сессиями.">The
-                                        initial successful push-notification bot was outgrown by the user base, leading
-                                        to scattered UX and complex cart state management across sessions.</span></p>
+                                <p><strong class="text-zinc-200 uppercase text-xs tracking-wider mr-2" data-en="TASK"
+                                        data-ru="ЗАДАЧА">ЗАДАЧА</strong> <span
+                                        data-en="Scaling bot logic into a mobile prototype with extended functionality."
+                                        data-ru="Масштабирование логики бота в мобильный прототип с расширенным функционалом.">Масштабирование логики бота в мобильный прототип с расширенным функционалом.</span></p>
                                 <p><strong class="text-zinc-200 uppercase text-xs tracking-wider mr-2"
-                                        data-en="The Build" data-ru="Сделано">The Build</strong> <span
-                                        data-en="Developed a cross-platform Mobile App with an advanced FastAPI backend, preserving the successful Telegram logic while creating a unified, scalable native interface."
-                                        data-ru="Разработано кроссплатформенное мобильное приложение с продвинутым FastAPI бэкендом, сохранившее успешную логику Telegram в едином масштабируемом нативном интерфейсе.">Developed
-                                        a cross-platform Mobile App with an advanced FastAPI backend, preserving the
-                                        successful Telegram logic while creating a unified, scalable native
-                                        interface.</span></p>
-                                <p><strong class="text-zinc-200 uppercase text-xs tracking-wider mr-2" data-en="The Win"
-                                        data-ru="Итог">The Win</strong> <span
-                                        data-en="Maintained zero downtime during migration, delivering an intuitive cross-platform experience that dramatically accelerated user retention and checkout speeds."
-                                        data-ru="Нулевой даунтайм при миграции, обеспечение интуитивного кроссплатформенного опыта, что радикально ускорило удержание пользователей и скорость покупки.">Maintained
-                                        zero downtime during migration, delivering an intuitive cross-platform
-                                        experience that dramatically accelerated user retention and checkout
-                                        speeds.</span></p>
+                                        data-en="IMPLEMENTATION" data-ru="РЕАЛИЗАЦИЯ">РЕАЛИЗАЦИЯ</strong> <span
+                                        data-en="A mobile app prototype with photo-based product recognition and a dinner randomizer. Integrated AI assistant for full-scale testing on iOS and Android. Includes a personal account with spending analytics for real-time grocery budget control."
+                                        data-ru="Прототип приложения с функцией распознавания продуктов по фото и рандомайзером ужинов. Для полноценного тестирования на iOS и Android интегрирован нейро-ассистент. Внедрен личный кабинет с аналитикой трат для контроля продуктового бюджета в реальном времени.">Прототип приложения с функцией распознавания продуктов по фото и рандомайзером ужинов. Для полноценного тестирования на iOS и Android интегрирован нейро-ассистент. Внедрен личный кабинет с аналитикой трат для контроля продуктового бюджета в реальном времени.</span></p>
                             </div>
                             <div
                                 class="pt-5 border-t border-zinc-800/50 flex flex-wrap gap-6 text-[11px] tracking-widest uppercase font-semibold text-zinc-500">
@@ -736,18 +695,17 @@
                         <!-- Pizdelniki Web -->
                         <div class="space-y-5">
                             <h4 class="text-2xl font-bold text-zinc-100 flex items-center gap-3">
-                                <i data-lucide="message-square" class="w-6 h-6 text-emerald-400"></i> Pizdelniki Web
+                                <i data-lucide="message-square" class="w-6 h-6 text-emerald-400"></i> <span data-ru="Пиздельники (Web App)" data-en="Pizdelniki (Web App)">Пиздельники (Web App)</span>
                             </h4>
                             <div class="space-y-3 text-zinc-400 text-[15px] leading-relaxed">
-                                <p data-en="Rapid social tool deployment &amp; admin dashboard."
-                                    data-ru="Быстрое развертывание соц-инструмента и админ-панели.">Rapid social tool
-                                    deployment &amp; admin dashboard.</p>
-                                <p><strong class="text-zinc-200 uppercase text-xs tracking-wider mr-2" data-en="The Win"
-                                        data-ru="Итог">The Win</strong> <span
-                                        data-en="Achieved 10x faster data retrieval and empowered admins with actionable, visual oversight."
-                                        data-ru="Достигнуто 10-кратное ускорение получения данных, администраторы получили визуальный и эффективный контроль.">Achieved
-                                        10x faster data retrieval and empowered admins with actionable, visual
-                                        oversight.</span></p>
+                                <p><strong class="text-zinc-200 uppercase text-xs tracking-wider mr-2" data-en="TASK"
+                                        data-ru="ЗАДАЧА">ЗАДАЧА</strong> <span
+                                        data-en="Creating an instant messenger with a focus on session privacy."
+                                        data-ru="Создание мессенджера для мгновенного обмена сообщениями с фокусом на приватность сессий.">Создание мессенджера для мгновенного обмена сообщениями с фокусом на приватность сессий.</span></p>
+                                <p><strong class="text-zinc-200 uppercase text-xs tracking-wider mr-2"
+                                        data-en="IMPLEMENTATION" data-ru="РЕАЛИЗАЦИЯ">РЕАЛИЗАЦИЯ</strong> <span
+                                        data-en="A messenger with a 'zero-trace' concept: all data (messages and account) is stored only within the current session and is completely deleted when the browser tab is closed."
+                                        data-ru="Мессенджер с концепцией «нулевого следа»: все данные (сообщения и аккаунт) хранятся только в рамках текущей сессии и полностью удаляются при закрытии вкладки браузера.">Мессенджер с концепцией «нулевого следа»: все данные (сообщения и аккаунт) хранятся только в рамках текущей сессии и полностью удаляются при закрытии вкладки браузера.</span></p>
                             </div>
                             <div
                                 class="pt-5 border-t border-zinc-800/50 flex flex-wrap gap-6 text-[11px] tracking-widest uppercase font-semibold text-zinc-500">
@@ -770,30 +728,17 @@
                         <!-- Portfolio 2026 -->
                         <div class="space-y-5">
                             <h4 class="text-2xl font-bold text-zinc-100 flex items-center gap-3">
-                                <i data-lucide="layout" class="w-6 h-6 text-amber-400"></i> Portfolio 2026
+                                <i data-lucide="layout" class="w-6 h-6 text-amber-400"></i> <span data-ru="Портфолио" data-en="Portfolio">Portfolio</span>
                             </h4>
                             <div class="space-y-3 text-zinc-400 text-[15px] leading-relaxed">
-                                <p data-en="High-performance interactive portfolio."
-                                    data-ru="Высокопроизводительное интерактивное портфолио.">High-performance
-                                    interactive portfolio.</p>
-                                <p><strong class="text-zinc-200 uppercase text-xs tracking-wider mr-2" data-en="The Ask"
-                                        data-ru="Запрос">The Ask</strong> <span
-                                        data-en="Needed a blazing fast, premium layout to display complex case studies effectively."
-                                        data-ru="Требовался невероятно быстрый, премиальный дизайн для эффективной презентации сложных кейсов.">Needed
-                                        a blazing fast, premium layout to display complex case studies
-                                        effectively.</span></p>
+                                <p><strong class="text-zinc-200 uppercase text-xs tracking-wider mr-2" data-en="TASK"
+                                        data-ru="ЗАДАЧА">ЗАДАЧА</strong> <span
+                                        data-en="Development of a high-performance platform for premium presentation of complex technical cases."
+                                        data-ru="Разработка высокопроизводительной платформы для премиальной презентации сложных технических кейсов.">Разработка высокопроизводительной платформы для премиальной презентации сложных технических кейсов.</span></p>
                                 <p><strong class="text-zinc-200 uppercase text-xs tracking-wider mr-2"
-                                        data-en="The Build" data-ru="Сделано">The Build</strong> <span
-                                        data-en="Engineered a static site with advanced Tailwind CSS components and custom smooth scroll behaviors without relying on heavy frameworks."
-                                        data-ru="Разработан статический сайт с продвинутыми компонентами Tailwind CSS и кастомным плавным скроллингом без тяжелых фреймворков.">Engineered
-                                        a static site with advanced Tailwind CSS components and custom smooth scroll
-                                        behaviors without relying on heavy frameworks.</span></p>
-                                <p><strong class="text-zinc-200 uppercase text-xs tracking-wider mr-2" data-en="The Win"
-                                        data-ru="Итог">The Win</strong> <span
-                                        data-en="Perfect Lighthouse score and a seamless, high-retention user experience directly leading to more sales conversions."
-                                        data-ru="Идеальный 100/100 Lighthouse score и безупречный пользовательский опыт, ведущий к росту продаж.">Perfect
-                                        Lighthouse score and a seamless, high-retention user experience directly leading
-                                        to more sales conversions.</span></p>
+                                        data-en="IMPLEMENTATION" data-ru="РЕАЛИЗАЦИЯ">РЕАЛИЗАЦИЯ</strong> <span
+                                        data-en="Static site built with Tailwind CSS, featuring smooth navigation and animations. Achieved a 100/100 Lighthouse score for perfect UX and speed."
+                                        data-ru="Статический сайт на Tailwind CSS с плавной навигацией и анимацией. Достигнут показатель 100/100 в Lighthouse, обеспечивающий безупречный UX и высокую скорость загрузки.">Статический сайт на Tailwind CSS с плавной навигацией и анимацией. Достигнут показатель 100/100 в Lighthouse, обеспечивающий безупречный UX и высокую скорость загрузки.</span></p>
                             </div>
                             <div
                                 class="pt-5 border-t border-zinc-800/50 flex flex-wrap gap-6 text-[11px] tracking-widest uppercase font-semibold text-zinc-500">
@@ -821,50 +766,33 @@
                                 <i data-lucide="sparkles" class="w-6 h-6 text-violet-400"></i> SKU Launch
                             </h4>
                             <div class="space-y-3 text-zinc-400 text-[15px] leading-relaxed">
-                                <p data-en="High-speed AI-visual production."
-                                    data-ru="Генерация фото/видео контента с обучением нейросети под бренд.">High-speed
-                                    AI-visual production.</p>
-                                <p><strong class="text-zinc-200 uppercase text-xs tracking-wider mr-2" data-en="The Ask"
-                                        data-ru="Запрос">The Ask</strong> <span
-                                        data-en="Product photography scaling for a large e-commerce catalog was prohibitively slow and expensive."
-                                        data-ru="Масштабирование фотосъемки большого каталога e-commerce было запредельно долгим и дорогим.">Product
-                                        photography scaling for a large e-commerce catalog was prohibitively slow and
-                                        expensive.</span></p>
+                                <p><strong class="text-zinc-200 uppercase text-xs tracking-wider mr-2" data-en="TASK"
+                                        data-ru="ЗАДАЧА">ЗАДАЧА</strong> <span
+                                        data-en="Development of an exclusive digital brand model with specific appearance, physique, and height parameters for complete content production autonomy."
+                                        data-ru="Разработка эксклюзивной цифровой модели бренда с заданными параметрами внешности, фигуры и роста для полной автономии контент-производства.">Разработка эксклюзивной цифровой модели бренда с заданными параметрами внешности, фигуры и роста для полной автономии контент-производства.</span></p>
                                 <p><strong class="text-zinc-200 uppercase text-xs tracking-wider mr-2"
-                                        data-en="The Build" data-ru="Сделано">The Build</strong> <span
-                                        data-en="Forged an automated image generation pipeline powered by sophisticated ComfyUI and Stable Diffusion workflows directly integrated with product databases."
-                                        data-ru="Создан автоматизированный пайплайн генерации изображений на базе ComfyUI и Stable Diffusion, интегрированный с товарными базами данных.">Forged
-                                        an automated image generation pipeline powered by sophisticated ComfyUI and
-                                        Stable Diffusion workflows directly integrated with product databases.</span>
-                                </p>
-                                <p><strong class="text-zinc-200 uppercase text-xs tracking-wider mr-2" data-en="The Win"
-                                        data-ru="Итог">The Win</strong> <span
-                                        data-en="Reduced per-image production costs by 90% and shortened asset delivery time from days to minutes."
-                                        data-ru="Сокращение затрат на создание изображения на 90% и сужение сроков выдачи ассетов с дней до минут.">Reduced
-                                        per-image production costs by 90% and shortened asset delivery time from days to
-                                        minutes.</span></p>
+                                        data-en="IMPLEMENTATION" data-ru="РЕАЛИЗАЦИЯ">РЕАЛИЗАЦИЯ</strong> <span
+                                        data-en="Created a unique AI model that became the official face of the brand. Conducted a full content cycle: from a virtual photoshoot to four promo videos for new product listings. The seller is now completely independent of photo studios, receiving ready-to-use assets in record time."
+                                        data-ru="Создана уникальная нейросетевая модель, ставшая лицом бренда. Реализован полный цикл подготовки контента: от виртуального фотосета до создания четырех промо-видео для новых карточек товара. Теперь селлер полностью независим от фотостудий и сторонних специалистов, получая готовые ассеты в кратчайшие сроки.">Создана уникальная нейросетевая модель, ставшая лицом бренда. Реализован полный цикл подготовки контента: от виртуального фотосета до создания четырех промо-видео для новых карточек товара. Теперь селлер полностью независим от фотостудий и сторонних специалистов, получая готовые ассеты в кратчайшие сроки.</span></p>
                             </div>
                             <div
                                 class="pt-5 border-t border-zinc-800/50 flex flex-col gap-3 text-[11px] tracking-widest uppercase font-semibold text-zinc-500">
-                                <div class="text-zinc-400"><span data-en="Total Delivery" data-ru="Общая Доставка">Total
-                                        Delivery</span>: <span class="text-violet-400 ml-1" data-en="9H"
-                                        data-ru="9ч">9H</span></div>
+                                <div class="text-zinc-400"><span data-en="TOTAL TIME" data-ru="СРОК РЕАЛИЗАЦИИ">TOTAL TIME</span>: <span class="text-violet-400 ml-1" data-en="9h"
+                                        data-ru="9 ч.">9h</span></div>
                                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                    <div><span data-en="Assembly (Training)" data-ru="Сборка ядра (Обучение)">Assembly
-                                            (Training)</span>: <span class="text-violet-400 ml-1" data-en="1H"
-                                            data-ru="1ч">1H</span></div>
-                                    <div><span data-en="Expansion" data-ru="Функционал и правки">Expansion</span>: <span
-                                            class="text-violet-400 ml-1" data-en="2.5H" data-ru="2.5ч">2.5H</span></div>
-                                    <div><span data-en="Virtual Photoshoot" data-ru="Виртуальная Фотосъемка">Virtual
-                                            Photoshoot</span>: <span class="text-violet-400 ml-1" data-en="1H"
-                                            data-ru="1ч">1H</span></div>
-                                    <div><span data-en="Expansion" data-ru="Функционал и правки">Expansion</span>: <span
-                                            class="text-violet-400 ml-1" data-en="1.5H" data-ru="1.5ч">1.5H</span></div>
-                                    <div><span data-en="Video Content" data-ru="Видеоконтент">Video Content</span>:
-                                        <span class="text-violet-400 ml-1" data-en="2H" data-ru="2ч">2H</span>
+                                    <div><span data-en="MODEL TRAINING" data-ru="ОБУЧЕНИЕ МОДЕЛИ">MODEL TRAINING</span>: <span class="text-violet-400 ml-1" data-en="1h"
+                                            data-ru="1 ч.">1h</span></div>
+                                    <div><span data-en="FINE-TUNING" data-ru="ТОНКАЯ НАСТРОЙКА">FINE-TUNING</span>: <span
+                                            class="text-violet-400 ml-1" data-en="2.5h" data-ru="2.5 ч.">2.5h</span></div>
+                                    <div><span data-en="VIRTUAL PHOTOSHOOT" data-ru="ВИРТУАЛЬНЫЙ ФОТОСЕТ">VIRTUAL PHOTOSHOOT</span>: <span class="text-violet-400 ml-1" data-en="1h"
+                                            data-ru="1 ч.">1h</span></div>
+                                    <div><span data-en="LIGHTING &amp; RENDERING" data-ru="РЕНДЕРИНГ И СВЕТ">LIGHTING &amp; RENDERING</span>: <span
+                                            class="text-violet-400 ml-1" data-en="1.5h" data-ru="1.5 ч.">1.5h</span></div>
+                                    <div><span data-en="VIDEO PRODUCTION" data-ru="ВИДЕО-ПРОДАКШЕН">VIDEO PRODUCTION</span>:
+                                        <span class="text-violet-400 ml-1" data-en="2h" data-ru="2 ч.">2h</span>
                                     </div>
-                                    <div><span data-en="Expansion" data-ru="Функционал и правки">Expansion</span>: <span
-                                            class="text-violet-400 ml-1" data-en="1H" data-ru="1ч">1H</span></div>
+                                    <div><span data-en="EDITING &amp; FX" data-ru="МОНТАЖ И ЭФФЕКТЫ">EDITING &amp; FX</span>: <span
+                                            class="text-violet-400 ml-1" data-en="1h" data-ru="1 ч.">1h</span></div>
                                 </div>
                             </div>
                         </div>
@@ -954,6 +882,9 @@
 
         function switchLanguage(lang) {
             currentLang = lang;
+            document.documentElement.lang = lang;
+            document.documentElement.setAttribute('data-lang', lang);
+
             const elements = document.querySelectorAll('[data-en]');
 
             elements.forEach(el => {
@@ -963,23 +894,16 @@
             });
 
             // Update toggle UI
-            const dot = document.getElementById('lang-toggle-dot');
             const enLabel = document.getElementById('lang-en');
             const ruLabel = document.getElementById('lang-ru');
 
             if (lang === 'en') {
-                dot.style.transform = 'translateX(16px)'; // Move right
                 enLabel.classList.remove('opacity-50');
                 ruLabel.classList.add('opacity-50');
             } else {
-                dot.style.transform = 'translateX(0)'; // Move left
                 enLabel.classList.add('opacity-50');
                 ruLabel.classList.remove('opacity-50');
             }
-        }
-
-        function toggleLanguage() {
-            switchLanguage(currentLang === 'en' ? 'ru' : 'en');
         }
 
         // Init language on load to match UI
