@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth overflow-x-hidden">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eugenio Nesterov | Python & Fullstack Developer</title>
+    <meta name="description" content="Zhenek — Building Python Ecosystems & MVP Products">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='25' fill='%2318181b'/><path d='M35 40l-15 10 15 10M65 40l15 10-15 10' stroke='%23fbbf24' stroke-width='8' fill='none' stroke-linecap='round' stroke-linejoin='round'/><path d='M55 35l-10 30' stroke='%23fbbf24' stroke-width='8' stroke-linecap='round'/></svg>">
+
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        zinc: {
+                            950: '#09090b',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #09090b;
+        }
+
+        /* Ambient Glow Effect */
+        .ambient-glow {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.15;
+            z-index: -1;
+            pointer-events: none;
+        }
+    </style>
+</head>
+
+<body class="text-zinc-50 antialiased selection:bg-amber-500/30 selection:text-amber-200 overflow-x-hidden relative">
+
+    <!-- Background Ambient Glows -->
+    <div class="ambient-glow top-0 left-[-10%] w-[80vw] max-w-[500px] h-[500px] bg-amber-600"></div>
+    <div class="ambient-glow top-[40%] right-[-10%] w-[70vw] max-w-[400px] h-[400px] bg-amber-500"></div>
+    <div class="ambient-glow bottom-0 left-[20%] w-[90vw] max-w-[600px] h-[600px] bg-orange-700"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 top-4 px-4 sm:px-6 pointer-events-none">
+        <div class="max-w-4xl mx-auto flex justify-between items-center pointer-events-auto">
+            <!-- Branding -->
+            <a href="#hero"
+                class="text-lg sm:text-xl font-bold tracking-tight hover:text-amber-400 transition-colors text-zinc-100 px-2 sm:px-4 py-2">
+                <span data-en="EUGENIO" data-ru="ЕВГЕНИЙ">EUGENIO</span> <span class="text-amber-500" data-en="NESTEROV"
+                    data-ru="НЕСТЕРОВ">NESTEROV</span>
+            </a>
+
+            <!-- Language Switcher -->
+            <div
+                class="flex items-center gap-2 px-3 py-1.5 bg-zinc-900/80 backdrop-blur-xl border border-zinc-800/80 rounded-full shadow-[0_4px_20px_rgba(0,0,0,0.4)] sm:flex">
+                <span class="text-base cursor-pointer opacity-50 hover:opacity-100 transition-opacity" id="lang-ru"
+                    onclick="switchLanguage('ru')" title="Русский">🇷🇺</span>
+                <div class="relative w-8 h-4 bg-zinc-800 rounded-full cursor-pointer" onclick="toggleLanguage()">
+                    <div id="lang-toggle-dot"
+                        class="absolute left-[2px] top-[2px] w-3 h-3 bg-amber-500 rounded-full transition-transform duration-300 transform translate-x-4">
+                    </div>
+                </div>
+                <span class="text-base cursor-pointer" id="lang-en" onclick="switchLanguage('en')"
+                    title="English">🇺🇸</span>
+            </div>
+
+            <!-- Links Group -->
+            <div
+                class="px-5 sm:px-6 py-2.5 sm:py-3 bg-zinc-900/80 backdrop-blur-xl border border-zinc-800/80 rounded-full flex gap-4 sm:gap-8 items-center text-sm font-medium shadow-[0_4px_20px_rgba(0,0,0,0.4)]">
+                <a href="#hero" class="text-zinc-400 hover:text-zinc-100 transition-colors" title="Home">
+                    <i data-lucide="home" class="w-4 h-4"></i>
+                </a>
+                <a href="#work"
+                    class="text-zinc-400 hover:text-zinc-100 transition-colors tracking-wide flex items-center gap-1.5"
+                    title="Work">
+                    <i data-lucide="briefcase" class="w-4 h-4 sm:hidden"></i>
+                    <span class="hidden sm:inline" data-en="Work" data-ru="Работы">Work</span>
+                </a>
+                <a href="#services-deep-dive"
+                    class="text-zinc-400 hover:text-zinc-100 transition-colors tracking-wide flex items-center gap-1.5"
+                    title="Capabilities">
+                    <i data-lucide="settings" class="w-4 h-4 sm:hidden"></i>
+                    <span class="hidden sm:inline" data-en="Capabilities" data-ru="Возможности">Capabilities</span>
+                </a>
+                <a href="#contact"
+                    class="text-zinc-400 hover:text-indigo-400 transition-colors tracking-wide flex items-center gap-2">
+                    <span class="relative flex h-2 w-2">
+                        <span
+                            class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                    </span>
+                    <i data-lucide="message-square" class="w-4 h-4 sm:hidden text-indigo-400"></i>
+                    <span class="hidden sm:inline" data-en="Contact" data-ru="Связаться">Contact</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="hero"
+            class="relative min-h-screen flex flex-col justify-center items-center text-center px-6 pt-20 scroll-mt-[80px]">
+            <h1 class="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold tracking-tight mb-12 max-w-5xl text-transparent bg-clip-text bg-gradient-to-b from-zinc-50 to-zinc-500"
+                data-en="From Idea to Launch in 24 Hours" data-ru="От идеи до запуска за 24 часа">
+                From Idea to Launch in 24 Hours
+            </h1>
+
+            <div
+                class="flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-10 mb-6 text-zinc-300 font-medium">
+                <div class="flex items-center gap-2">
+                    <i data-lucide="zap" class="w-5 h-5 text-amber-500"></i>
+                    <span data-en="Bots: from 6h" data-ru="Боты: от 6ч">Bots: from 6h</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <i data-lucide="layout" class="w-5 h-5 text-amber-500"></i>
+                    <span data-en="Sites: from 12h" data-ru="Сайты: от 12ч">Sites: from 12h</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <i data-lucide="rocket" class="w-5 h-5 text-amber-500"></i>
+                    <span data-en="MVP: from 1 day" data-ru="MVP: от 1 дня">MVP: from 1 day</span>
+                </div>
+            </div>
+
+            <p class="text-sm text-zinc-500 mb-12 max-w-lg text-center"
+                data-en="Time varies from 3h to several days depending on project complexity. Every task is handled individually."
+                data-ru="Время варьируется от 3ч до нескольких дней в зависимости от сложности проекта. Индивидуальный подход к каждой задаче.">
+                Time varies from 3h to several days depending on project complexity. Every task is handled individually.
+            </p>
+
+            <a href="https://t.me/jonnynest" target="_blank" rel="noopener noreferrer"
+                class="inline-flex items-center justify-center px-8 py-4 text-base font-semibold rounded-full text-zinc-950 bg-amber-500 hover:bg-amber-400 transform hover:-translate-y-0.5 transition-all duration-300 shadow-[0_0_30px_rgba(245,158,11,0.2)] hover:shadow-[0_0_45px_rgba(245,158,11,0.4)] mb-4">
+                <span data-en="Discuss Your Project" data-ru="Обсудить Проект">Discuss Your Project</span>
+                <i data-lucide="arrow-down" class="ml-2 w-5 h-5"></i>
+            </a>
+
+            <p class="text-sm text-zinc-500" data-en="Average response time: 15 mins"
+                data-ru="Среднее время ответа: 15 мин">Average response time: 15 mins</p>
+        </section>
+
+        <section id="work" class="py-32 px-6 scroll-mt-[80px]">
+            <div class="max-w-6xl mx-auto">
+                <div class="mb-16 max-w-2xl mx-auto text-center">
+                    <h2 class="text-3xl font-bold mb-4 tracking-tight text-zinc-100"><span data-en="Featured Work"
+                            data-ru="Избранные Работы">Featured Work</span><span class="text-amber-500">.</span></h2>
+                    <p class="text-zinc-400 text-lg"
+                        data-en="Architecting scalable digital ecosystems and high-performance bots."
+                        data-ru="Проектирование масштабируемых цифровых экосистем и высоконагруженных ботов.">
+                        Architecting scalable digital ecosystems and high-performance bots.</p>
+                </div>
+
+                <div class="grid grid-cols-12 gap-4">
+
+                    <!-- Row 1, Card 1: Bots (Indigo) md:col-span-7 -->
+                    <div onclick="window.location.href='#bots-info'"
+                        class="cursor-pointer group relative col-span-12 md:col-span-7 min-h-[280px] bg-zinc-900/40 backdrop-blur-md border border-zinc-800/80 rounded-[2rem] p-6 hover:border-indigo-500/40 hover:bg-zinc-900/60 overflow-hidden flex flex-col justify-between hover:shadow-[0_0_30px_rgba(99,102,241,0.15)] transition-all duration-300">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-br from-indigo-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+                        </div>
+
+                        <div class="relative z-10 w-full mb-4">
+                            <div class="flex justify-between items-start mb-4">
+                                <h3
+                                    class="text-xl font-bold text-zinc-100 group-hover:text-indigo-300 transition-colors flex items-center gap-2">
+                                    <i data-lucide="bot" class="w-5 h-5 text-indigo-400"></i> <span
+                                        data-en="Telegram Bots" data-ru="Telegram Боты">Telegram Bots</span>
+                                </h3>
+                                <div class="inline-flex items-center px-2 py-0.5 rounded border border-indigo-500/20 bg-indigo-500/10 text-indigo-300 text-[10px] font-semibold tracking-wide uppercase transition-colors"
+                                    data-en="from 24h" data-ru="от 24ч">
+                                    from 24h
+                                </div>
+                            </div>
+                            <div
+                                class="relative mb-2 [mask-image:linear-gradient(to_bottom,black_40%,transparent_100%)] pb-1">
+                                <p class="text-zinc-400 text-sm mb-1 line-clamp-3 leading-relaxed"
+                                    data-en="Expert business logic automation, seamless payment integration, and custom AI-driven solutions..."
+                                    data-ru="Автоматизация бизнес-логики, бесшовная интеграция платежей и кастомные AI-решения...">
+                                    Expert business logic automation, seamless payment integration, and custom AI-driven
+                                    solutions...
+                                </p>
+                                <span
+                                    class="text-indigo-400 text-[10px] font-bold uppercase tracking-wider flex items-center opacity-80 group-hover:opacity-100 transition-opacity"
+                                    data-en="DETAILS -&gt;" data-ru="ДЕТАЛИ -&gt;">DETAILS -&gt;</span>
+                            </div>
+                        </div>
+
+                        <div
+                            class="relative z-10 w-full pt-4 border-t border-zinc-800/50 mt-auto flex flex-col justify-end">
+                            <p class="text-zinc-500 text-[10px] font-bold tracking-widest uppercase mb-3"
+                                data-en="RECENT WORKS" data-ru="ПОСЛЕДНИЕ РАБОТЫ">RECENT WORKS</p>
+                            <ul class="space-y-2 mb-4">
+                                <li class="flex items-center text-zinc-300 font-medium text-sm">
+                                    <i data-lucide="shopping-cart" class="w-4 h-4 mr-2 text-indigo-400/80"></i> Smart
+                                    Basket Bot
+                                </li>
+                                <li class="flex items-center text-zinc-300 font-medium text-sm">
+                                    <i data-lucide="bot" class="w-4 h-4 mr-2 text-indigo-400/80"></i> Grateful Coach
+                                </li>
+                            </ul>
+
+                            <div class="flex justify-end items-center mt-auto relative z-20">
+                                <a href="#bots-showcase" onclick="event.stopPropagation()"
+                                    class="text-zinc-500 text-xs hover:text-zinc-300 transition-colors flex items-center"
+                                    data-en="See all projects -&gt;" data-ru="Смотреть все проекты -&gt;">
+                                    See all projects -&gt;
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Row 1, Card 2: MVP & App (Emerald) md:col-span-5 -->
+                    <div onclick="window.location.href='#mvp-info'"
+                        class="cursor-pointer group relative col-span-12 md:col-span-5 min-h-[280px] bg-zinc-900/40 backdrop-blur-md border border-zinc-800/80 rounded-[2rem] p-6 hover:border-emerald-500/40 hover:bg-zinc-900/60 overflow-hidden flex flex-col justify-between hover:shadow-[0_0_30px_rgba(16,185,129,0.15)] transition-all duration-300">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-br from-emerald-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+                        </div>
+
+                        <div class="relative z-10 w-full mb-4">
+                            <div class="flex justify-between items-start mb-4">
+                                <h3
+                                    class="text-xl font-bold text-zinc-100 group-hover:text-emerald-300 transition-colors flex items-center gap-2">
+                                    <i data-lucide="rocket" class="w-5 h-5 text-emerald-400"></i> <span
+                                        data-en="MVP &amp; App" data-ru="MVP и Приложения">MVP &amp; App</span>
+                                </h3>
+                                <div class="inline-flex items-center px-2 py-0.5 rounded border border-emerald-500/20 bg-emerald-500/10 text-emerald-300 text-[10px] font-semibold tracking-wide uppercase transition-colors"
+                                    data-en="from 1 day" data-ru="от 1 дня">
+                                    from 1 day
+                                </div>
+                            </div>
+                            <div
+                                class="relative mb-2 [mask-image:linear-gradient(to_bottom,black_40%,transparent_100%)] pb-1">
+                                <p class="text-zinc-400 text-sm mb-1 line-clamp-3 leading-relaxed"
+                                    data-en="Architecting scalable digital products. From conceptual logic to full-stack execution with clean Python..."
+                                    data-ru="Создание масштабируемых цифровых продуктов. От концептуальной логики до полного цикла реализации на чистом Python...">
+                                    Architecting scalable digital products. From conceptual logic to full-stack
+                                    execution with clean Python...
+                                </p>
+                                <span
+                                    class="text-emerald-400 text-[10px] font-bold uppercase tracking-wider flex items-center opacity-80 group-hover:opacity-100 transition-opacity"
+                                    data-en="DETAILS -&gt;" data-ru="ДЕТАЛИ -&gt;">DETAILS -&gt;</span>
+                            </div>
+                        </div>
+
+                        <div
+                            class="relative z-10 w-full pt-4 border-t border-zinc-800/50 mt-auto flex flex-col justify-end">
+                            <p class="text-zinc-500 text-[10px] font-bold tracking-widest uppercase mb-3"
+                                data-en="RECENT WORKS" data-ru="ПОСЛЕДНИЕ РАБОТЫ">RECENT WORKS</p>
+                            <ul class="space-y-2 mb-4">
+                                <li class="flex items-center text-zinc-300 font-medium text-sm">
+                                    <i data-lucide="smartphone" class="w-4 h-4 mr-2 text-emerald-400/80"></i> Smart
+                                    Basket Mobile
+                                </li>
+                                <li class="flex items-center text-zinc-300 font-medium text-sm">
+                                    <i data-lucide="message-square" class="w-4 h-4 mr-2 text-emerald-400/80"></i>
+                                    Pizdelniki Web
+                                </li>
+                            </ul>
+
+                            <div class="flex justify-end items-center mt-auto relative z-20">
+                                <a href="#prototypes-showcase" onclick="event.stopPropagation()"
+                                    class="text-zinc-500 text-xs hover:text-zinc-300 transition-colors flex items-center"
+                                    data-en="See all projects -&gt;" data-ru="Смотреть все проекты -&gt;">
+                                    See all projects -&gt;
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Row 2, Card 1: Fast Web (Amber) md:col-span-5 -->
+                    <div onclick="window.location.href='#web-info'"
+                        class="cursor-pointer group relative col-span-12 md:col-span-5 min-h-[280px] bg-zinc-900/40 backdrop-blur-md border border-zinc-800/80 rounded-[2rem] p-6 hover:border-amber-500/40 hover:bg-zinc-900/60 overflow-hidden flex flex-col justify-between hover:shadow-[0_0_30px_rgba(245,158,11,0.15)] transition-all duration-300">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-br from-amber-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+                        </div>
+
+                        <div class="relative z-10 w-full mb-4">
+                            <div class="flex justify-between items-start mb-4">
+                                <h3
+                                    class="text-xl font-bold text-zinc-100 group-hover:text-amber-300 transition-colors flex items-center gap-2">
+                                    <i data-lucide="layout" class="w-5 h-5 text-amber-400"></i> <span data-en="Fast Web"
+                                        data-ru="Быстрые Сайты">Fast Web</span>
+                                </h3>
+                                <div class="inline-flex items-center px-2 py-0.5 rounded border border-amber-500/20 bg-amber-500/10 text-amber-300 text-[10px] font-semibold tracking-wide uppercase transition-colors"
+                                    data-en="from 12h" data-ru="от 12ч">
+                                    from 12h
+                                </div>
+                            </div>
+                            <div
+                                class="relative mb-2 [mask-image:linear-gradient(to_bottom,black_40%,transparent_100%)] pb-1">
+                                <p class="text-zinc-400 text-sm mb-1 line-clamp-3 leading-relaxed"
+                                    data-en="High-performance landing pages and portfolios. Engineered for speed and brand distinctiveness..."
+                                    data-ru="Высокопроизводительные лендинги и портфолио. Спроектированы для скорости и уникальности бренда...">
+                                    High-performance landing pages and portfolios. Engineered for speed and brand
+                                    distinctiveness...
+                                </p>
+                                <span
+                                    class="text-amber-400 text-[10px] font-bold uppercase tracking-wider flex items-center opacity-80 group-hover:opacity-100 transition-opacity"
+                                    data-en="DETAILS -&gt;" data-ru="ДЕТАЛИ -&gt;">DETAILS -&gt;</span>
+                            </div>
+                        </div>
+
+                        <div
+                            class="relative z-10 w-full pt-4 border-t border-zinc-800/50 mt-auto flex flex-col justify-end">
+                            <p class="text-zinc-500 text-[10px] font-bold tracking-widest uppercase mb-3"
+                                data-en="RECENT WORKS" data-ru="ПОСЛЕДНИЕ РАБОТЫ">RECENT WORKS</p>
+                            <ul class="space-y-2 mb-4">
+                                <li class="flex items-center text-zinc-300 font-medium text-sm">
+                                    <i data-lucide="user" class="w-4 h-4 mr-2 text-amber-400/80"></i> Portfolio 2026
+                                </li>
+                                <li class="flex items-center text-zinc-300 font-medium text-sm">
+                                    <i data-lucide="layout" class="w-4 h-4 mr-2 text-amber-400/80"></i> Landing Forge
+                                </li>
+                            </ul>
+
+                            <div class="flex justify-end items-center mt-auto relative z-20">
+                                <a href="#sites-showcase" onclick="event.stopPropagation()"
+                                    class="text-zinc-500 text-xs hover:text-zinc-300 transition-colors flex items-center"
+                                    data-en="See all projects -&gt;" data-ru="Смотреть все проекты -&gt;">
+                                    See all projects -&gt;
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Row 2, Card 2: AI Studio (Violet) md:col-span-7 -->
+                    <div onclick="window.location.href='#ai-info'"
+                        class="cursor-pointer group relative col-span-12 md:col-span-7 min-h-[280px] bg-zinc-900/40 backdrop-blur-md border border-zinc-800/80 rounded-[2rem] p-6 hover:border-violet-500/40 hover:bg-zinc-900/60 overflow-hidden flex flex-col justify-between hover:shadow-[0_0_30px_rgba(139,92,246,0.15)] transition-all duration-300">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-br from-violet-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+                        </div>
+
+                        <div class="relative z-10 w-full mb-4">
+                            <div class="flex justify-between items-start mb-4">
+                                <h3
+                                    class="text-xl font-bold text-zinc-100 group-hover:text-violet-300 transition-colors flex items-center gap-2">
+                                    <i data-lucide="sparkles" class="w-5 h-5 text-violet-400"></i> <span
+                                        data-en="AI Studio" data-ru="AI Студия">AI Studio</span>
+                                </h3>
+                                <div class="inline-flex items-center px-2 py-0.5 rounded border border-violet-500/20 bg-violet-500/10 text-violet-300 text-[10px] font-semibold tracking-wide uppercase transition-colors"
+                                    data-en="from 3h" data-ru="от 3ч">
+                                    from 3h
+                                </div>
+                            </div>
+                            <div
+                                class="relative mb-2 [mask-image:linear-gradient(to_bottom,black_40%,transparent_100%)] pb-1">
+                                <p class="text-zinc-400 text-sm mb-1 line-clamp-3 leading-relaxed"
+                                    data-en="Next-gen visual assets for e-commerce. AI-generated SKU imagery and promo materials..."
+                                    data-ru="Визуальные активы нового поколения для e-commerce. AI-генерация фото товаров и промо-материалов...">
+                                    Next-gen visual assets for e-commerce. AI-generated SKU imagery and promo
+                                    materials...
+                                </p>
+                                <span
+                                    class="text-violet-400 text-[10px] font-bold uppercase tracking-wider flex items-center opacity-80 group-hover:opacity-100 transition-opacity"
+                                    data-en="DETAILS -&gt;" data-ru="ДЕТАЛИ -&gt;">DETAILS -&gt;</span>
+                            </div>
+                        </div>
+
+                        <div
+                            class="relative z-10 w-full pt-4 border-t border-zinc-800/50 mt-auto flex flex-col justify-end">
+                            <p class="text-zinc-500 text-[10px] font-bold tracking-widest uppercase mb-3"
+                                data-en="RECENT WORKS" data-ru="ПОСЛЕДНИЕ РАБОТЫ">RECENT WORKS</p>
+                            <ul class="space-y-2 mb-4">
+                                <li class="flex items-center text-zinc-300 font-medium text-sm">
+                                    <i data-lucide="sparkles" class="w-4 h-4 mr-2 text-violet-400/80"></i> SKU Launch
+                                </li>
+                                <li class="flex items-center text-zinc-300 font-medium text-sm">
+                                    <i data-lucide="image" class="w-4 h-4 mr-2 text-violet-400/80"></i> AI Graphics
+                                </li>
+                            </ul>
+
+                            <div class="flex justify-end items-center mt-auto relative z-20">
+                                <a href="#ai-showcase" onclick="event.stopPropagation()"
+                                    class="text-zinc-500 text-xs hover:text-zinc-300 transition-colors flex items-center"
+                                    data-en="See all projects -&gt;" data-ru="Смотреть все проекты -&gt;">
+                                    See all projects -&gt;
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Deep Dive Section -->
+        <section id="services-deep-dive" class="px-6 py-20 max-w-3xl mx-auto space-y-16 relative z-10 scroll-mt-[80px]">
+            <h2
+                class="text-3xl font-bold bg-gradient-to-r from-zinc-100 to-zinc-400 bg-clip-text text-transparent mb-12 text-center text-zinc-100">
+                <span data-en="Capabilities" data-ru="Что я умею">Capabilities</span><span
+                    class="text-indigo-500">.</span></h2>
+
+            <div id="bots-info" class="scroll-mt-[110px] pl-6 relative">
+                <div
+                    class="absolute left-0 top-2 w-2 h-2 rounded-full bg-indigo-500 shadow-[0_0_10px_rgba(99,102,241,0.5)]">
+                </div>
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-2xl font-bold text-zinc-100 flex items-center gap-3">
+                        <i data-lucide="bot" class="w-6 h-6 text-indigo-400"></i> <span data-en="Telegram Bots"
+                            data-ru="Telegram Боты">Telegram Bots</span>
+                    </h3>
+                    <span
+                        class="text-[10px] font-bold uppercase tracking-widest text-indigo-400/80 bg-indigo-500/10 px-2 py-1 rounded"
+                        data-en="From 24H" data-ru="От 24Ч">From 24H</span>
+                </div>
+                <ul class="text-zinc-400 text-base leading-relaxed space-y-4">
+                    <li class="relative pl-5">
+                        <span class="absolute left-0 top-2.5 w-1.5 h-1.5 rounded-full bg-indigo-500"></span>
+                        <span data-en="Professional development on Aiogram 3.x. Utilizing PostgreSQL and Redis to ensure data integrity and high-speed performance under load."
+                              data-ru="Профессиональная разработка на Aiogram 3.x. Использую PostgreSQL и Redis, чтобы данные были в сохранности, а бот летал даже при большом количестве юзеров.">
+                            Professional development on Aiogram 3.x. Utilizing PostgreSQL and Redis to ensure data integrity and high-speed performance under load.
+                        </span>
+                    </li>
+                    <li class="relative pl-5">
+                        <span class="absolute left-0 top-2.5 w-1.5 h-1.5 rounded-full bg-indigo-500"></span>
+                        <span data-en="Architecting complex Finite State Machines (FSM). Users follow clear, seamless scenarios without bugs or dead ends."
+                              data-ru="Проектирую сложные цепочки состояний (FSM). Пользователь идет по четкому сценарию без багов, «залипаний» и тупиковых веток.">
+                            Architecting complex Finite State Machines (FSM). Users follow clear, seamless scenarios without bugs or dead ends.
+                        </span>
+                    </li>
+                    <li class="relative pl-5">
+                        <span class="absolute left-0 top-2.5 w-1.5 h-1.5 rounded-full bg-indigo-500"></span>
+                        <span data-en="Building full-scale ecosystems: connecting external APIs, syncing with websites, and integrating AI models to automate routine tasks."
+                              data-ru="Превращаю бота в полноценный инструмент — подключаю любые внешние API, связываю с сайтами и внедряю ИИ-модели для автоматизации рутины.">
+                            Building full-scale ecosystems: connecting external APIs, syncing with websites, and integrating AI models to automate routine tasks.
+                        </span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="w-full h-px bg-zinc-800/50"></div>
+
+            <div id="mvp-info" class="scroll-mt-[110px] pl-6 relative">
+                <div
+                    class="absolute left-0 top-2 w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.5)]">
+                </div>
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-2xl font-bold text-zinc-100 flex items-center gap-3">
+                        <i data-lucide="rocket" class="w-6 h-6 text-emerald-400"></i> <span data-en="MVP &amp; App"
+                            data-ru="MVP и Приложения">MVP &amp; App</span>
+                    </h3>
+                    <span
+                        class="text-[10px] font-bold uppercase tracking-widest text-emerald-400/80 bg-emerald-500/10 px-2 py-1 rounded"
+                        data-en="From 1 Day" data-ru="От 1 Дня">From 1 Day</span>
+                </div>
+                <ul class="text-zinc-400 text-base leading-relaxed space-y-4">
+                    <li class="relative pl-5">
+                        <span class="absolute left-0 top-2.5 w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                        <span data-en="High-speed backend development with FastAPI. Building the core of your product in days using modern tools without unnecessary overengineering."
+                              data-ru="Скорость и современный стек: разработка на FastAPI. Собираю рабочее ядро продукта за считанные дни, используя современные инструменты без лишнего оверинжиниринга.">
+                            High-speed backend development with FastAPI. Building the core of your product in days using modern tools without unnecessary overengineering.
+                        </span>
+                    </li>
+                    <li class="relative pl-5">
+                        <span class="absolute left-0 top-2.5 w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                        <span data-en="Scalable architecture and robust database design. Your MVP won't need a total rewrite — it’s built to scale into a full-scale service from day one."
+                              data-ru="Готовность к росту: проектирую чистую архитектуру и надежные базы данных. Твой MVP не придется переписывать с нуля — он изначально готов к масштабированию.">
+                            Scalable architecture and robust database design. Your MVP won't need a total rewrite — it’s built to scale into a full-scale service from day one.
+                        </span>
+                    </li>
+                    <li class="relative pl-5">
+                        <span class="absolute left-0 top-2.5 w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                        <span data-en="Laser focus on Time-to-Market. I help you launch fast so you can test the market and gather real feedback without spending months on development."
+                              data-ru="Проверка гипотез: максимальный фокус на Time-to-Market. Помогаю быстро запустить продукт, чтобы ты мог протестировать рынок и собрать фидбек вовремя.">
+                            Laser focus on Time-to-Market. I help you launch fast so you can test the market and gather real feedback without spending months on development.
+                        </span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="w-full h-px bg-zinc-800/50"></div>
+
+            <div id="web-info" class="scroll-mt-[110px] pl-6 relative">
+                <div
+                    class="absolute left-0 top-2 w-2 h-2 rounded-full bg-amber-500 shadow-[0_0_10px_rgba(245,158,11,0.5)]">
+                </div>
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-2xl font-bold text-zinc-100 flex items-center gap-3">
+                        <i data-lucide="layout" class="w-6 h-6 text-amber-400"></i> <span data-en="Fast Web"
+                            data-ru="Быстрые Сайты">Fast Web</span>
+                    </h3>
+                    <span
+                        class="text-[10px] font-bold uppercase tracking-widest text-amber-400/80 bg-amber-500/10 px-2 py-1 rounded"
+                        data-en="From 12H" data-ru="От 12Ч">From 12H</span>
+                </div>
+                <ul class="text-zinc-400 text-base leading-relaxed space-y-4">
+                    <li class="relative pl-5">
+                        <span class="absolute left-0 top-2.5 w-1.5 h-1.5 rounded-full bg-amber-500"></span>
+                        <span data-en="Top-tier performance: clean layout using Tailwind CSS with perfect Lighthouse scores (100/100). Your site loads instantly and is loved by search engines."
+                              data-ru="Производительность: чистая верстка на Tailwind CSS с идеальными показателями Lighthouse (100/100). Сайт открывается мгновенно и сразу нравится поисковикам.">
+                            Top-tier performance: clean layout using Tailwind CSS with perfect Lighthouse scores (100/100). Your site loads instantly and is loved by search engines.
+                        </span>
+                    </li>
+                    <li class="relative pl-5">
+                        <span class="absolute left-0 top-2.5 w-1.5 h-1.5 rounded-full bg-amber-500"></span>
+                        <span data-en="Clean, modern design: no visual bloat or heavy libraries. Just a high-performance, responsive interface that focuses on your goals and drives results."
+                              data-ru="Чистый дизайн: никакого визуального мусора и тяжелых библиотек. Современный адаптивный интерфейс, который фокусирует внимание на главном и ведет к результату.">
+                            Clean, modern design: no visual bloat or heavy libraries. Just a high-performance, responsive interface that focuses on your goals and drives results.
+                        </span>
+                    </li>
+                    <li class="relative pl-5">
+                        <span class="absolute left-0 top-2.5 w-1.5 h-1.5 rounded-full bg-amber-500"></span>
+                        <span data-en="Technical foundation: fully optimized for mobile devices with built-in basic SEO. Your project looks premium and works flawlessly on every screen."
+                              data-ru="Технический фундамент: безупречная работа на мобилках и базовая SEO-оптимизация. Твой проект выглядит дорого и работает стабильно на любом устройстве.">
+                            Technical foundation: fully optimized for mobile devices with built-in basic SEO. Your project looks premium and works flawlessly on every screen.
+                        </span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="w-full h-px bg-zinc-800/50"></div>
+
+            <div id="ai-info" class="scroll-mt-[110px] pl-6 relative">
+                <div
+                    class="absolute left-0 top-2 w-2 h-2 rounded-full bg-violet-500 shadow-[0_0_10px_rgba(139,92,246,0.5)]">
+                </div>
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-2xl font-bold text-zinc-100 flex items-center gap-3">
+                        <i data-lucide="sparkles" class="w-6 h-6 text-violet-400"></i> <span data-en="AI Studio"
+                            data-ru="AI Студия">AI Studio</span>
+                    </h3>
+                    <span
+                        class="text-[10px] font-bold uppercase tracking-widest text-violet-400/80 bg-violet-500/10 px-2 py-1 rounded"
+                        data-en="From 3H" data-ru="От 3Ч">From 3H</span>
+                </div>
+                <ul class="text-zinc-400 text-base leading-relaxed space-y-4">
+                    <li class="relative pl-5">
+                        <span class="absolute left-0 top-2.5 w-1.5 h-1.5 rounded-full bg-violet-500"></span>
+                        <span data-en="Exclusive AI Personas: Crafting one-of-a-kind virtual models from scratch based on your specs: appearance, physique, and style. A unique &quot;digital face&quot; for your brand that competitors cannot replicate."
+                              data-ru="Уникальные ИИ-персонажи: создаю эксклюзивные виртуальные модели с нуля под ваши требования: внешность, типаж, рост и параметры фигуры. Это «лицо» бренда, которое невозможно встретить у конкурентов.">
+                            Exclusive AI Personas: Crafting one-of-a-kind virtual models from scratch based on your specs: appearance, physique, and style. A unique "digital face" for your brand that competitors cannot replicate.
+                        </span>
+                    </li>
+                    <li class="relative pl-5">
+                        <span class="absolute left-0 top-2.5 w-1.5 h-1.5 rounded-full bg-violet-500"></span>
+                        <span data-en="Visual Content Creation: Generating photorealistic product cards (SKU), lifestyle photos, and video content featuring your custom model. One persona—unlimited content for marketplaces and social media."
+                              data-ru="Генерация контента: создание фотореалистичных карточек товаров (SKU), рекламных имиджей и видео с участием вашего персонажа. Один образ — бесконечное количество контента для маркетплейсов и соцсетей.">
+                            Visual Content Creation: Generating photorealistic product cards (SKU), lifestyle photos, and video content featuring your custom model. One persona—unlimited content for marketplaces and social media.
+                        </span>
+                    </li>
+                    <li class="relative pl-5">
+                        <span class="absolute left-0 top-2.5 w-1.5 h-1.5 rounded-full bg-violet-500"></span>
+                        <span data-en="Aesthetics &amp; Precision: Total replacement for expensive photoshoots and castings. Get premium-grade visual assets while maintaining full control over every detail of the look and brand identity."
+                              data-ru="Эстетика и контроль: полная замена дорогостоящих фотосессий и кастингов. Вы получаете готовый контент премиального уровня, полностью контролируя каждую деталь образа и стиля.">
+                            Aesthetics &amp; Precision: Total replacement for expensive photoshoots and castings. Get premium-grade visual assets while maintaining full control over every detail of the look and brand identity.
+                        </span>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Project Showcase Section -->
+        <section id="project-showcase"
+            class="px-6 py-20 max-w-4xl mx-auto space-y-24 relative z-10 border-t border-zinc-900/50">
+            <div class="text-center mb-16 relative z-10">
+                <h2 class="text-3xl font-bold text-zinc-100 tracking-tight"><span data-en="Project Showcase"
+                        data-ru="Мои кейсы">Project Showcase</span><span class="text-indigo-500">.</span></h2>
+            </div>
+
+            <!-- Category: Telegram Bots -->
+            <div id="bots-showcase" class="scroll-mt-[100px] space-y-16">
+                <div>
+                    <h3 class="text-xl font-bold uppercase tracking-widest text-zinc-500 mb-8 pb-4 border-b border-zinc-800/50"
+                        data-en="Telegram Bots" data-ru="Telegram Боты">Telegram Bots</h3>
+                    <div class="space-y-16">
+                        <!-- Smart Basket Bot -->
+                        <div class="space-y-5">
+                            <h4 class="text-2xl font-bold text-zinc-100 flex items-center gap-3">
+                                <i data-lucide="shopping-cart" class="w-6 h-6 text-indigo-400"></i> Smart Basket Bot
+                            </h4>
+                            <div class="space-y-3 text-zinc-400 text-[15px] leading-relaxed">
+                                <p><strong class="text-zinc-200 uppercase text-xs tracking-wider mr-2" data-en="The Ask"
+                                        data-ru="Запрос">The Ask</strong> <span
+                                        data-en="High cart abandonment rates on mobile platforms, struggling to retain user attention during checkout."
+                                        data-ru="Высокий процент брошенных корзин на мобильных платформах из-за сложности удержания внимания при оплате.">High
+                                        cart abandonment rates on mobile platforms, struggling to retain user attention
+                                        during checkout.</span></p>
+                                <p><strong class="text-zinc-200 uppercase text-xs tracking-wider mr-2"
+                                        data-en="The Build" data-ru="Сделано">The Build</strong> <span
+                                        data-en="Built an automated push notification and 1-click checkout system entirely within Telegram, leveraging native payment forms."
+                                        data-ru="Резработка автоматизированной системы push-уведомлений и чекаута в 1 клик полностью внутри Telegram с нативными формами оплаты.">Built
+                                        an automated push notification and 1-click checkout system entirely within
+                                        Telegram, leveraging native payment forms.</span></p>
+                                <p><strong class="text-zinc-200 uppercase text-xs tracking-wider mr-2" data-en="The Win"
+                                        data-ru="Итог">The Win</strong> <span
+                                        data-en="Recovered +35% of abandoned carts, drastically improving conversion rates and user retention."
+                                        data-ru="Восстановлено +35% брошенных корзин, резкий рост конверсии и удержания пользователей.">Recovered
+                                        +35% of abandoned carts, drastically improving conversion rates and user
+                                        retention.</span></p>
+                            </div>
+                            <div
+                                class="pt-5 border-t border-zinc-800/50 flex flex-wrap gap-6 text-[11px] tracking-widest uppercase font-semibold text-zinc-500">
+                                <div><span data-en="Core Assembly" data-ru="Сборка ядра">Core Assembly</span>: <span
+                                        class="text-indigo-400 ml-1" data-en="80M" data-ru="80мин">80M</span></div>
+                                <div><span data-en="Expansion &amp; Polishing" data-ru="Функционал и правки">Expansion
+                                        &amp; Polishing</span>: <span class="text-indigo-400 ml-1" data-en="4H"
+                                        data-ru="4ч">4H</span></div>
+                            </div>
+                        </div>
+
+                        <!-- Grateful Coach -->
+                        <div class="space-y-5">
+                            <h4 class="text-2xl font-bold text-zinc-100 flex items-center gap-3">
+                                <i data-lucide="bot" class="w-6 h-6 text-indigo-400"></i> Grateful Coach
+                            </h4>
+                            <div class="space-y-3 text-zinc-400 text-[15px] leading-relaxed">
+                                <p data-en="AI-driven wellness automation." data-ru="AI автоматизация в сфере велнеса.">
+                                    AI-driven wellness automation.</p>
+                                <p><strong class="text-zinc-200 uppercase text-xs tracking-wider mr-2" data-en="The Ask"
+                                        data-ru="Запрос">The Ask</strong> <span
+                                        data-en="Manual fitness tracking was highly inefficient, severely limiting the number of clients a single coach could manage."
+                                        data-ru="Ручной трекинг фитнеса был крайне неэффективен, жестко ограничивая количество клиентов у одного тренера.">Manual
+                                        fitness tracking was highly inefficient, severely limiting the number of clients
+                                        a single coach could manage.</span></p>
+                                <p><strong class="text-zinc-200 uppercase text-xs tracking-wider mr-2"
+                                        data-en="The Build" data-ru="Сделано">The Build</strong> <span
+                                        data-en="Designed an intelligent AI bot to deliver personalized diet and workout plans directly to users, automating check-ins and progress logging."
+                                        data-ru="Разработан интеллектуальный AI-бот для предоставления персональных планов питания и тренировок, автоматизирующий проверки и учет прогресса.">Designed
+                                        an intelligent AI bot to deliver personalized diet and workout plans directly to
+                                        users, automating check-ins and progress logging.</span></p>
+                                <p><strong class="text-zinc-200 uppercase text-xs tracking-wider mr-2" data-en="The Win"
+                                        data-ru="Итог">The Win</strong> <span
+                                        data-en="Reached 10k+ active users rapidly while eliminating manual tracking bottlenecks entirely."
+                                        data-ru="Стремительный охват 10к+ активных пользователей при полном устранении ручного трекинга.">Reached
+                                        10k+ active users rapidly while eliminating manual tracking bottlenecks
+                                        entirely.</span></p>
+                            </div>
+                            <div
+                                class="pt-5 border-t border-zinc-800/50 flex flex-wrap gap-6 text-[11px] tracking-widest uppercase font-semibold text-zinc-500">
+                                <div><span data-en="Core Assembly" data-ru="Сборка ядра">Core Assembly</span>: <span
+                                        class="text-indigo-400 ml-1" data-en="40M" data-ru="40мин">40M</span></div>
+                                <div><span data-en="Expansion &amp; Polishing" data-ru="Функционал и правки">Expansion
+                                        &amp; Polishing</span>: <span class="text-indigo-400 ml-1" data-en="30M"
+                                        data-ru="30мин">30M</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Category: MVP & App -->
+            <div id="prototypes-showcase" class="scroll-mt-[100px] space-y-16">
+                <div>
+                    <h3 class="text-xl font-bold uppercase tracking-widest text-zinc-500 mb-8 pb-4 border-b border-zinc-800/50"
+                        data-en="MVP &amp; App" data-ru="MVP и Приложения">MVP &amp; App</h3>
+                    <div class="space-y-16">
+                        <!-- Smart Basket Evolution (Flagship) -->
+                        <div class="space-y-5">
+                            <div class="inline-block px-3 py-1 bg-emerald-500/10 text-emerald-400 text-[10px] font-bold tracking-widest uppercase rounded-full border border-emerald-500/20 mb-2"
+                                data-en="Flagship Case" data-ru="Флагманский Кейс">Flagship Case</div>
+                            <h4 class="text-2xl font-bold text-zinc-100 flex items-center gap-3">
+                                <i data-lucide="smartphone" class="w-6 h-6 text-emerald-400"></i> Smart Basket Mobile
+                            </h4>
+                            <div class="space-y-3 text-zinc-400 text-[15px] leading-relaxed">
+                                <p data-en="Architectural migration from Telegram Bot interface to a full-scale Mobile App prototype, focusing on logic preservation and UX scaling."
+                                    data-ru="Масштабирование логики Telegram-бота в полноценный прототип мобильного приложения.">
+                                    Architectural migration from Telegram Bot interface to a full-scale Mobile App
+                                    prototype, focusing on logic preservation and UX scaling.</p>
+                                <p><strong class="text-zinc-200 uppercase text-xs tracking-wider mr-2" data-en="The Ask"
+                                        data-ru="Запрос">The Ask</strong> <span
+                                        data-en="The initial successful push-notification bot was outgrown by the user base, leading to scattered UX and complex cart state management across sessions."
+                                        data-ru="Успешный бот перерос себя из-за роста аудитории, что привело к фрагментированному UX и сложному управлению корзиной между сессиями.">The
+                                        initial successful push-notification bot was outgrown by the user base, leading
+                                        to scattered UX and complex cart state management across sessions.</span></p>
+                                <p><strong class="text-zinc-200 uppercase text-xs tracking-wider mr-2"
+                                        data-en="The Build" data-ru="Сделано">The Build</strong> <span
+                                        data-en="Developed a cross-platform Mobile App with an advanced FastAPI backend, preserving the successful Telegram logic while creating a unified, scalable native interface."
+                                        data-ru="Разработано кроссплатформенное мобильное приложение с продвинутым FastAPI бэкендом, сохранившее успешную логику Telegram в едином масштабируемом нативном интерфейсе.">Developed
+                                        a cross-platform Mobile App with an advanced FastAPI backend, preserving the
+                                        successful Telegram logic while creating a unified, scalable native
+                                        interface.</span></p>
+                                <p><strong class="text-zinc-200 uppercase text-xs tracking-wider mr-2" data-en="The Win"
+                                        data-ru="Итог">The Win</strong> <span
+                                        data-en="Maintained zero downtime during migration, delivering an intuitive cross-platform experience that dramatically accelerated user retention and checkout speeds."
+                                        data-ru="Нулевой даунтайм при миграции, обеспечение интуитивного кроссплатформенного опыта, что радикально ускорило удержание пользователей и скорость покупки.">Maintained
+                                        zero downtime during migration, delivering an intuitive cross-platform
+                                        experience that dramatically accelerated user retention and checkout
+                                        speeds.</span></p>
+                            </div>
+                            <div
+                                class="pt-5 border-t border-zinc-800/50 flex flex-wrap gap-6 text-[11px] tracking-widest uppercase font-semibold text-zinc-500">
+                                <div><span data-en="Assembly" data-ru="Сборка ядра">Assembly</span>: <span
+                                        class="text-emerald-400 ml-1" data-en="20M" data-ru="20мин">20M</span></div>
+                                <div><span data-en="Expansion" data-ru="Функционал и правки">Expansion</span>: <span
+                                        class="text-emerald-400 ml-1" data-en="4H" data-ru="4ч">4H</span></div>
+                            </div>
+                        </div>
+
+                        <!-- Pizdelniki Web -->
+                        <div class="space-y-5">
+                            <h4 class="text-2xl font-bold text-zinc-100 flex items-center gap-3">
+                                <i data-lucide="message-square" class="w-6 h-6 text-emerald-400"></i> Pizdelniki Web
+                            </h4>
+                            <div class="space-y-3 text-zinc-400 text-[15px] leading-relaxed">
+                                <p data-en="Rapid social tool deployment &amp; admin dashboard."
+                                    data-ru="Быстрое развертывание соц-инструмента и админ-панели.">Rapid social tool
+                                    deployment &amp; admin dashboard.</p>
+                                <p><strong class="text-zinc-200 uppercase text-xs tracking-wider mr-2" data-en="The Win"
+                                        data-ru="Итог">The Win</strong> <span
+                                        data-en="Achieved 10x faster data retrieval and empowered admins with actionable, visual oversight."
+                                        data-ru="Достигнуто 10-кратное ускорение получения данных, администраторы получили визуальный и эффективный контроль.">Achieved
+                                        10x faster data retrieval and empowered admins with actionable, visual
+                                        oversight.</span></p>
+                            </div>
+                            <div
+                                class="pt-5 border-t border-zinc-800/50 flex flex-wrap gap-6 text-[11px] tracking-widest uppercase font-semibold text-zinc-500">
+                                <div><span data-en="Assembly" data-ru="Сборка ядра">Assembly</span>: <span
+                                        class="text-emerald-400 ml-1" data-en="30M" data-ru="30мин">30M</span></div>
+                                <div><span data-en="Expansion" data-ru="Функционал и правки">Expansion</span>: <span
+                                        class="text-emerald-400 ml-1" data-en="1H" data-ru="1ч">1H</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Category: Fast Web -->
+            <div id="sites-showcase" class="scroll-mt-[100px] space-y-16">
+                <div>
+                    <h3 class="text-xl font-bold uppercase tracking-widest text-zinc-500 mb-8 pb-4 border-b border-zinc-800/50"
+                        data-en="Fast Web" data-ru="Быстрые Сайты">Fast Web</h3>
+                    <div class="space-y-16">
+                        <!-- Portfolio 2026 -->
+                        <div class="space-y-5">
+                            <h4 class="text-2xl font-bold text-zinc-100 flex items-center gap-3">
+                                <i data-lucide="layout" class="w-6 h-6 text-amber-400"></i> Portfolio 2026
+                            </h4>
+                            <div class="space-y-3 text-zinc-400 text-[15px] leading-relaxed">
+                                <p data-en="High-performance interactive portfolio."
+                                    data-ru="Высокопроизводительное интерактивное портфолио.">High-performance
+                                    interactive portfolio.</p>
+                                <p><strong class="text-zinc-200 uppercase text-xs tracking-wider mr-2" data-en="The Ask"
+                                        data-ru="Запрос">The Ask</strong> <span
+                                        data-en="Needed a blazing fast, premium layout to display complex case studies effectively."
+                                        data-ru="Требовался невероятно быстрый, премиальный дизайн для эффективной презентации сложных кейсов.">Needed
+                                        a blazing fast, premium layout to display complex case studies
+                                        effectively.</span></p>
+                                <p><strong class="text-zinc-200 uppercase text-xs tracking-wider mr-2"
+                                        data-en="The Build" data-ru="Сделано">The Build</strong> <span
+                                        data-en="Engineered a static site with advanced Tailwind CSS components and custom smooth scroll behaviors without relying on heavy frameworks."
+                                        data-ru="Разработан статический сайт с продвинутыми компонентами Tailwind CSS и кастомным плавным скроллингом без тяжелых фреймворков.">Engineered
+                                        a static site with advanced Tailwind CSS components and custom smooth scroll
+                                        behaviors without relying on heavy frameworks.</span></p>
+                                <p><strong class="text-zinc-200 uppercase text-xs tracking-wider mr-2" data-en="The Win"
+                                        data-ru="Итог">The Win</strong> <span
+                                        data-en="Perfect Lighthouse score and a seamless, high-retention user experience directly leading to more sales conversions."
+                                        data-ru="Идеальный 100/100 Lighthouse score и безупречный пользовательский опыт, ведущий к росту продаж.">Perfect
+                                        Lighthouse score and a seamless, high-retention user experience directly leading
+                                        to more sales conversions.</span></p>
+                            </div>
+                            <div
+                                class="pt-5 border-t border-zinc-800/50 flex flex-wrap gap-6 text-[11px] tracking-widest uppercase font-semibold text-zinc-500">
+                                <div><span data-en="Assembly" data-ru="Сборка ядра">Assembly</span>: <span
+                                        class="text-amber-400 ml-1" data-en="40M" data-ru="40мин">40M</span></div>
+                                <div><span data-en="Framework" data-ru="Фреймворк">Framework</span>: <span
+                                        class="text-amber-400 ml-1">Landing Forge</span></div>
+                                <div><span data-en="Expansion" data-ru="Функционал и правки">Expansion</span>: <span
+                                        class="text-amber-400 ml-1" data-en="3H" data-ru="3ч">3H</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Category: AI Studio -->
+            <div id="ai-showcase" class="scroll-mt-[100px] space-y-16">
+                <div>
+                    <h3 class="text-xl font-bold uppercase tracking-widest text-zinc-500 mb-8 pb-4 border-b border-zinc-800/50"
+                        data-en="AI Studio" data-ru="AI Студия">AI Studio</h3>
+                    <div class="space-y-16">
+                        <!-- SKU Launch -->
+                        <div class="space-y-5">
+                            <h4 class="text-2xl font-bold text-zinc-100 flex items-center gap-3">
+                                <i data-lucide="sparkles" class="w-6 h-6 text-violet-400"></i> SKU Launch
+                            </h4>
+                            <div class="space-y-3 text-zinc-400 text-[15px] leading-relaxed">
+                                <p data-en="High-speed AI-visual production."
+                                    data-ru="Генерация фото/видео контента с обучением нейросети под бренд.">High-speed
+                                    AI-visual production.</p>
+                                <p><strong class="text-zinc-200 uppercase text-xs tracking-wider mr-2" data-en="The Ask"
+                                        data-ru="Запрос">The Ask</strong> <span
+                                        data-en="Product photography scaling for a large e-commerce catalog was prohibitively slow and expensive."
+                                        data-ru="Масштабирование фотосъемки большого каталога e-commerce было запредельно долгим и дорогим.">Product
+                                        photography scaling for a large e-commerce catalog was prohibitively slow and
+                                        expensive.</span></p>
+                                <p><strong class="text-zinc-200 uppercase text-xs tracking-wider mr-2"
+                                        data-en="The Build" data-ru="Сделано">The Build</strong> <span
+                                        data-en="Forged an automated image generation pipeline powered by sophisticated ComfyUI and Stable Diffusion workflows directly integrated with product databases."
+                                        data-ru="Создан автоматизированный пайплайн генерации изображений на базе ComfyUI и Stable Diffusion, интегрированный с товарными базами данных.">Forged
+                                        an automated image generation pipeline powered by sophisticated ComfyUI and
+                                        Stable Diffusion workflows directly integrated with product databases.</span>
+                                </p>
+                                <p><strong class="text-zinc-200 uppercase text-xs tracking-wider mr-2" data-en="The Win"
+                                        data-ru="Итог">The Win</strong> <span
+                                        data-en="Reduced per-image production costs by 90% and shortened asset delivery time from days to minutes."
+                                        data-ru="Сокращение затрат на создание изображения на 90% и сужение сроков выдачи ассетов с дней до минут.">Reduced
+                                        per-image production costs by 90% and shortened asset delivery time from days to
+                                        minutes.</span></p>
+                            </div>
+                            <div
+                                class="pt-5 border-t border-zinc-800/50 flex flex-col gap-3 text-[11px] tracking-widest uppercase font-semibold text-zinc-500">
+                                <div class="text-zinc-400"><span data-en="Total Delivery" data-ru="Общая Доставка">Total
+                                        Delivery</span>: <span class="text-violet-400 ml-1" data-en="9H"
+                                        data-ru="9ч">9H</span></div>
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                    <div><span data-en="Assembly (Training)" data-ru="Сборка ядра (Обучение)">Assembly
+                                            (Training)</span>: <span class="text-violet-400 ml-1" data-en="1H"
+                                            data-ru="1ч">1H</span></div>
+                                    <div><span data-en="Expansion" data-ru="Функционал и правки">Expansion</span>: <span
+                                            class="text-violet-400 ml-1" data-en="2.5H" data-ru="2.5ч">2.5H</span></div>
+                                    <div><span data-en="Virtual Photoshoot" data-ru="Виртуальная Фотосъемка">Virtual
+                                            Photoshoot</span>: <span class="text-violet-400 ml-1" data-en="1H"
+                                            data-ru="1ч">1H</span></div>
+                                    <div><span data-en="Expansion" data-ru="Функционал и правки">Expansion</span>: <span
+                                            class="text-violet-400 ml-1" data-en="1.5H" data-ru="1.5ч">1.5H</span></div>
+                                    <div><span data-en="Video Content" data-ru="Видеоконтент">Video Content</span>:
+                                        <span class="text-violet-400 ml-1" data-en="2H" data-ru="2ч">2H</span></div>
+                                    <div><span data-en="Expansion" data-ru="Функционал и правки">Expansion</span>: <span
+                                            class="text-violet-400 ml-1" data-en="1H" data-ru="1ч">1H</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tech Stack Section -->
+        <section id="stack" class="py-24 px-6 bg-zinc-900/20 border-y border-zinc-900/50">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-3xl font-bold mb-10 tracking-tight text-zinc-100"><span data-en="Tech Stack"
+                        data-ru="Стек Технологий">Tech Stack</span><span class="text-indigo-500">.</span></h2>
+
+                <div class="flex flex-wrap items-center justify-center gap-3">
+                    <!-- Badges -->
+                    <div
+                        class="inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-full border border-zinc-800 bg-zinc-900/50 text-zinc-400 hover:bg-zinc-800/50 hover:text-zinc-200 transition-all duration-300 cursor-default text-sm shadow-sm">
+                        <i data-lucide="code-2" class="w-4 h-4"></i> Python
+                    </div>
+                    <div
+                        class="inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-full border border-zinc-800 bg-zinc-900/50 text-zinc-400 hover:bg-zinc-800/50 hover:text-zinc-200 transition-all duration-300 cursor-default text-sm shadow-sm">
+                        <i data-lucide="message-circle" class="w-4 h-4"></i> Aiogram
+                    </div>
+                    <div
+                        class="inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-full border border-zinc-800 bg-zinc-900/50 text-zinc-400 hover:bg-zinc-800/50 hover:text-zinc-200 transition-all duration-300 cursor-default text-sm shadow-sm">
+                        <i data-lucide="server" class="w-4 h-4"></i> FastAPI
+                    </div>
+                    <div
+                        class="inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-full border border-zinc-800 bg-zinc-900/50 text-zinc-400 hover:bg-zinc-800/50 hover:text-zinc-200 transition-all duration-300 cursor-default text-sm shadow-sm">
+                        <i data-lucide="database" class="w-4 h-4"></i> SQLite
+                    </div>
+                    <div
+                        class="inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-full border border-zinc-800 bg-zinc-900/50 text-zinc-400 hover:bg-zinc-800/50 hover:text-zinc-200 transition-all duration-300 cursor-default text-sm shadow-sm">
+                        <i data-lucide="git-branch" class="w-4 h-4"></i> Git
+                    </div>
+                    <div
+                        class="inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-full border border-zinc-800 bg-zinc-900/50 text-zinc-400 hover:bg-zinc-800/50 hover:text-zinc-200 transition-all duration-300 cursor-default text-sm shadow-sm">
+                        <i data-lucide="container" class="w-4 h-4"></i> Docker
+                    </div>
+                    <div
+                        class="inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-full border border-zinc-800 bg-zinc-900/50 text-zinc-400 hover:bg-zinc-800/50 hover:text-zinc-200 transition-all duration-300 cursor-default text-sm shadow-sm">
+                        <i data-lucide="wind" class="w-4 h-4"></i> Tailwind
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer & Contact -->
+    <footer id="contact" class="py-16 px-6 relative overflow-hidden bg-zinc-950">
+        <div class="max-w-6xl mx-auto flex flex-col items-center justify-center gap-6 relative z-10 text-center">
+
+            <div>
+                <h3 class="text-3xl font-bold text-zinc-100 mb-2"
+                    data-en="Ideas are nothing without execution. Let's build."
+                    data-ru="Идеи ничего не стоят без реализации. Погнали.">Ideas are nothing without execution. Let's
+                    build.</h3>
+            </div>
+
+            <div class="mt-4">
+                <a href="https://t.me/jonnynest" target="_blank" rel="noopener noreferrer"
+                    class="group relative inline-flex items-center justify-center p-4 rounded-full bg-zinc-900 border border-zinc-800 text-zinc-300 hover:text-white hover:border-indigo-500/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(99,102,241,0.3)]">
+                    <div
+                        class="absolute inset-0 rounded-full bg-gradient-to-r from-indigo-500/20 to-emerald-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    </div>
+                    <i data-lucide="send" class="w-6 h-6 relative z-10"></i>
+                    <span class="sr-only">Telegram</span>
+                </a>
+            </div>
+
+        </div>
+
+        <div class="mt-16 text-center">
+            <p class="text-sm font-medium text-zinc-500 mb-1">© 2026 Eugenio Nesterov.</p>
+            <p class="text-xs text-zinc-600" data-en="MVP engineering &amp; ecosystem architecture."
+                data-ru="Разработка MVP и архитектура экосистем.">MVP engineering &amp; ecosystem architecture.</p>
+        </div>
+    </footer>
+
+    <!-- Initialize Lucide Icons & Language Switcher logic -->
+    <script>
+        lucide.createIcons();
+
+        // Language Switcher Logic
+        let currentLang = 'en';
+
+        function switchLanguage(lang) {
+            currentLang = lang;
+            const elements = document.querySelectorAll('[data-en]');
+
+            elements.forEach(el => {
+                if (el.hasAttribute(`data-${lang}`)) {
+                    el.innerHTML = el.getAttribute(`data-${lang}`);
+                }
+            });
+
+            // Update toggle UI
+            const dot = document.getElementById('lang-toggle-dot');
+            const enLabel = document.getElementById('lang-en');
+            const ruLabel = document.getElementById('lang-ru');
+
+            if (lang === 'en') {
+                dot.style.transform = 'translateX(16px)'; // Move right
+                enLabel.classList.remove('opacity-50');
+                ruLabel.classList.add('opacity-50');
+            } else {
+                dot.style.transform = 'translateX(0)'; // Move left
+                enLabel.classList.add('opacity-50');
+                ruLabel.classList.remove('opacity-50');
+            }
+        }
+
+        function toggleLanguage() {
+            switchLanguage(currentLang === 'en' ? 'ru' : 'en');
+        }
+
+        // Init language on load to match UI
+        document.addEventListener('DOMContentLoaded', () => {
+            switchLanguage('en');
+        });
+    </script>
+</body>
+
+</html>
