@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth overflow-x-hidden">
+<html lang="ru" class="scroll-smooth overflow-x-hidden">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Eugenio Nesterov | Python & Fullstack Developer</title>
-    <meta name="description" content="Zhenek — Building Python Ecosystems & MVP Products">
-    <meta property="og:title" content="Eugenio Nesterov | Portfolio">
-    <meta property="og:description" content="Professional Fullstack Developer & AI Specialist. Building MVPs and Python ecosystems.">
+    <meta name="description" content="Разработка экосистем на Python и MVP продуктов">
+    <meta property="og:title" content="Портфолио">
+    <meta property="og:description" content="Профессиональный Fullstack разработчик и AI специалист. Создание MVP и экосистем на Python.">
     <link rel="icon" type="image/svg+xml"
         href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='25' fill='%2318181b'/><path d='M35 40l-15 10 15 10M65 40l15 10-15 10' stroke='%23fbbf24' stroke-width='8' fill='none' stroke-linecap='round' stroke-linejoin='round'/><path d='M55 35l-10 30' stroke='%23fbbf24' stroke-width='8' stroke-linecap='round'/></svg>">
 
@@ -16,52 +16,22 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    },
-                    colors: {
-                        zinc: {
-                            950: '#09090b',
-                        }
-                    }
-                }
-            }
-        }
-    </script>
+
 
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
 
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #09090b;
-        }
-
-        /* Ambient Glow Effect */
-        .ambient-glow {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(120px);
-            opacity: 0.15;
-            z-index: -1;
-            pointer-events: none;
-        }
-    </style>
+    <!-- Tailwind CSS (Compiled) -->
+    <link rel="stylesheet" href="./dist/output.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 </head>
 
 <body class="text-zinc-50 antialiased selection:bg-amber-500/30 selection:text-amber-200 overflow-x-hidden relative">
 
     <!-- Background Ambient Glows -->
-    <div class="ambient-glow top-0 left-[-10%] w-[80vw] max-w-[500px] h-[500px] bg-amber-600"></div>
-    <div class="ambient-glow top-[40%] right-[-10%] w-[70vw] max-w-[400px] h-[400px] bg-amber-500"></div>
-    <div class="ambient-glow bottom-0 left-[20%] w-[90vw] max-w-[600px] h-[600px] bg-orange-700"></div>
+    <div class="ambient-glow top-0 left-[-10%] w-[100vw] md:w-[80vw] max-w-[500px] h-[500px] bg-amber-600 opacity-40 md:opacity-100"></div>
+    <div class="ambient-glow top-[40%] right-[-10%] w-[70vw] max-w-[400px] h-[400px] bg-amber-500 opacity-40 md:opacity-100"></div>
+    <div class="ambient-glow bottom-0 left-[20%] w-[90vw] max-w-[600px] h-[600px] bg-orange-700 opacity-40 md:opacity-100"></div>
 
     <!-- Navigation -->
     <header class="fixed top-0 left-0 w-full z-[100] bg-black shadow-md px-4 sm:px-6 py-4 border-b border-zinc-900/50">
@@ -75,10 +45,10 @@
             <div class="flex items-center gap-4 sm:gap-6">
                 <!-- Language Switcher -->
                 <div class="flex items-center gap-3">
-                    <button class="text-2xl opacity-50 hover:opacity-100 transition-opacity flex items-center" id="lang-ru"
+                    <button class="text-2xl opacity-100 hover:opacity-100 transition-opacity flex items-center" id="lang-ru"
                         onclick="switchLanguage('ru')" title="Русский">🇷🇺</button>
                     <div class="w-px h-4 bg-zinc-700"></div>
-                    <button class="text-2xl opacity-100 hover:opacity-100 transition-opacity flex items-center" id="lang-en" onclick="switchLanguage('en')"
+                    <button class="text-2xl opacity-50 hover:opacity-100 transition-opacity flex items-center" id="lang-en" onclick="switchLanguage('en')"
                         title="English">🇺🇸</button>
                 </div>
 
@@ -88,10 +58,10 @@
                         <i data-lucide="home" class="w-4 h-4"></i>
                     </a>
                     <a href="#work" class="flex text-zinc-400 hover:text-zinc-100 transition-colors tracking-wide items-center gap-1.5" title="Work">
-                        <span data-en="Work" data-ru="Работы">Work</span>
+                        <span data-en="Work" data-ru="Проекты">Work</span>
                     </a>
                     <a href="#services-deep-dive" class="flex text-zinc-400 hover:text-zinc-100 transition-colors tracking-wide items-center gap-1.5" title="Capabilities">
-                        <span data-en="Capabilities" data-ru="Возможности">Capabilities</span>
+                        <span data-en="Capabilities" data-ru="Услуги">Capabilities</span>
                     </a>
                     <a href="#contact" class="flex text-zinc-400 hover:text-indigo-400 transition-colors tracking-wide items-center gap-2">
                         <span class="relative flex h-2 w-2">
@@ -115,9 +85,9 @@
         </div>
 
         <!-- Mobile Menu Container -->
-        <div id="mobile-menu" class="hidden md:hidden pt-4 pb-2 flex flex-col gap-4 text-center border-t border-zinc-900 mt-4">
-            <a href="#work" class="text-zinc-300 text-sm font-medium hover:text-white" data-en="Work" data-ru="Работы">Work</a>
-            <a href="#services-deep-dive" class="text-zinc-300 text-sm font-medium hover:text-white" data-en="Capabilities" data-ru="Возможности">Capabilities</a>
+        <div id="mobile-menu" class="hidden md:hidden pt-4 pb-6 flex flex-col gap-6 text-center border-t border-zinc-900 mt-4 bg-black/95 backdrop-blur-md rounded-b-3xl">
+            <a href="#work" class="text-zinc-300 text-sm font-medium hover:text-white" data-en="Work" data-ru="Проекты">Work</a>
+            <a href="#services-deep-dive" class="text-zinc-300 text-sm font-medium hover:text-white" data-en="Capabilities" data-ru="Услуги">Capabilities</a>
             <a href="#contact" class="text-zinc-300 text-sm font-medium hover:text-indigo-400 flex items-center justify-center gap-2">
                 <span class="relative flex h-2 w-2">
                     <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
@@ -132,7 +102,7 @@
         <!-- Hero Section -->
         <section id="hero"
             class="relative min-h-screen flex flex-col justify-center items-center text-center px-6 pt-20 scroll-mt-[80px]">
-            <h1 class="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold tracking-tight mb-12 max-w-5xl text-transparent bg-clip-text bg-gradient-to-b from-zinc-50 to-zinc-500"
+            <h1 class="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold tracking-tight mb-12 max-w-5xl text-transparent bg-clip-text bg-gradient-to-b from-zinc-50 to-zinc-500"
                 data-en="From Idea to Launch in 24 Hours" data-ru="От идеи до запуска за 24 часа">
                 From Idea to Launch in 24 Hours
             </h1>
@@ -145,7 +115,7 @@
                 </div>
                 <div class="flex items-center gap-2">
                     <i data-lucide="layout" class="w-5 h-5 text-amber-500"></i>
-                    <span data-en="Sites: from 12h" data-ru="Сайты: от 12ч">Sites: from 12h</span>
+                    <span data-en="Sites: from 6h" data-ru="Сайты: от 6ч">Sites: from 6h</span>
                 </div>
                 <div class="flex items-center gap-2">
                     <i data-lucide="rocket" class="w-5 h-5 text-amber-500"></i>
@@ -169,765 +139,833 @@
                 data-ru="Среднее время ответа: 15 мин">Average response time: 15 mins</p>
         </section>
 
-        <section id="work" class="py-32 px-6 scroll-mt-[80px]">
+        <section id="work" class="py-16 md:py-32 px-6 scroll-mt-[80px] reveal">
             <div class="max-w-6xl mx-auto">
-                <div class="mb-16 max-w-2xl mx-auto text-center">
-                    <h2 class="text-3xl font-bold mb-4 tracking-tight text-zinc-100"><span data-en="Featured Work"
-                            data-ru="Избранные Работы">Featured Work</span><span class="text-amber-500">.</span></h2>
+                <div class="mb-10 md:mb-16 max-w-2xl mx-auto text-center">
+                    <h2 class="text-3xl font-bold mb-4 tracking-tight text-zinc-100 reveal"><span data-en="Featured Work"
+                            data-ru="Избранные проекты">Избранные проекты</span><span class="text-amber-500">.</span></h2>
                     <p class="text-zinc-400 text-lg"
                         data-en="Architecting scalable digital ecosystems and high-performance bots."
                         data-ru="Проектирование масштабируемых цифровых экосистем и высоконагруженных ботов.">
-                        Architecting scalable digital ecosystems and high-performance bots.</p>
+                        Проектирование масштабируемых цифровых экосистем и высоконагруженных ботов.
+                    </p>
                 </div>
 
-                <div class="grid grid-cols-12 gap-4">
-
-                    <!-- Row 1, Card 1: Bots (Indigo) md:col-span-7 -->
-                    <div onclick="window.location.href='#bots-info'"
-                        class="cursor-pointer group relative col-span-12 md:col-span-7 min-h-[280px] bg-zinc-900/40 backdrop-blur-md border border-zinc-800/80 rounded-[2rem] p-6 hover:border-indigo-500/40 hover:bg-zinc-900/60 overflow-hidden flex flex-col justify-between hover:shadow-[0_0_30px_rgba(99,102,241,0.15)] transition-all duration-300">
-                        <div
-                            class="absolute inset-0 bg-gradient-to-br from-indigo-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
-                        </div>
-
-                        <div class="relative z-10 w-full mb-4">
-                            <div class="flex justify-between items-start mb-4">
-                                <h3
-                                    class="text-xl font-bold text-zinc-100 group-hover:text-indigo-300 transition-colors flex items-center gap-2">
-                                    <i data-lucide="bot" class="w-5 h-5 text-indigo-400"></i> <span
-                                        data-en="Telegram Bots" data-ru="Telegram Боты">Telegram Bots</span>
-                                </h3>
-                                <div class="inline-flex items-center px-2 py-0.5 rounded border border-indigo-500/20 bg-indigo-500/10 text-indigo-300 text-[10px] font-semibold tracking-wide uppercase transition-colors"
-                                    data-en="from 24h" data-ru="от 24ч">
-                                    from 24h
+                <div class="relative w-full">
+                    <div class="swiper workSwiper overflow-hidden rounded-3xl p-4 md:p-6 -m-4 md:-m-6">
+                        <div class="swiper-wrapper">
+                            
+                            <div class="swiper-slide group relative bg-zinc-950 border border-orange-500/20 rounded-3xl p-8 transition-all duration-500 hover:scale-[1.03] hover:border-orange-500/50 hover:shadow-[0_0_30px_-10px_rgba(249,115,22,0.3)] flex flex-col justify-between min-h-[300px] overflow-hidden reveal">
+                                <div class="absolute inset-0 bg-gradient-to-br from-orange-500/5 via-transparent to-transparent pointer-events-none"></div>
+                                <div class="flex items-start justify-between mb-6 relative z-10">
+                                    <div class="text-orange-500/70 group-hover:scale-110 transition-transform duration-500"><i data-lucide="layout" class="w-8 h-8"></i></div>
+                                    <div class="flex items-center gap-2 bg-orange-500/10 px-3 py-1.5 rounded-full border border-orange-500/20 shadow-[0_0_15px_-5px_rgba(249,115,22,0.5)]">
+                                        <span class="relative flex h-2.5 w-2.5">
+                                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"></span>
+                                            <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-orange-500"></span>
+                                        </span>
+                                        <span class="text-xs font-bold text-orange-500 uppercase tracking-wider" data-en="Completed" data-ru="Реализован">Реализован</span>
+                                    </div>
+                                </div>
+                                <div class="relative z-10 mt-auto">
+                                    <h3 class="text-xl font-bold text-zinc-200 mb-2" data-en="Portfolio Engine v4.0" data-ru="Портфолио">Портфолио</h3>
+                                    <p class="text-zinc-500 text-sm">Высокопроизводительный стек с идеальным показателем 100/100 в Google Lighthouse.</p>
+                                    <a href="#project-2" class="mt-6 flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.2em] transition-all duration-300 hover:scale-110 group/btn">
+                                        <span class="text-zinc-500 transition-colors duration-300 group-hover/btn:text-orange-400 group-hover/btn:drop-shadow-[0_0_8px_rgba(249,115,22,0.6)]" data-en="Details" data-ru="Подробнее">Подробнее</span>
+                                        <i data-lucide="arrow-right" class="w-3 h-3 text-zinc-600 transition-colors duration-300 group-hover/btn:text-orange-400 group-hover/btn:drop-shadow-[0_0_8px_rgba(249,115,22,0.6)]"></i>
+                                    </a>
                                 </div>
                             </div>
-                            <div
-                                class="relative mb-2 [mask-image:linear-gradient(to_bottom,black_40%,transparent_100%)] pb-1">
-                                <p class="text-zinc-400 text-sm mb-1 line-clamp-3 leading-relaxed"
-                                    data-en="Expert business logic automation, seamless payment integration, and custom AI-driven solutions..."
-                                    data-ru="Автоматизация бизнес-логики, бесшовная интеграция платежей и кастомные AI-решения...">
-                                    Expert business logic automation, seamless payment integration, and custom AI-driven
-                                    solutions...
-                                </p>
-                                <span
-                                    class="text-indigo-400 text-[10px] font-bold uppercase tracking-wider flex items-center opacity-80 group-hover:opacity-100 transition-opacity"
-                                    data-en="DETAILS -&gt;" data-ru="ДЕТАЛИ -&gt;">DETAILS -&gt;</span>
-                            </div>
-                        </div>
 
-                        <div
-                            class="relative z-10 w-full pt-4 border-t border-zinc-800/50 mt-auto flex flex-col justify-end">
-                            <p class="text-zinc-500 text-[10px] font-bold tracking-widest uppercase mb-3"
-                                data-en="RECENT WORKS" data-ru="ПОСЛЕДНИЕ РАБОТЫ">RECENT WORKS</p>
-                            <ul class="space-y-2 mb-4">
-                                <li class="flex items-center text-zinc-300 font-medium text-sm">
-                                    <i data-lucide="shopping-cart" class="w-4 h-4 mr-2 text-indigo-400/80"></i> <span data-ru="Что на ужин?" data-en="What's for Dinner?">What's for Dinner?</span>
-                                </li>
-                                <li class="flex items-center text-zinc-300 font-medium text-sm">
-                                    <i data-lucide="bot" class="w-4 h-4 mr-2 text-indigo-400/80"></i> <span data-ru="Ботик благодарности" data-en="Gratitude Bot">Gratitude Bot</span>
-                                </li>
-                            </ul>
-
-                            <div class="flex justify-end items-center mt-auto relative z-20">
-                                <a href="#bots-showcase" onclick="event.stopPropagation()"
-                                    class="text-zinc-500 text-xs hover:text-zinc-300 transition-colors flex items-center"
-                                    data-en="See all projects -&gt;" data-ru="Смотреть все проекты -&gt;">
-                                    See all projects -&gt;
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Row 1, Card 2: MVP & App (Emerald) md:col-span-5 -->
-                    <div onclick="window.location.href='#mvp-info'"
-                        class="cursor-pointer group relative col-span-12 md:col-span-5 min-h-[280px] bg-zinc-900/40 backdrop-blur-md border border-zinc-800/80 rounded-[2rem] p-6 hover:border-emerald-500/40 hover:bg-zinc-900/60 overflow-hidden flex flex-col justify-between hover:shadow-[0_0_30px_rgba(16,185,129,0.15)] transition-all duration-300">
-                        <div
-                            class="absolute inset-0 bg-gradient-to-br from-emerald-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
-                        </div>
-
-                        <div class="relative z-10 w-full mb-4">
-                            <div class="flex justify-between items-start mb-4">
-                                <h3
-                                    class="text-xl font-bold text-zinc-100 group-hover:text-emerald-300 transition-colors flex items-center gap-2">
-                                    <i data-lucide="rocket" class="w-5 h-5 text-emerald-400"></i> <span
-                                        data-en="MVP &amp; App" data-ru="MVP и Приложения">MVP &amp; App</span>
-                                </h3>
-                                <div class="inline-flex items-center px-2 py-0.5 rounded border border-emerald-500/20 bg-emerald-500/10 text-emerald-300 text-[10px] font-semibold tracking-wide uppercase transition-colors"
-                                    data-en="from 1 day" data-ru="от 1 дня">
-                                    from 1 day
+                            <div class="swiper-slide group relative bg-zinc-950 border border-zinc-500/20 rounded-3xl p-8 transition-all duration-500 hover:scale-[1.03] hover:border-zinc-500/50 hover:shadow-[0_0_30px_-10px_rgba(161,161,170,0.3)] flex flex-col justify-between min-h-[300px] overflow-hidden reveal">
+                                <div class="absolute inset-0 bg-gradient-to-br from-zinc-500/5 via-transparent to-transparent pointer-events-none"></div>
+                                <div class="flex items-start justify-between mb-6 relative z-10">
+                                    <div class="text-zinc-500/70 group-hover:scale-110 transition-transform duration-500"><i data-lucide="monitor-cog" class="w-8 h-8"></i></div>
+                                    <div class="flex items-center gap-2 bg-zinc-500/10 px-3 py-1.5 rounded-full border border-zinc-500/20 shadow-[0_0_15px_-5px_rgba(161,161,170,0.5)]">
+                                        <span class="relative flex h-2.5 w-2.5">
+                                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-zinc-400 opacity-75"></span>
+                                            <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-zinc-500"></span>
+                                        </span>
+                                        <span class="text-xs font-bold text-zinc-500 uppercase tracking-wider" data-en="Completed" data-ru="Реализован">Реализован</span>
+                                    </div>
+                                </div>
+                                <div class="relative z-10 mt-auto">
+                                    <h3 class="text-xl font-bold text-zinc-200 mb-2" data-en="Reddit Lead Radar v2.1" data-ru="Лид радар редит">Лид радар редит</h3>
+                                    <p class="text-zinc-500 text-sm">AI-конвейер для семантического поиска и фильтрации заказов в обход лимитов API.</p>
+                                    <a href="#project-5" class="mt-6 flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.2em] transition-all duration-300 hover:scale-110 group/btn">
+                                        <span class="text-zinc-500 transition-colors duration-300 group-hover/btn:text-zinc-400 group-hover/btn:drop-shadow-[0_0_8px_rgba(161,161,170,0.6)]" data-ru="Подробнее">Подробнее</span>
+                                        <i data-lucide="arrow-right" class="w-3 h-3 text-zinc-600 transition-colors duration-300 group-hover/btn:text-zinc-400"></i>
+                                    </a>
                                 </div>
                             </div>
-                            <div
-                                class="relative mb-2 [mask-image:linear-gradient(to_bottom,black_40%,transparent_100%)] pb-1">
-                                <p class="text-zinc-400 text-sm mb-1 line-clamp-3 leading-relaxed"
-                                    data-en="Architecting scalable digital products. From conceptual logic to full-stack execution with clean Python..."
-                                    data-ru="Создание масштабируемых цифровых продуктов. От концептуальной логики до полного цикла реализации на чистом Python...">
-                                    Architecting scalable digital products. From conceptual logic to full-stack
-                                    execution with clean Python...
-                                </p>
-                                <span
-                                    class="text-emerald-400 text-[10px] font-bold uppercase tracking-wider flex items-center opacity-80 group-hover:opacity-100 transition-opacity"
-                                    data-en="DETAILS -&gt;" data-ru="ДЕТАЛИ -&gt;">DETAILS -&gt;</span>
-                            </div>
-                        </div>
 
-                        <div
-                            class="relative z-10 w-full pt-4 border-t border-zinc-800/50 mt-auto flex flex-col justify-end">
-                            <p class="text-zinc-500 text-[10px] font-bold tracking-widest uppercase mb-3"
-                                data-en="RECENT WORKS" data-ru="ПОСЛЕДНИЕ РАБОТЫ">RECENT WORKS</p>
-                            <ul class="space-y-2 mb-4">
-                                <li class="flex items-center text-zinc-300 font-medium text-sm">
-                                    <i data-lucide="smartphone" class="w-4 h-4 mr-2 text-emerald-400/80"></i> <span data-ru="Что на ужин? (MVP)" data-en="What's for Dinner? (MVP)">Что на ужин? (MVP)</span>
-                                </li>
-                                <li class="flex items-center text-zinc-300 font-medium text-sm">
-                                    <i data-lucide="message-square" class="w-4 h-4 mr-2 text-emerald-400/80"></i>
-                                    <span data-ru="Пиздельники (Web App)" data-en="Pizdelniki (Web App)">Пиздельники (Web App)</span>
-                                </li>
-                            </ul>
-
-                            <div class="flex justify-end items-center mt-auto relative z-20">
-                                <a href="#prototypes-showcase" onclick="event.stopPropagation()"
-                                    class="text-zinc-500 text-xs hover:text-zinc-300 transition-colors flex items-center"
-                                    data-en="See all projects -&gt;" data-ru="Смотреть все проекты -&gt;">
-                                    See all projects -&gt;
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Row 2, Card 1: Fast Web (Amber) md:col-span-5 -->
-                    <div onclick="window.location.href='#web-info'"
-                        class="cursor-pointer group relative col-span-12 md:col-span-5 min-h-[280px] bg-zinc-900/40 backdrop-blur-md border border-zinc-800/80 rounded-[2rem] p-6 hover:border-amber-500/40 hover:bg-zinc-900/60 overflow-hidden flex flex-col justify-between hover:shadow-[0_0_30px_rgba(245,158,11,0.15)] transition-all duration-300">
-                        <div
-                            class="absolute inset-0 bg-gradient-to-br from-amber-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
-                        </div>
-
-                        <div class="relative z-10 w-full mb-4">
-                            <div class="flex justify-between items-start mb-4">
-                                <h3
-                                    class="text-xl font-bold text-zinc-100 group-hover:text-amber-300 transition-colors flex items-center gap-2">
-                                    <i data-lucide="layout" class="w-5 h-5 text-amber-400"></i> <span data-en="Fast Web"
-                                        data-ru="Быстрые Сайты">Fast Web</span>
-                                </h3>
-                                <div class="inline-flex items-center px-2 py-0.5 rounded border border-amber-500/20 bg-amber-500/10 text-amber-300 text-[10px] font-semibold tracking-wide uppercase transition-colors"
-                                    data-en="from 12h" data-ru="от 12ч">
-                                    from 12h
+                            <div class="swiper-slide group relative bg-zinc-950 border border-blue-500/20 rounded-3xl p-8 transition-all duration-500 hover:scale-[1.03] hover:border-blue-500/50 hover:shadow-[0_0_30px_-10px_rgba(59,130,246,0.3)] flex flex-col justify-between min-h-[300px] overflow-hidden reveal">
+                                <div class="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-transparent pointer-events-none"></div>
+                                <div class="flex items-start justify-between mb-6 relative z-10">
+                                    <div class="text-blue-500/70 group-hover:scale-110 transition-transform duration-500"><i data-lucide="bot" class="w-8 h-8"></i></div>
+                                    <div class="flex items-center gap-2 bg-blue-500/10 px-3 py-1.5 rounded-full border border-blue-500/20 shadow-[0_0_15px_-5px_rgba(59,130,246,0.5)]">
+                                        <span class="relative flex h-2.5 w-2.5">
+                                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+                                            <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-blue-500"></span>
+                                        </span>
+                                        <span class="text-xs font-bold text-blue-500 uppercase tracking-wider" data-en="Completed" data-ru="Реализован">Реализован</span>
+                                    </div>
+                                </div>
+                                <div class="relative z-10 mt-auto">
+                                    <h3 class="text-xl font-bold text-zinc-200 mb-2" data-en="Smart Dinner Planner" data-ru="Что на ужин?">Что на ужин?</h3>
+                                    <p class="text-zinc-500 text-sm">AI-агент для real-time анализа цен и формирования рациона под бюджет.</p>
+                                    <a href="#project-4" class="mt-6 flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.2em] transition-all duration-300 hover:scale-110 group/btn">
+                                        <span class="text-zinc-500 transition-colors duration-300 group-hover/btn:text-blue-400 group-hover/btn:drop-shadow-[0_0_8px_rgba(59,130,246,0.6)]" data-en="Details" data-ru="Подробнее">Подробнее</span>
+                                        <i data-lucide="arrow-right" class="w-3 h-3 text-zinc-600 transition-colors duration-300 group-hover/btn:text-blue-400 group-hover/btn:drop-shadow-[0_0_8px_rgba(59,130,246,0.6)]"></i>
+                                    </a>
                                 </div>
                             </div>
-                            <div
-                                class="relative mb-2 [mask-image:linear-gradient(to_bottom,black_40%,transparent_100%)] pb-1">
-                                <p class="text-zinc-400 text-sm mb-1 line-clamp-3 leading-relaxed"
-                                    data-en="High-performance landing pages and portfolios. Engineered for speed and brand distinctiveness..."
-                                    data-ru="Высокопроизводительные лендинги и портфолио. Спроектированы для скорости и уникальности бренда...">
-                                    High-performance landing pages and portfolios. Engineered for speed and brand
-                                    distinctiveness...
-                                </p>
-                                <span
-                                    class="text-amber-400 text-[10px] font-bold uppercase tracking-wider flex items-center opacity-80 group-hover:opacity-100 transition-opacity"
-                                    data-en="DETAILS -&gt;" data-ru="ДЕТАЛИ -&gt;">DETAILS -&gt;</span>
-                            </div>
-                        </div>
 
-                        <div
-                            class="relative z-10 w-full pt-4 border-t border-zinc-800/50 mt-auto flex flex-col justify-end">
-                            <p class="text-zinc-500 text-[10px] font-bold tracking-widest uppercase mb-3"
-                                data-en="RECENT WORKS" data-ru="ПОСЛЕДНИЕ РАБОТЫ">RECENT WORKS</p>
-                            <ul class="space-y-2 mb-4">
-                                <li class="flex items-center text-zinc-300 font-medium text-sm">
-                                    <i data-lucide="user" class="w-4 h-4 mr-2 text-amber-400/80"></i> <span data-ru="Портфолио" data-en="Portfolio">Portfolio</span>
-                                </li>
-                                <li class="flex items-center text-zinc-300 font-medium text-sm">
-                                    <i data-lucide="layout" class="w-4 h-4 mr-2 text-amber-400/80"></i> <span data-ru="Landing Forge" data-en="Landing Forge">Landing Forge</span>
-                                </li>
-                            </ul>
-
-                            <div class="flex justify-end items-center mt-auto relative z-20">
-                                <a href="#sites-showcase" onclick="event.stopPropagation()"
-                                    class="text-zinc-500 text-xs hover:text-zinc-300 transition-colors flex items-center"
-                                    data-en="See all projects -&gt;" data-ru="Смотреть все проекты -&gt;">
-                                    See all projects -&gt;
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Row 2, Card 2: AI Studio (Violet) md:col-span-7 -->
-                    <div onclick="window.location.href='#ai-info'"
-                        class="cursor-pointer group relative col-span-12 md:col-span-7 min-h-[280px] bg-zinc-900/40 backdrop-blur-md border border-zinc-800/80 rounded-[2rem] p-6 hover:border-violet-500/40 hover:bg-zinc-900/60 overflow-hidden flex flex-col justify-between hover:shadow-[0_0_30px_rgba(139,92,246,0.15)] transition-all duration-300">
-                        <div
-                            class="absolute inset-0 bg-gradient-to-br from-violet-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
-                        </div>
-
-                        <div class="relative z-10 w-full mb-4">
-                            <div class="flex justify-between items-start mb-4">
-                                <h3
-                                    class="text-xl font-bold text-zinc-100 group-hover:text-violet-300 transition-colors flex items-center gap-2">
-                                    <i data-lucide="sparkles" class="w-5 h-5 text-violet-400"></i> <span
-                                        data-en="AI Studio" data-ru="AI Студия">AI Studio</span>
-                                </h3>
-                                <div class="inline-flex items-center px-2 py-0.5 rounded border border-violet-500/20 bg-violet-500/10 text-violet-300 text-[10px] font-semibold tracking-wide uppercase transition-colors"
-                                    data-en="from 3h" data-ru="от 3ч">
-                                    from 3h
+                            <div class="swiper-slide group relative bg-zinc-950 border border-zinc-500/30 rounded-3xl p-8 transition-all duration-500 hover:scale-[1.03] hover:border-zinc-500/60 hover:shadow-[0_0_40px_-10px_rgba(161,161,170,0.4)] flex flex-col justify-between min-h-[300px] overflow-hidden reveal">
+                                <div class="absolute inset-0 bg-gradient-to-br from-zinc-500/10 via-transparent to-transparent pointer-events-none"></div>
+                                <div class="flex items-start justify-between mb-6 relative z-10">
+                                    <div class="text-zinc-500 group-hover:scale-110 transition-transform duration-500"><i data-lucide="monitor-cog" class="w-8 h-8"></i></div>
+                                    <div class="flex items-center gap-2 bg-zinc-500/10 px-3 py-1.5 rounded-full border border-zinc-500/20 shadow-[0_0_15px_-5px_rgba(161,161,170,0.5)]">
+                                        <span class="relative flex h-2.5 w-2.5">
+                                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-zinc-400 opacity-75"></span>
+                                            <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-zinc-500"></span>
+                                        </span>
+                                        <span class="text-xs font-bold text-zinc-500 uppercase tracking-wider" data-en="Building Core" data-ru="Сборка ядра">Сборка ядра</span>
+                                    </div>
+                                </div>
+                                <div class="relative z-10 mt-auto">
+                                    <h3 class="text-xl font-bold text-zinc-200 mb-2">Персональный ассистент</h3>
+                                    <p class="text-zinc-500 text-sm leading-relaxed">Разработка и сбор персонального ассистента для предпринимателя.</p>
+                                    <a href="#project-9" class="mt-6 flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.2em] transition-all duration-300 hover:scale-110 group/btn">
+                                        <span class="text-zinc-500 transition-colors duration-300 group-hover/btn:text-zinc-400 group-hover/btn:drop-shadow-[0_0_8px_rgba(161,161,170,0.6)]" data-ru="Подробнее">Подробнее</span>
+                                        <i data-lucide="arrow-right" class="w-3 h-3 text-zinc-600 transition-colors duration-300 group-hover/btn:text-zinc-400"></i>
+                                    </a>
                                 </div>
                             </div>
-                            <div
-                                class="relative mb-2 [mask-image:linear-gradient(to_bottom,black_40%,transparent_100%)] pb-1">
-                                <p class="text-zinc-400 text-sm mb-1 line-clamp-3 leading-relaxed"
-                                    data-en="Next-gen visual assets for e-commerce. AI-generated SKU imagery and promo materials..."
-                                    data-ru="Визуальные активы нового поколения для e-commerce. AI-генерация фото товаров и промо-материалов...">
-                                    Next-gen visual assets for e-commerce. AI-generated SKU imagery and promo
-                                    materials...
-                                </p>
-                                <span
-                                    class="text-violet-400 text-[10px] font-bold uppercase tracking-wider flex items-center opacity-80 group-hover:opacity-100 transition-opacity"
-                                    data-en="DETAILS -&gt;" data-ru="ДЕТАЛИ -&gt;">DETAILS -&gt;</span>
-                            </div>
-                        </div>
 
-                        <div
-                            class="relative z-10 w-full pt-4 border-t border-zinc-800/50 mt-auto flex flex-col justify-end">
-                            <p class="text-zinc-500 text-[10px] font-bold tracking-widest uppercase mb-3"
-                                data-en="RECENT WORKS" data-ru="ПОСЛЕДНИЕ РАБОТЫ">RECENT WORKS</p>
-                            <ul class="space-y-2 mb-4">
-                                <li class="flex items-center text-zinc-300 font-medium text-sm">
-                                    <i data-lucide="sparkles" class="w-4 h-4 mr-2 text-violet-400/80"></i> <span data-ru="Запуск товаров (SKU Launch)" data-en="SKU Launch">SKU Launch</span>
-                                </li>
-                                <li class="flex items-center text-zinc-300 font-medium text-sm">
-                                    <i data-lucide="image" class="w-4 h-4 mr-2 text-violet-400/80"></i> <span data-ru="AI Графика" data-en="AI Graphics">AI Graphics</span>
-                                </li>
-                            </ul>
-
-                            <div class="flex justify-end items-center mt-auto relative z-20">
-                                <a href="#ai-showcase" onclick="event.stopPropagation()"
-                                    class="text-zinc-500 text-xs hover:text-zinc-300 transition-colors flex items-center"
-                                    data-en="See all projects -&gt;" data-ru="Смотреть все проекты -&gt;">
-                                    See all projects -&gt;
-                                </a>
-                            </div>
                         </div>
                     </div>
-
+                    
+                    <button class="swiper-btn-prev absolute top-1/2 -translate-y-1/2 -left-10 md:-left-16 z-40 p-2 flex items-center justify-center text-zinc-400 hover:text-white hover:scale-125 hover:drop-shadow-[0_0_12px_rgba(255,255,255,0.8)] transition-all duration-300 cursor-pointer hidden sm:flex" title="Previous Project"><i data-lucide="arrow-left" class="w-8 h-8"></i></button>
+                    <button class="swiper-btn-next absolute top-1/2 -translate-y-1/2 -right-10 md:-right-16 z-40 p-2 flex items-center justify-center text-zinc-400 hover:text-white hover:scale-125 hover:drop-shadow-[0_0_12px_rgba(255,255,255,0.8)] transition-all duration-300 cursor-pointer hidden sm:flex" title="Next Project"><i data-lucide="arrow-right" class="w-8 h-8"></i></button>
                 </div>
             </div>
         </section>
 
+        <section id="stack" class="py-24 px-6 bg-zinc-950/20 border-y border-zinc-900/50 reveal">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-3xl font-bold mb-6 tracking-tight text-zinc-100 reveal"><span data-en="Tech Stack"
+                        data-ru="Стек Технологий">Tech Stack</span><span class="text-indigo-500">.</span></h2>
+
+                <div class="flex flex-wrap items-center justify-center gap-8 md:gap-12 mt-12 floating-stack">
+                    <!-- Badges -->
+                    <div class="text-zinc-500 hover:text-zinc-100 hover:scale-110 transition-all duration-300 cursor-default flex items-center gap-2"><i data-lucide="code-2" class="w-5 h-5"></i> Python</div>
+                    <div class="text-zinc-500 hover:text-zinc-100 hover:scale-110 transition-all duration-300 cursor-default flex items-center gap-2"><i data-lucide="message-circle" class="w-5 h-5"></i> Aiogram</div>
+                    <div class="text-zinc-500 hover:text-zinc-100 hover:scale-110 transition-all duration-300 cursor-default flex items-center gap-2"><i data-lucide="server" class="w-5 h-5"></i> FastAPI</div>
+                    <div class="text-zinc-500 hover:text-zinc-100 hover:scale-110 transition-all duration-300 cursor-default flex items-center gap-2"><i data-lucide="database" class="w-5 h-5"></i> PostgreSQL</div>
+                    <div class="text-zinc-500 hover:text-zinc-100 hover:scale-110 transition-all duration-300 cursor-default flex items-center gap-2"><i data-lucide="layers" class="w-5 h-5"></i> Redis</div>
+                    <div class="text-zinc-500 hover:text-zinc-100 hover:scale-110 transition-all duration-300 cursor-default flex items-center gap-2"><i data-lucide="cloud" class="w-5 h-5"></i> Supabase</div>
+                    <div class="text-zinc-500 hover:text-zinc-100 hover:scale-110 transition-all duration-300 cursor-default flex items-center gap-2"><i data-lucide="file-code-2" class="w-5 h-5"></i> JavaScript</div>
+                    <div class="text-zinc-500 hover:text-zinc-100 hover:scale-110 transition-all duration-300 cursor-default flex items-center gap-2"><i data-lucide="wind" class="w-5 h-5"></i> Tailwind</div>
+                    <div class="text-zinc-500 hover:text-zinc-100 hover:scale-110 transition-all duration-300 cursor-default flex items-center gap-2"><i data-lucide="brain" class="w-5 h-5"></i> AI / LLMs</div>
+                    <div class="text-zinc-500 hover:text-zinc-100 hover:scale-110 transition-all duration-300 cursor-default flex items-center gap-2"><i data-lucide="git-branch" class="w-5 h-5"></i> Git</div>
+                    <div class="text-zinc-500 hover:text-zinc-100 hover:scale-110 transition-all duration-300 cursor-default flex items-center gap-2"><i data-lucide="container" class="w-5 h-5"></i> Docker</div>
+                </div>
+            </div>
+            <style>
+                @keyframes floating-tech {
+                    0%, 100% { transform: translateY(0); }
+                    50% { transform: translateY(-10px); }
+                }
+                .floating-stack {
+                    animation: floating-tech 6s ease-in-out infinite;
+                }
+            </style>
+        </section>
+
         <!-- Services Deep Dive Section -->
         <section id="services-deep-dive" class="px-6 py-20 max-w-3xl mx-auto space-y-16 relative z-10 scroll-mt-[80px]">
-            <h2
-                class="text-3xl font-bold bg-gradient-to-r from-zinc-100 to-zinc-400 bg-clip-text text-transparent mb-12 text-center text-zinc-100">
-                <span data-en="Capabilities" data-ru="Что я умею">Capabilities</span><span
-                    class="text-indigo-500">.</span>
+            <h2 class="text-3xl font-bold mb-12 tracking-tight text-center text-zinc-100 reveal">
+                <span data-en="Capabilities" data-ru="Ключевые направления">Ключевые направления</span><span class="text-emerald-500">.</span>
             </h2>
 
-            <div id="bots-info" class="scroll-mt-[110px] pl-6 relative">
-                <div
-                    class="absolute left-0 top-2 w-2 h-2 rounded-full bg-indigo-500 shadow-[0_0_10px_rgba(99,102,241,0.5)]">
-                </div>
-                <div class="flex items-center justify-between mb-4">
+            <div id="bots-info" class="flex flex-col h-full scroll-mt-[110px]">
+                <div class="flex items-center mb-4">
                     <h3 class="text-2xl font-bold text-zinc-100 flex items-center gap-3">
                         <i data-lucide="bot" class="w-6 h-6 text-indigo-400"></i> <span data-en="Telegram Bots"
                             data-ru="Telegram Боты">Telegram Bots</span>
                     </h3>
-                    <span
-                        class="text-[10px] font-bold uppercase tracking-widest text-indigo-400/80 bg-indigo-500/10 px-2 py-1 rounded"
-                        data-en="From 24H" data-ru="От 24Ч">From 24H</span>
                 </div>
                 <ul class="text-zinc-400 text-base leading-relaxed space-y-4">
                     <li class="relative pl-5">
                         <span class="absolute left-0 top-2.5 w-1.5 h-1.5 rounded-full bg-indigo-500"></span>
-                        <span
-                            data-en="Professional development on Aiogram 3.x. Utilizing PostgreSQL and Redis to ensure data integrity and high-speed performance under load."
-                            data-ru="Профессиональная разработка на Aiogram 3.x. Использую PostgreSQL и Redis, чтобы данные были в сохранности, а бот летал даже при большом количестве юзеров.">
-                            Professional development on Aiogram 3.x. Utilizing PostgreSQL and Redis to ensure data
-                            integrity and high-speed performance under load.
-                        </span>
+                        <span data-en="Aiogram 3.x development with robust architecture (PostgreSQL, Redis). Your bot will perform flawlessly under any load." data-ru="Разрабатываю ботов с надежной архитектурой, которые стабильно работают даже при высокой нагрузке">Разрабатываю ботов с надежной архитектурой, которые стабильно работают даже при высокой нагрузке</span>
                     </li>
                     <li class="relative pl-5">
                         <span class="absolute left-0 top-2.5 w-1.5 h-1.5 rounded-full bg-indigo-500"></span>
-                        <span
-                            data-en="Architecting complex Finite State Machines (FSM). Users follow clear, seamless scenarios without bugs or dead ends."
-                            data-ru="Проектирую сложные цепочки состояний (FSM). Пользователь идет по четкому сценарию без багов, «залипаний» и тупиковых веток.">
-                            Architecting complex Finite State Machines (FSM). Users follow clear, seamless scenarios
-                            without bugs or dead ends.
-                        </span>
+                        <span data-en="Architecting complex FSM workflows. Users follow clear scenarios without bugs or dead ends." data-ru="Продумываю сценарий общения так, чтобы пользователь не путался и доходил до нужного действия">Продумываю сценарий общения так, чтобы пользователь не путался и доходил до нужного действия</span>
                     </li>
                     <li class="relative pl-5">
                         <span class="absolute left-0 top-2.5 w-1.5 h-1.5 rounded-full bg-indigo-500"></span>
-                        <span
-                            data-en="Building full-scale ecosystems: connecting external APIs, syncing with websites, and integrating AI models to automate routine tasks."
-                            data-ru="Превращаю бота в полноценный инструмент — подключаю любые внешние API, связываю с сайтами и внедряю ИИ-модели для автоматизации рутины.">
-                            Building full-scale ecosystems: connecting external APIs, syncing with websites, and
-                            integrating AI models to automate routine tasks.
-                        </span>
+                        <span data-en="Turning bots into autonomous tools by integrating external APIs and AI models." data-ru="Превращаю бота в полноценный автономный инструмент: интеграции, автоматизация, AI">Превращаю бота в полноценный автономный инструмент: интеграции, автоматизация, AI</span>
                     </li>
                 </ul>
+                <button type="button"
+                    class="inline-flex items-center justify-center px-6 py-3 mt-10 rounded-full font-bold text-sm transition-all hover:scale-105 bg-transparent text-zinc-400 hover:text-indigo-400 hover:drop-shadow-[0_0_8px_rgba(99,102,241,0.6)]"
+                    data-en="All services" data-ru="Все услуги">
+                    <span data-en="All services" data-ru="Все услуги">Все услуги</span>
+                    <i data-lucide="arrow-right" class="ml-2 w-4 h-4"></i>
+                </button>
             </div>
 
             <div class="w-full h-px bg-zinc-800/50"></div>
 
-            <div id="mvp-info" class="scroll-mt-[110px] pl-6 relative">
-                <div
-                    class="absolute left-0 top-2 w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.5)]">
-                </div>
-                <div class="flex items-center justify-between mb-4">
-                    <h3 class="text-2xl font-bold text-zinc-100 flex items-center gap-3">
-                        <i data-lucide="rocket" class="w-6 h-6 text-emerald-400"></i> <span data-en="MVP &amp; App"
-                            data-ru="MVP и Приложения">MVP &amp; App</span>
-                    </h3>
-                    <span
-                        class="text-[10px] font-bold uppercase tracking-widest text-emerald-400/80 bg-emerald-500/10 px-2 py-1 rounded"
-                        data-en="From 1 Day" data-ru="От 1 Дня">From 1 Day</span>
-                </div>
-                <ul class="text-zinc-400 text-base leading-relaxed space-y-4">
-                    <li class="relative pl-5">
-                        <span class="absolute left-0 top-2.5 w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-                        <span
-                            data-en="High-speed backend development with FastAPI. Building the core of your product in days using modern tools without unnecessary overengineering."
-                            data-ru="Скорость и современный стек: разработка на FastAPI. Собираю рабочее ядро продукта за считанные дни, используя современные инструменты без лишнего оверинжиниринга.">
-                            High-speed backend development with FastAPI. Building the core of your product in days using
-                            modern tools without unnecessary overengineering.
-                        </span>
-                    </li>
-                    <li class="relative pl-5">
-                        <span class="absolute left-0 top-2.5 w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-                        <span
-                            data-en="Scalable architecture and robust database design. Your MVP won't need a total rewrite — it’s built to scale into a full-scale service from day one."
-                            data-ru="Готовность к росту: проектирую чистую архитектуру и надежные базы данных. Твой MVP не придется переписывать с нуля — он изначально готов к масштабированию.">
-                            Scalable architecture and robust database design. Your MVP won't need a total rewrite — it’s
-                            built to scale into a full-scale service from day one.
-                        </span>
-                    </li>
-                    <li class="relative pl-5">
-                        <span class="absolute left-0 top-2.5 w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-                        <span
-                            data-en="Laser focus on Time-to-Market. I help you launch fast so you can test the market and gather real feedback without spending months on development."
-                            data-ru="Проверка гипотез: максимальный фокус на Time-to-Market. Помогаю быстро запустить продукт, чтобы ты мог протестировать рынок и собрать фидбек вовремя.">
-                            Laser focus on Time-to-Market. I help you launch fast so you can test the market and gather
-                            real feedback without spending months on development.
-                        </span>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="w-full h-px bg-zinc-800/50"></div>
-
-            <div id="web-info" class="scroll-mt-[110px] pl-6 relative">
-                <div
-                    class="absolute left-0 top-2 w-2 h-2 rounded-full bg-amber-500 shadow-[0_0_10px_rgba(245,158,11,0.5)]">
-                </div>
-                <div class="flex items-center justify-between mb-4">
+            <div id="web-info" class="flex flex-col h-full scroll-mt-[110px]">
+                <div class="flex items-center mb-4">
                     <h3 class="text-2xl font-bold text-zinc-100 flex items-center gap-3">
                         <i data-lucide="layout" class="w-6 h-6 text-amber-400"></i> <span data-en="Fast Web"
                             data-ru="Быстрые Сайты">Fast Web</span>
                     </h3>
-                    <span
-                        class="text-[10px] font-bold uppercase tracking-widest text-amber-400/80 bg-amber-500/10 px-2 py-1 rounded"
-                        data-en="From 12H" data-ru="От 12Ч">From 12H</span>
                 </div>
                 <ul class="text-zinc-400 text-base leading-relaxed space-y-4">
                     <li class="relative pl-5">
                         <span class="absolute left-0 top-2.5 w-1.5 h-1.5 rounded-full bg-amber-500"></span>
-                        <span
-                            data-en="Top-tier performance: clean layout using Tailwind CSS with perfect Lighthouse scores (100/100). Your site loads instantly and is loved by search engines."
-                            data-ru="Производительность: чистая верстка на Tailwind CSS с идеальными показателями Lighthouse (100/100). Сайт открывается мгновенно и сразу нравится поисковикам.">
-                            Top-tier performance: clean layout using Tailwind CSS with perfect Lighthouse scores
-                            (100/100). Your site loads instantly and is loved by search engines.
-                        </span>
+                        <span data-en="Maximum performance: clean Tailwind CSS coding with perfect Lighthouse scores (100/100)." data-ru="Сайт загружается быстро и не тормозит даже на телефонах">Сайт загружается быстро и не тормозит даже на телефонах</span>
                     </li>
                     <li class="relative pl-5">
                         <span class="absolute left-0 top-2.5 w-1.5 h-1.5 rounded-full bg-amber-500"></span>
-                        <span
-                            data-en="Clean, modern design: no visual bloat or heavy libraries. Just a high-performance, responsive interface that focuses on your goals and drives results."
-                            data-ru="Чистый дизайн: никакого визуального мусора и тяжелых библиотек. Современный адаптивный интерфейс, который фокусирует внимание на главном и ведет к результату.">
-                            Clean, modern design: no visual bloat or heavy libraries. Just a high-performance,
-                            responsive interface that focuses on your goals and drives results.
-                        </span>
+                        <span data-en="No visual clutter or heavy libraries — only a modern UI focused on what matters." data-ru="Чистый и понятный дизайн без лишнего мусора">Чистый и понятный дизайн без лишнего мусора</span>
                     </li>
                     <li class="relative pl-5">
                         <span class="absolute left-0 top-2.5 w-1.5 h-1.5 rounded-full bg-amber-500"></span>
-                        <span
-                            data-en="Technical foundation: fully optimized for mobile devices with built-in basic SEO. Your project looks premium and works flawlessly on every screen."
-                            data-ru="Технический фундамент: безупречная работа на мобилках и базовая SEO-оптимизация. Твой проект выглядит дорого и работает стабильно на любом устройстве.">
-                            Technical foundation: fully optimized for mobile devices with built-in basic SEO. Your
-                            project looks premium and works flawlessly on every screen.
-                        </span>
+                        <span data-en="Instant loading times, flawless mobile experience, and SEO-ready structure." data-ru="Корректно работает на всех устройствах и нормально воспринимается поисковиками">Корректно работает на всех устройствах и нормально воспринимается поисковиками</span>
                     </li>
                 </ul>
+                <button type="button"
+                    class="inline-flex items-center justify-center px-6 py-3 mt-10 rounded-full font-bold text-sm transition-all hover:scale-105 bg-transparent text-zinc-400 hover:text-amber-400 hover:drop-shadow-[0_0_8px_rgba(251,191,36,0.6)]"
+                    data-en="All services" data-ru="Все услуги">
+                    <span data-en="All services" data-ru="Все услуги">Все услуги</span>
+                    <i data-lucide="arrow-right" class="ml-2 w-4 h-4"></i>
+                </button>
             </div>
 
             <div class="w-full h-px bg-zinc-800/50"></div>
 
-            <div id="ai-info" class="scroll-mt-[110px] pl-6 relative">
-                <div
-                    class="absolute left-0 top-2 w-2 h-2 rounded-full bg-violet-500 shadow-[0_0_10px_rgba(139,92,246,0.5)]">
+            <div id="automation-info" class="flex flex-col h-full scroll-mt-[110px]">
+                <div class="flex items-center mb-4">
+                    <h3 class="text-2xl font-bold text-zinc-100 flex items-center gap-3">
+                        <i data-lucide="monitor-cog" class="w-6 h-6 text-zinc-300"></i> <span data-en="Process Automation"
+                            data-ru="Автоматизация процессов">Process Automation</span>
+                    </h3>
                 </div>
-                <div class="flex items-center justify-between mb-4">
+                <ul class="text-zinc-400 text-base leading-relaxed space-y-4">
+                    <li class="relative pl-5">
+                        <span class="absolute left-0 top-2.5 w-1.5 h-1.5 rounded-full bg-zinc-400"></span>
+                        <span data-en="Connecting isolated services via API into a single reliable mechanism." data-ru="Объединю все сервисы в одну систему, которая работает без сбоев">Объединю все сервисы в одну систему, которая работает без сбоев</span>
+                    </li>
+                    <li class="relative pl-5">
+                        <span class="absolute left-0 top-2.5 w-1.5 h-1.5 rounded-full bg-zinc-400"></span>
+                        <span data-en="Eliminating routine, lost leads, and human errors." data-ru="Сделаю так, чтобы заявки не терялись и не зависели от людей">Сделаю так, чтобы заявки не терялись и не зависели от людей</span>
+                    </li>
+                    <li class="relative pl-5">
+                        <span class="absolute left-0 top-2.5 w-1.5 h-1.5 rounded-full bg-zinc-400"></span>
+                        <span data-en="Data is gathered, filtered, and delivered with Swiss-watch precision." data-ru="Автоматизирую процессы: меньше ручной работы, меньше ошибок, больше скорости">Автоматизирую процессы: меньше ручной работы, меньше ошибок, больше скорости</span>
+                    </li>
+                </ul>
+                <button type="button"
+                    class="inline-flex items-center justify-center px-6 py-3 mt-10 rounded-full font-bold text-sm transition-all hover:scale-105 bg-transparent text-zinc-400 hover:text-zinc-300 hover:drop-shadow-[0_0_8px_rgba(212,212,216,0.6)]"
+                    data-en="All services" data-ru="Все услуги">
+                    <span data-en="All services" data-ru="Все услуги">Все услуги</span>
+                    <i data-lucide="arrow-right" class="ml-2 w-4 h-4"></i>
+                </button>
+            </div>
+
+            <div class="w-full h-px bg-zinc-800/50"></div>
+
+            <div id="mvp-info" class="flex flex-col h-full scroll-mt-[110px]">
+                <div class="flex items-center mb-4">
+                    <h3 class="text-2xl font-bold text-zinc-100 flex items-center gap-3">
+                        <i data-lucide="rocket" class="w-6 h-6 text-emerald-400"></i> <span data-en="MVP &amp; App"
+                            data-ru="MVP и Приложения">MVP &amp; App</span>
+                    </h3>
+                </div>
+                <ul class="text-zinc-400 text-base leading-relaxed space-y-4">
+                    <li class="relative pl-5">
+                        <span class="absolute left-0 top-2.5 w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                        <span data-en="Focus on Time-to-Market. Building the core product on FastAPI in days without overengineering." data-ru="Помогаю запустить продукт без лишней разработки и потери времени">Помогаю запустить продукт без лишней разработки и потери времени</span>
+                    </li>
+                    <li class="relative pl-5">
+                        <span class="absolute left-0 top-2.5 w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                        <span data-en="Clean architecture design: your MVP is inherently scalable and won't need a total rewrite." data-ru="Делаю MVP, который можно сразу показывать пользователям и инвесторам">Делаю MVP, который можно сразу показывать пользователям и инвесторам</span>
+                    </li>
+                    <li class="relative pl-5">
+                        <span class="absolute left-0 top-2.5 w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                        <span data-en="Helping you launch fast to test the market and gather feedback." data-ru="Собираю продукт так, чтобы он рос, а не ломался при нагрузке">Собираю продукт так, чтобы он рос, а не ломался при нагрузке</span>
+                    </li>
+                </ul>
+                <button type="button"
+                    class="inline-flex items-center justify-center px-6 py-3 mt-10 rounded-full font-bold text-sm transition-all hover:scale-105 bg-transparent text-zinc-400 hover:text-emerald-400 hover:drop-shadow-[0_0_8px_rgba(52,211,153,0.6)]"
+                    data-en="All services" data-ru="Все услуги">
+                    <span data-en="All services" data-ru="Все услуги">Все услуги</span>
+                    <i data-lucide="arrow-right" class="ml-2 w-4 h-4"></i>
+                </button>
+            </div>
+
+            <div class="w-full h-px bg-zinc-800/50"></div>
+
+            <div id="ai-info" class="flex flex-col h-full scroll-mt-[110px]">
+                <div class="flex items-center mb-4">
                     <h3 class="text-2xl font-bold text-zinc-100 flex items-center gap-3">
                         <i data-lucide="sparkles" class="w-6 h-6 text-violet-400"></i> <span data-en="AI Studio"
                             data-ru="AI Студия">AI Studio</span>
                     </h3>
-                    <span
-                        class="text-[10px] font-bold uppercase tracking-widest text-violet-400/80 bg-violet-500/10 px-2 py-1 rounded"
-                        data-en="From 3H" data-ru="От 3Ч">From 3H</span>
                 </div>
                 <ul class="text-zinc-400 text-base leading-relaxed space-y-4">
                     <li class="relative pl-5">
                         <span class="absolute left-0 top-2.5 w-1.5 h-1.5 rounded-full bg-violet-500"></span>
                         <span
                             data-en="Exclusive AI Personas: Crafting one-of-a-kind virtual models from scratch based on your specs: appearance, physique, and style. A unique &quot;digital face&quot; for your brand that competitors cannot replicate."
-                            data-ru="Уникальные ИИ-персонажи: создаю эксклюзивные виртуальные модели с нуля под ваши требования: внешность, типаж, рост и параметры фигуры. Это «лицо» бренда, которое невозможно встретить у конкурентов.">
-                            Exclusive AI Personas: Crafting one-of-a-kind virtual models from scratch based on your
-                            specs: appearance, physique, and style. A unique "digital face" for your brand that
-                            competitors cannot replicate.
-                        </span>
+                            data-ru="Заменяю съёмки и продакшн на AI-контент">Заменяю съёмки и продакшн на AI-контент</span>
                     </li>
                     <li class="relative pl-5">
                         <span class="absolute left-0 top-2.5 w-1.5 h-1.5 rounded-full bg-violet-500"></span>
                         <span
                             data-en="Visual Content Creation: Generating photorealistic product cards (SKU), lifestyle photos, and video content featuring your custom model. One persona—unlimited content for marketplaces and social media."
-                            data-ru="Генерация контента: создание фотореалистичных карточек товаров (SKU), рекламных имиджей и видео с участием вашего персонажа. Один образ — бесконечное количество контента для маркетплейсов и соцсетей.">
-                            Visual Content Creation: Generating photorealistic product cards (SKU), lifestyle photos,
-                            and video content featuring your custom model. One persona—unlimited content for
-                            marketplaces and social media.
-                        </span>
+                            data-ru="Даю бренду уникальный визуал, который нельзя скопировать">Даю бренду уникальный визуал, который нельзя скопировать</span>
                     </li>
                     <li class="relative pl-5">
                         <span class="absolute left-0 top-2.5 w-1.5 h-1.5 rounded-full bg-violet-500"></span>
                         <span
                             data-en="Aesthetics &amp; Precision: Total replacement for expensive photoshoots and castings. Get premium-grade visual assets while maintaining full control over every detail of the look and brand identity."
-                            data-ru="Эстетика и контроль: полная замена дорогостоящих фотосессий и кастингов. Вы получаете готовый контент премиального уровня, полностью контролируя каждую деталь образа и стиля.">
-                            Aesthetics &amp; Precision: Total replacement for expensive photoshoots and castings. Get
-                            premium-grade visual assets while maintaining full control over every detail of the look and
-                            brand identity.
-                        </span>
+                            data-ru="Контент создаётся быстрее, дешевле и в любом объёме">Контент создаётся быстрее, дешевле и в любом объёме</span>
                     </li>
                 </ul>
+                <button type="button"
+                    class="inline-flex items-center justify-center px-6 py-3 mt-10 rounded-full font-bold text-sm transition-all hover:scale-105 bg-transparent text-zinc-400 hover:text-violet-400 hover:drop-shadow-[0_0_8px_rgba(139,92,246,0.6)]"
+                    data-en="All services" data-ru="Все услуги">
+                    <span data-en="All services" data-ru="Все услуги">Все услуги</span>
+                    <i data-lucide="arrow-right" class="ml-2 w-4 h-4"></i>
+                </button>
             </div>
         </section>
 
-        <!-- Project Showcase Section -->
-        <section id="project-showcase"
-            class="px-6 py-20 max-w-4xl mx-auto space-y-24 relative z-10 border-t border-zinc-900/50">
-            <div class="text-center mb-16 relative z-10">
-                <h2 class="text-3xl font-bold text-zinc-100 tracking-tight"><span data-en="Project Showcase"
-                        data-ru="Мои кейсы">Project Showcase</span><span class="text-indigo-500">.</span></h2>
-            </div>
 
-            <!-- Category: Telegram Bots -->
-            <div id="bots-showcase" class="scroll-mt-[100px] space-y-16">
-                <div>
-                    <h3 class="text-xl font-bold uppercase tracking-widest text-zinc-500 mb-8 pb-4 border-b border-zinc-800/50"
-                        data-en="Telegram Bots" data-ru="Telegram Боты">Telegram Bots</h3>
-                    <div class="space-y-16">
-                        <!-- Что на ужин? -->
-                        <div class="space-y-5">
-                            <h4 class="text-2xl font-bold text-zinc-100 flex items-center gap-3">
-                                <i data-lucide="shopping-cart" class="w-6 h-6 text-indigo-400"></i> <span data-ru="Что на ужин?" data-en="What's for Dinner?">Что на ужин?</span>
-                            </h4>
-                            <div class="space-y-3 text-zinc-400 text-[15px] leading-relaxed">
-                                <p><strong class="text-zinc-200 uppercase text-xs tracking-wider mr-2" data-en="TASK"
-                                        data-ru="ЗАДАЧА">ЗАДАЧА</strong> <span
-                                        data-en="Developing a system for automatically generating a grocery basket considering budget and location."
-                                        data-ru="Разработка системы для автоматического формирования продуктовой корзины с учётом бюджета и локации.">Разработка системы для автоматического формирования продуктовой корзины с учётом бюджета и локации.</span></p>
-                                <p><strong class="text-zinc-200 uppercase text-xs tracking-wider mr-2"
-                                        data-en="IMPLEMENTATION" data-ru="РЕАЛИЗАЦИЯ">РЕАЛИЗАЦИЯ</strong> <span
-                                        data-en="A Telegram bot for meal planning and budget optimization. Generates a grocery basket based on budget, city, and store chain. Integrated AI for calculations and recipe generation from ingredients already at home."
-                                        data-ru="Telegram-бот для планирования рациона и оптимизации бюджета. Собирает корзину под лимит средств, учитывая город и сеть магазинов. Интегрирована нейросеть для расчетов и генерации рецептов из продуктов, которые есть дома.">Telegram-бот для планирования рациона и оптимизации бюджета. Собирает корзину под лимит средств, учитывая город и сеть магазинов. Интегрирована нейросеть для расчетов и генерации рецептов из продуктов, которые есть дома.</span></p>
-                            </div>
-                            <div
-                                class="pt-5 border-t border-zinc-800/50 flex flex-wrap gap-6 text-[11px] tracking-widest uppercase font-semibold text-zinc-500">
-                                <div><span data-en="Core Assembly" data-ru="Сборка ядра">Core Assembly</span>: <span
-                                        class="text-indigo-400 ml-1" data-en="80M" data-ru="80мин">80M</span></div>
-                                <div><span data-en="Expansion &amp; Polishing" data-ru="Функционал и правки">Expansion
-                                        &amp; Polishing</span>: <span class="text-indigo-400 ml-1" data-en="4H"
-                                        data-ru="4ч">4H</span></div>
-                            </div>
-                        </div>
 
-                        <!-- Ботик благодарности -->
-                        <div class="space-y-5">
-                            <h4 class="text-2xl font-bold text-zinc-100 flex items-center gap-3">
-                                <i data-lucide="bot" class="w-6 h-6 text-indigo-400"></i> <span data-ru="Ботик благодарности" data-en="Grateful Coach">Ботик благодарности</span>
-                            </h4>
-                            <div class="space-y-3 text-zinc-400 text-[15px] leading-relaxed">
-                                <p><strong class="text-zinc-200 uppercase text-xs tracking-wider mr-2" data-en="TASK"
-                                        data-ru="ЗАДАЧА">ЗАДАЧА</strong> <span
-                                        data-en="Creating a tool for daily mindfulness practices with statistics tracking."
-                                        data-ru="Создание инструмента для ежедневных практик осознанности с трекингом статистики.">Создание инструмента для ежедневных практик осознанности с трекингом статистики.</span></p>
-                                <p><strong class="text-zinc-200 uppercase text-xs tracking-wider mr-2"
-                                        data-en="IMPLEMENTATION" data-ru="РЕАЛИЗАЦИЯ">РЕАЛИЗАЦИЯ</strong> <span
-                                        data-en="An automated assistant for building healthy habits. Sends reminders at set times with timezone support, tracks session counts, and maintains user achievement statistics."
-                                        data-ru="Автоматизированный ассистент для формирования полезных привычек. Присылает напоминания в заданное время с учётом часовых поясов, считает количество сессий и ведет статистику достижений пользователя.">Автоматизированный ассистент для формирования полезных привычек. Присылает напоминания в заданное время с учётом часовых поясов, считает количество сессий и ведет статистику достижений пользователя.</span></p>
-                            </div>
-                            <div
-                                class="pt-5 border-t border-zinc-800/50 flex flex-wrap gap-6 text-[11px] tracking-widest uppercase font-semibold text-zinc-500">
-                                <div><span data-en="Core Assembly" data-ru="Сборка ядра">Core Assembly</span>: <span
-                                        class="text-indigo-400 ml-1" data-en="40M" data-ru="40мин">40M</span></div>
-                                <div><span data-en="Expansion &amp; Polishing" data-ru="Функционал и правки">Expansion
-                                        &amp; Polishing</span>: <span class="text-indigo-400 ml-1" data-en="30M"
-                                        data-ru="30мин">30M</span></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<section id="all-projects" class="py-24 relative z-10 border-t border-zinc-800/50 bg-zinc-950">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="mb-12 md:mb-10 md:mb-16 max-w-2xl mx-auto text-center">
+        <h2 class="text-3xl font-bold mb-4 tracking-tight text-zinc-100 reveal"><span data-en="My Projects" data-ru="Мои проекты">Мои проекты</span><span class="text-purple-500">.</span></h2>
+        <p class="text-zinc-400 text-lg" data-en="Archive of completed projects and those currently in development." data-ru="Архив реализованных проектов и тех, что прямо сейчас в разработке.">Архив реализованных проектов и тех, что прямо сейчас в разработке.</p>
+    </div>
 
-            <!-- Category: MVP & App -->
-            <div id="prototypes-showcase" class="scroll-mt-[100px] space-y-16">
-                <div>
-                    <h3 class="text-xl font-bold uppercase tracking-widest text-zinc-500 mb-8 pb-4 border-b border-zinc-800/50"
-                        data-en="MVP &amp; App" data-ru="MVP и Приложения">MVP &amp; App</h3>
-                    <div class="space-y-16">
-                        <!-- Smart Basket Evolution (Flagship) -->
-                        <div class="space-y-5">
-                            <div class="inline-block px-3 py-1 bg-emerald-500/10 text-emerald-400 text-[10px] font-bold tracking-widest uppercase rounded-full border border-emerald-500/20 mb-2"
-                                data-en="Flagship Case" data-ru="Флагманский Кейс">Flagship Case</div>
-                            <h4 class="text-2xl font-bold text-zinc-100 flex items-center gap-3">
-                                <i data-lucide="smartphone" class="w-6 h-6 text-emerald-400"></i> <span data-ru="Что на ужин? (MVP Приложение)" data-en="What's for Dinner? (MVP App)">Что на ужин? (MVP Приложение)</span>
-                            </h4>
-                            <div class="space-y-3 text-zinc-400 text-[15px] leading-relaxed">
-                                <p><strong class="text-zinc-200 uppercase text-xs tracking-wider mr-2" data-en="TASK"
-                                        data-ru="ЗАДАЧА">ЗАДАЧА</strong> <span
-                                        data-en="Scaling bot logic into a mobile prototype with extended functionality."
-                                        data-ru="Масштабирование логики бота в мобильный прототип с расширенным функционалом.">Масштабирование логики бота в мобильный прототип с расширенным функционалом.</span></p>
-                                <p><strong class="text-zinc-200 uppercase text-xs tracking-wider mr-2"
-                                        data-en="IMPLEMENTATION" data-ru="РЕАЛИЗАЦИЯ">РЕАЛИЗАЦИЯ</strong> <span
-                                        data-en="A mobile app prototype with photo-based product recognition and a dinner randomizer. Integrated AI assistant for full-scale testing on iOS and Android. Includes a personal account with spending analytics for real-time grocery budget control."
-                                        data-ru="Прототип приложения с функцией распознавания продуктов по фото и рандомайзером ужинов. Для полноценного тестирования на iOS и Android интегрирован нейро-ассистент. Внедрен личный кабинет с аналитикой трат для контроля продуктового бюджета в реальном времени.">Прототип приложения с функцией распознавания продуктов по фото и рандомайзером ужинов. Для полноценного тестирования на iOS и Android интегрирован нейро-ассистент. Внедрен личный кабинет с аналитикой трат для контроля продуктового бюджета в реальном времени.</span></p>
-                            </div>
-                            <div
-                                class="pt-5 border-t border-zinc-800/50 flex flex-wrap gap-6 text-[11px] tracking-widest uppercase font-semibold text-zinc-500">
-                                <div><span data-en="Assembly" data-ru="Сборка ядра">Assembly</span>: <span
-                                        class="text-emerald-400 ml-1" data-en="20M" data-ru="20мин">20M</span></div>
-                                <div><span data-en="Expansion" data-ru="Функционал и правки">Expansion</span>: <span
-                                        class="text-emerald-400 ml-1" data-en="4H" data-ru="4ч">4H</span></div>
-                            </div>
-                        </div>
-
-                        <!-- Pizdelniki Web -->
-                        <div class="space-y-5">
-                            <h4 class="text-2xl font-bold text-zinc-100 flex items-center gap-3">
-                                <i data-lucide="message-square" class="w-6 h-6 text-emerald-400"></i> <span data-ru="Пиздельники (Web App)" data-en="Pizdelniki (Web App)">Пиздельники (Web App)</span>
-                            </h4>
-                            <div class="space-y-3 text-zinc-400 text-[15px] leading-relaxed">
-                                <p><strong class="text-zinc-200 uppercase text-xs tracking-wider mr-2" data-en="TASK"
-                                        data-ru="ЗАДАЧА">ЗАДАЧА</strong> <span
-                                        data-en="Creating an instant messenger with a focus on session privacy."
-                                        data-ru="Создание мессенджера для мгновенного обмена сообщениями с фокусом на приватность сессий.">Создание мессенджера для мгновенного обмена сообщениями с фокусом на приватность сессий.</span></p>
-                                <p><strong class="text-zinc-200 uppercase text-xs tracking-wider mr-2"
-                                        data-en="IMPLEMENTATION" data-ru="РЕАЛИЗАЦИЯ">РЕАЛИЗАЦИЯ</strong> <span
-                                        data-en="A messenger with a 'zero-trace' concept: all data (messages and account) is stored only within the current session and is completely deleted when the browser tab is closed."
-                                        data-ru="Мессенджер с концепцией «нулевого следа»: все данные (сообщения и аккаунт) хранятся только в рамках текущей сессии и полностью удаляются при закрытии вкладки браузера.">Мессенджер с концепцией «нулевого следа»: все данные (сообщения и аккаунт) хранятся только в рамках текущей сессии и полностью удаляются при закрытии вкладки браузера.</span></p>
-                            </div>
-                            <div
-                                class="pt-5 border-t border-zinc-800/50 flex flex-wrap gap-6 text-[11px] tracking-widest uppercase font-semibold text-zinc-500">
-                                <div><span data-en="Assembly" data-ru="Сборка ядра">Assembly</span>: <span
-                                        class="text-emerald-400 ml-1" data-en="30M" data-ru="30мин">30M</span></div>
-                                <div><span data-en="Expansion" data-ru="Функционал и правки">Expansion</span>: <span
-                                        class="text-emerald-400 ml-1" data-en="1H" data-ru="1ч">1H</span></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Category: Fast Web -->
-            <div id="sites-showcase" class="scroll-mt-[100px] space-y-16">
-                <div>
-                    <h3 class="text-xl font-bold uppercase tracking-widest text-zinc-500 mb-8 pb-4 border-b border-zinc-800/50"
-                        data-en="Fast Web" data-ru="Быстрые Сайты">Fast Web</h3>
-                    <div class="space-y-16">
-                        <!-- Portfolio 2026 -->
-                        <div class="space-y-5">
-                            <h4 class="text-2xl font-bold text-zinc-100 flex items-center gap-3">
-                                <i data-lucide="layout" class="w-6 h-6 text-amber-400"></i> <span data-ru="Портфолио" data-en="Portfolio">Portfolio</span>
-                            </h4>
-                            <div class="space-y-3 text-zinc-400 text-[15px] leading-relaxed">
-                                <p><strong class="text-zinc-200 uppercase text-xs tracking-wider mr-2" data-en="TASK"
-                                        data-ru="ЗАДАЧА">ЗАДАЧА</strong> <span
-                                        data-en="Development of a high-performance platform for premium presentation of complex technical cases."
-                                        data-ru="Разработка высокопроизводительной платформы для премиальной презентации сложных технических кейсов.">Разработка высокопроизводительной платформы для премиальной презентации сложных технических кейсов.</span></p>
-                                <p><strong class="text-zinc-200 uppercase text-xs tracking-wider mr-2"
-                                        data-en="IMPLEMENTATION" data-ru="РЕАЛИЗАЦИЯ">РЕАЛИЗАЦИЯ</strong> <span
-                                        data-en="Static site built with Tailwind CSS, featuring smooth navigation and animations. Achieved a 100/100 Lighthouse score for perfect UX and speed."
-                                        data-ru="Статический сайт на Tailwind CSS с плавной навигацией и анимацией. Достигнут показатель 100/100 в Lighthouse, обеспечивающий безупречный UX и высокую скорость загрузки.">Статический сайт на Tailwind CSS с плавной навигацией и анимацией. Достигнут показатель 100/100 в Lighthouse, обеспечивающий безупречный UX и высокую скорость загрузки.</span></p>
-                            </div>
-                            <div
-                                class="pt-5 border-t border-zinc-800/50 flex flex-wrap gap-6 text-[11px] tracking-widest uppercase font-semibold text-zinc-500">
-                                <div><span data-en="Assembly" data-ru="Сборка ядра">Assembly</span>: <span
-                                        class="text-amber-400 ml-1" data-en="40M" data-ru="40мин">40M</span></div>
-                                <div><span data-en="Framework" data-ru="Фреймворк">Framework</span>: <span
-                                        class="text-amber-400 ml-1">Landing Forge</span></div>
-                                <div><span data-en="Expansion" data-ru="Функционал и правки">Expansion</span>: <span
-                                        class="text-amber-400 ml-1" data-en="3H" data-ru="3ч">3H</span></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Category: AI Studio -->
-            <div id="ai-showcase" class="scroll-mt-[100px] space-y-16">
-                <div>
-                    <h3 class="text-xl font-bold uppercase tracking-widest text-zinc-500 mb-8 pb-4 border-b border-zinc-800/50"
-                        data-en="AI Studio" data-ru="AI Студия">AI Studio</h3>
-                    <div class="space-y-16">
-                        <!-- SKU Launch -->
-                        <div class="space-y-5">
-                            <h4 class="text-2xl font-bold text-zinc-100 flex items-center gap-3">
-                                <i data-lucide="sparkles" class="w-6 h-6 text-violet-400"></i> SKU Launch
-                            </h4>
-                            <div class="space-y-3 text-zinc-400 text-[15px] leading-relaxed">
-                                <p><strong class="text-zinc-200 uppercase text-xs tracking-wider mr-2" data-en="TASK"
-                                        data-ru="ЗАДАЧА">ЗАДАЧА</strong> <span
-                                        data-en="Development of an exclusive digital brand model with specific appearance, physique, and height parameters for complete content production autonomy."
-                                        data-ru="Разработка эксклюзивной цифровой модели бренда с заданными параметрами внешности, фигуры и роста для полной автономии контент-производства.">Разработка эксклюзивной цифровой модели бренда с заданными параметрами внешности, фигуры и роста для полной автономии контент-производства.</span></p>
-                                <p><strong class="text-zinc-200 uppercase text-xs tracking-wider mr-2"
-                                        data-en="IMPLEMENTATION" data-ru="РЕАЛИЗАЦИЯ">РЕАЛИЗАЦИЯ</strong> <span
-                                        data-en="Created a unique AI model that became the official face of the brand. Conducted a full content cycle: from a virtual photoshoot to four promo videos for new product listings. The seller is now completely independent of photo studios, receiving ready-to-use assets in record time."
-                                        data-ru="Создана уникальная нейросетевая модель, ставшая лицом бренда. Реализован полный цикл подготовки контента: от виртуального фотосета до создания четырех промо-видео для новых карточек товара. Теперь селлер полностью независим от фотостудий и сторонних специалистов, получая готовые ассеты в кратчайшие сроки.">Создана уникальная нейросетевая модель, ставшая лицом бренда. Реализован полный цикл подготовки контента: от виртуального фотосета до создания четырех промо-видео для новых карточек товара. Теперь селлер полностью независим от фотостудий и сторонних специалистов, получая готовые ассеты в кратчайшие сроки.</span></p>
-                            </div>
-                            <div
-                                class="pt-5 border-t border-zinc-800/50 flex flex-col gap-3 text-[11px] tracking-widest uppercase font-semibold text-zinc-500">
-                                <div class="text-zinc-400"><span data-en="TOTAL TIME" data-ru="СРОК РЕАЛИЗАЦИИ">TOTAL TIME</span>: <span class="text-violet-400 ml-1" data-en="9h"
-                                        data-ru="9 ч.">9h</span></div>
-                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                    <div><span data-en="MODEL TRAINING" data-ru="ОБУЧЕНИЕ МОДЕЛИ">MODEL TRAINING</span>: <span class="text-violet-400 ml-1" data-en="1h"
-                                            data-ru="1 ч.">1h</span></div>
-                                    <div><span data-en="FINE-TUNING" data-ru="ТОНКАЯ НАСТРОЙКА">FINE-TUNING</span>: <span
-                                            class="text-violet-400 ml-1" data-en="2.5h" data-ru="2.5 ч.">2.5h</span></div>
-                                    <div><span data-en="VIRTUAL PHOTOSHOOT" data-ru="ВИРТУАЛЬНЫЙ ФОТОСЕТ">VIRTUAL PHOTOSHOOT</span>: <span class="text-violet-400 ml-1" data-en="1h"
-                                            data-ru="1 ч.">1h</span></div>
-                                    <div><span data-en="LIGHTING &amp; RENDERING" data-ru="РЕНДЕРИНГ И СВЕТ">LIGHTING &amp; RENDERING</span>: <span
-                                            class="text-violet-400 ml-1" data-en="1.5h" data-ru="1.5 ч.">1.5h</span></div>
-                                    <div><span data-en="VIDEO PRODUCTION" data-ru="ВИДЕО-ПРОДАКШЕН">VIDEO PRODUCTION</span>:
-                                        <span class="text-violet-400 ml-1" data-en="2h" data-ru="2 ч.">2h</span>
-                                    </div>
-                                    <div><span data-en="EDITING &amp; FX" data-ru="МОНТАЖ И ЭФФЕКТЫ">EDITING &amp; FX</span>: <span
-                                            class="text-violet-400 ml-1" data-en="1h" data-ru="1 ч.">1h</span></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Tech Stack Section -->
-        <section id="stack" class="py-24 px-6 bg-zinc-900/20 border-y border-zinc-900/50">
-            <div class="max-w-4xl mx-auto text-center">
-                <h2 class="text-3xl font-bold mb-10 tracking-tight text-zinc-100"><span data-en="Tech Stack"
-                        data-ru="Стек Технологий">Tech Stack</span><span class="text-indigo-500">.</span></h2>
-
-                <div class="flex flex-wrap items-center justify-center gap-3">
-                    <!-- Badges -->
-                    <div
-                        class="inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-full border border-zinc-800 bg-zinc-900/50 text-zinc-400 hover:bg-zinc-800/50 hover:text-zinc-200 transition-all duration-300 cursor-default text-sm shadow-sm">
-                        <i data-lucide="code-2" class="w-4 h-4"></i> Python
-                    </div>
-                    <div
-                        class="inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-full border border-zinc-800 bg-zinc-900/50 text-zinc-400 hover:bg-zinc-800/50 hover:text-zinc-200 transition-all duration-300 cursor-default text-sm shadow-sm">
-                        <i data-lucide="message-circle" class="w-4 h-4"></i> Aiogram
-                    </div>
-                    <div
-                        class="inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-full border border-zinc-800 bg-zinc-900/50 text-zinc-400 hover:bg-zinc-800/50 hover:text-zinc-200 transition-all duration-300 cursor-default text-sm shadow-sm">
-                        <i data-lucide="server" class="w-4 h-4"></i> FastAPI
-                    </div>
-                    <div
-                        class="inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-full border border-zinc-800 bg-zinc-900/50 text-zinc-400 hover:bg-zinc-800/50 hover:text-zinc-200 transition-all duration-300 cursor-default text-sm shadow-sm">
-                        <i data-lucide="database" class="w-4 h-4"></i> SQLite
-                    </div>
-                    <div
-                        class="inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-full border border-zinc-800 bg-zinc-900/50 text-zinc-400 hover:bg-zinc-800/50 hover:text-zinc-200 transition-all duration-300 cursor-default text-sm shadow-sm">
-                        <i data-lucide="git-branch" class="w-4 h-4"></i> Git
-                    </div>
-                    <div
-                        class="inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-full border border-zinc-800 bg-zinc-900/50 text-zinc-400 hover:bg-zinc-800/50 hover:text-zinc-200 transition-all duration-300 cursor-default text-sm shadow-sm">
-                        <i data-lucide="container" class="w-4 h-4"></i> Docker
-                    </div>
-                    <div
-                        class="inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-full border border-zinc-800 bg-zinc-900/50 text-zinc-400 hover:bg-zinc-800/50 hover:text-zinc-200 transition-all duration-300 cursor-default text-sm shadow-sm">
-                        <i data-lucide="wind" class="w-4 h-4"></i> Tailwind
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Footer & Contact -->
-    <footer id="contact" class="py-16 px-6 relative overflow-hidden bg-zinc-950">
-        <div class="max-w-6xl mx-auto flex flex-col items-center justify-center gap-6 relative z-10 text-center">
-
-            <div>
-                <h3 class="text-3xl font-bold text-zinc-100 mb-2"
-                    data-en="Ideas are nothing without execution. Let's build."
-                    data-ru="Идеи ничего не стоят без реализации.">Ideas are nothing without execution. Let's build.</h3>
-            </div>
-
-            <div class="mt-4">
-                <a href="https://t.me/jonnynest" target="_blank" rel="noopener noreferrer"
-                    class="group relative inline-flex items-center justify-center p-4 rounded-full bg-zinc-900 border border-zinc-800 text-zinc-300 hover:text-white hover:border-indigo-500/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(99,102,241,0.3)]">
-                    <div
-                        class="absolute inset-0 rounded-full bg-gradient-to-r from-indigo-500/20 to-emerald-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    </div>
-                    <i data-lucide="send" class="w-6 h-6 relative z-10"></i>
-                    <span class="sr-only">Telegram</span>
-                </a>
-            </div>
-
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-fr">
+      
+      <div class="group relative bg-zinc-950 border border-purple-500/20 rounded-3xl p-8 transition-all duration-500 hover:scale-[1.03] hover:border-purple-500/50 hover:shadow-[0_0_30px_-10px_rgba(168,85,247,0.3)] flex flex-col justify-between min-h-[300px] overflow-hidden reveal">
+        <div class="absolute inset-0 bg-gradient-to-br from-purple-500/5 via-transparent to-transparent pointer-events-none"></div>
+        <div class="flex items-start justify-between mb-6 relative z-10">
+          <div class="text-purple-500/70 group-hover:scale-110 transition-transform duration-500"><i data-lucide="sparkles" class="w-8 h-8"></i></div>
+          <div class="flex items-center gap-2 bg-purple-500/10 px-3 py-1.5 rounded-full border border-purple-500/20 shadow-[0_0_15px_-5px_rgba(168,85,247,0.5)]">
+            <span class="relative flex h-2.5 w-2.5">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-purple-500"></span>
+            </span>
+            <span class="text-xs font-bold text-purple-500 uppercase tracking-wider" data-en="Completed" data-ru="Реализован">Реализован</span>
+          </div>
         </div>
-
-        <div class="mt-16 text-center">
-            <p class="text-sm font-medium text-zinc-500 mb-1">© 2026 Eugenio Nesterov.</p>
-            <p class="text-xs text-zinc-600" data-en="MVP engineering &amp; ecosystem architecture."
-                data-ru="Разработка MVP и архитектура экосистем.">MVP engineering &amp; ecosystem architecture.</p>
+        <div class="relative z-10 mt-auto">
+          <h3 class="text-xl font-bold text-zinc-200 mb-2" data-en="Digital Brand Persona [NDA]" data-ru="Уникальная ИИ модель для бренда">Уникальная ИИ модель для бренда</h3>
+          <p class="text-zinc-500 text-sm">Создание уникальной цифровой модели по параметрам заказчика для автономного производства контента.</p>
+          <button class="mt-6 flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.2em] transition-all duration-300 hover:scale-110 group/btn" data-project-id="1">
+            <span class="text-zinc-500 transition-colors duration-300 group-hover/btn:text-purple-400 group-hover/btn:drop-shadow-[0_0_8px_rgba(168,85,247,0.6)]" data-en="Details" data-ru="Подробнее">Подробнее</span>
+            <i data-lucide="arrow-right" class="w-3 h-3 text-zinc-600 transition-colors duration-300 group-hover/btn:text-purple-400 group-hover/btn:drop-shadow-[0_0_8px_rgba(168,85,247,0.6)]"></i>
+          </button>
         </div>
-    </footer>
+      </div>
 
-    <!-- Initialize Lucide Icons & Language Switcher logic -->
-    <script>
-        lucide.createIcons();
+      <div id="project-2" class="group relative bg-zinc-950 border border-orange-500/20 rounded-3xl p-8 transition-all duration-500 hover:scale-[1.03] hover:border-orange-500/50 hover:shadow-[0_0_30px_-10px_rgba(249,115,22,0.3)] flex flex-col justify-between min-h-[300px] overflow-hidden reveal">
+        <div class="absolute inset-0 bg-gradient-to-br from-orange-500/5 via-transparent to-transparent pointer-events-none"></div>
+        <div class="flex items-start justify-between mb-6 relative z-10">
+          <div class="text-orange-500/70 group-hover:scale-110 transition-transform duration-500"><i data-lucide="layout" class="w-8 h-8"></i></div>
+          <div class="flex items-center gap-2 bg-orange-500/10 px-3 py-1.5 rounded-full border border-orange-500/20 shadow-[0_0_15px_-5px_rgba(249,115,22,0.5)]">
+            <span class="relative flex h-2.5 w-2.5">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-orange-500"></span>
+            </span>
+            <span class="text-xs font-bold text-orange-500 uppercase tracking-wider" data-en="Completed" data-ru="Реализован">Реализован</span>
+          </div>
+        </div>
+        <div class="relative z-10 mt-auto">
+          <h3 class="text-xl font-bold text-zinc-200 mb-2" data-en="Portfolio Engine v4.0" data-ru="Портфолио">Портфолио</h3>
+          <p class="text-zinc-500 text-sm">Высокопроизводительный стек с идеальным показателем 100/100 в Google Lighthouse.</p>
+          <button class="mt-6 flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.2em] transition-all duration-300 hover:scale-110 group/btn" data-project-id="2">
+            <span class="text-zinc-500 transition-colors duration-300 group-hover/btn:text-orange-400 group-hover/btn:drop-shadow-[0_0_8px_rgba(249,115,22,0.6)]" data-en="Details" data-ru="Подробнее">Подробнее</span>
+            <i data-lucide="arrow-right" class="w-3 h-3 text-zinc-600 transition-colors duration-300 group-hover/btn:text-orange-400 group-hover/btn:drop-shadow-[0_0_8px_rgba(249,115,22,0.6)]"></i>
+          </button>
+        </div>
+      </div>
 
-        // Language Switcher Logic
-        let currentLang = 'en';
+      <div class="group relative bg-zinc-950 border border-blue-500/20 rounded-3xl p-8 transition-all duration-500 hover:scale-[1.03] hover:border-blue-500/50 hover:shadow-[0_0_30px_-10px_rgba(59,130,246,0.3)] flex flex-col justify-between min-h-[300px] overflow-hidden reveal">
+        <div class="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-transparent pointer-events-none"></div>
+        <div class="flex items-start justify-between mb-6 relative z-10">
+          <div class="text-blue-500/70 group-hover:scale-110 transition-transform duration-500"><i data-lucide="bot" class="w-8 h-8"></i></div>
+          <div class="flex items-center gap-2 bg-blue-500/10 px-3 py-1.5 rounded-full border border-blue-500/20 shadow-[0_0_15px_-5px_rgba(59,130,246,0.5)]">
+            <span class="relative flex h-2.5 w-2.5">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-blue-500"></span>
+            </span>
+            <span class="text-xs font-bold text-blue-500 uppercase tracking-wider" data-en="Completed" data-ru="Реализован">Реализован</span>
+          </div>
+        </div>
+        <div class="relative z-10 mt-auto">
+          <h3 class="text-xl font-bold text-zinc-200 mb-2" data-en="Private Mindfulness Bot" data-ru="Бот Благодарности">Бот Благодарности</h3>
+          <p class="text-zinc-500 text-sm">Легковесный Zero-DB ассистент для трекинга привычек и дисциплины.</p>
+          <button class="mt-6 flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.2em] transition-all duration-300 hover:scale-110 group/btn" data-project-id="3">
+            <span class="text-zinc-500 transition-colors duration-300 group-hover/btn:text-blue-400 group-hover/btn:drop-shadow-[0_0_8px_rgba(59,130,246,0.6)]" data-en="Details" data-ru="Подробнее">Подробнее</span>
+            <i data-lucide="arrow-right" class="w-3 h-3 text-zinc-600 transition-colors duration-300 group-hover/btn:text-blue-400 group-hover/btn:drop-shadow-[0_0_8px_rgba(59,130,246,0.6)]"></i>
+          </button>
+        </div>
+      </div>
 
-        function switchLanguage(lang) {
-            currentLang = lang;
-            document.documentElement.lang = lang;
-            document.documentElement.setAttribute('data-lang', lang);
+      <div id="project-4" class="group relative bg-zinc-950 border border-blue-500/20 rounded-3xl p-8 transition-all duration-500 hover:scale-[1.03] hover:border-blue-500/50 hover:shadow-[0_0_30px_-10px_rgba(59,130,246,0.3)] flex flex-col justify-between min-h-[300px] overflow-hidden reveal">
+        <div class="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-transparent pointer-events-none"></div>
+        <div class="flex items-start justify-between mb-6 relative z-10">
+          <div class="text-blue-500/70 group-hover:scale-110 transition-transform duration-500"><i data-lucide="bot" class="w-8 h-8"></i></div>
+          <div class="flex items-center gap-2 bg-blue-500/10 px-3 py-1.5 rounded-full border border-blue-500/20 shadow-[0_0_15px_-5px_rgba(59,130,246,0.5)]">
+            <span class="relative flex h-2.5 w-2.5">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-blue-500"></span>
+            </span>
+            <span class="text-xs font-bold text-blue-500 uppercase tracking-wider" data-en="Completed" data-ru="Реализован">Реализован</span>
+          </div>
+        </div>
+        <div class="relative z-10 mt-auto">
+          <h3 class="text-xl font-bold text-zinc-200 mb-2" data-en="Smart Dinner Planner" data-ru="Что на ужин?">Что на ужин?</h3>
+          <p class="text-zinc-500 text-sm">AI-агент для real-time анализа цен и формирования рациона под бюджет.</p>
+          <button class="mt-6 flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.2em] transition-all duration-300 hover:scale-110 group/btn" data-project-id="4">
+            <span class="text-zinc-500 transition-colors duration-300 group-hover/btn:text-blue-400 group-hover/btn:drop-shadow-[0_0_8px_rgba(59,130,246,0.6)]" data-en="Details" data-ru="Подробнее">Подробнее</span>
+            <i data-lucide="arrow-right" class="w-3 h-3 text-zinc-600 transition-colors duration-300 group-hover/btn:text-blue-400 group-hover/btn:drop-shadow-[0_0_8px_rgba(59,130,246,0.6)]"></i>
+          </button>
+        </div>
+      </div>
 
-            const elements = document.querySelectorAll('[data-en]');
+      <div id="project-5" class="group relative bg-zinc-950 border border-zinc-500/20 rounded-3xl p-8 transition-all duration-500 hover:scale-[1.03] hover:border-zinc-500/50 hover:shadow-[0_0_30px_-10px_rgba(161,161,170,0.3)] flex flex-col justify-between min-h-[300px] overflow-hidden reveal">
+        <div class="absolute inset-0 bg-gradient-to-br from-zinc-500/5 via-transparent to-transparent pointer-events-none"></div>
+        <div class="flex items-start justify-between mb-6 relative z-10">
+          <div class="text-zinc-500/70 group-hover:scale-110 transition-transform duration-500"><i data-lucide="monitor-cog" class="w-8 h-8"></i></div>
+          <div class="flex items-center gap-2 bg-zinc-500/10 px-3 py-1.5 rounded-full border border-zinc-500/20 shadow-[0_0_15px_-5px_rgba(161,161,170,0.5)]">
+            <span class="relative flex h-2.5 w-2.5">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-zinc-400 opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-zinc-500"></span>
+            </span>
+            <span class="text-xs font-bold text-zinc-500 uppercase tracking-wider" data-en="Completed" data-ru="Реализован">Реализован</span>
+          </div>
+        </div>
+        <div class="relative z-10 mt-auto">
+          <h3 class="text-xl font-bold text-zinc-200 mb-2" data-en="Reddit Lead Radar v2.1" data-ru="Лид радар редит">Лид радар редит</h3>
+          <p class="text-zinc-500 text-sm">AI-конвейер для семантического поиска и фильтрации заказов в обход лимитов API.</p>
+          <button class="mt-6 flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.2em] transition-all duration-300 hover:scale-110 group/btn" data-project-id="5">
+            <span class="text-zinc-500 transition-colors duration-300 group-hover/btn:text-zinc-400 group-hover/btn:drop-shadow-[0_0_8px_rgba(161,161,170,0.6)]" data-ru="Подробнее">Подробнее</span>
+            <i data-lucide="arrow-right" class="w-3 h-3 text-zinc-600 transition-colors duration-300 group-hover/btn:text-zinc-400"></i>
+          </button>
+        </div>
+      </div>
 
-            elements.forEach(el => {
-                if (el.hasAttribute(`data-${lang}`)) {
-                    el.innerHTML = el.getAttribute(`data-${lang}`);
-                }
-            });
+      <div class="group relative bg-zinc-950 border border-emerald-500/20 rounded-3xl p-8 transition-all duration-500 hover:scale-[1.03] hover:border-emerald-500/50 hover:shadow-[0_0_30px_-10px_rgba(16,185,129,0.3)] flex flex-col justify-between min-h-[300px] overflow-hidden reveal">
+        <div class="absolute inset-0 bg-gradient-to-br from-emerald-500/5 via-transparent to-transparent pointer-events-none"></div>
+        <div class="flex items-start justify-between mb-6 relative z-10">
+          <div class="text-emerald-500/70 group-hover:scale-110 transition-transform duration-500"><i data-lucide="smartphone" class="w-8 h-8"></i></div>
+          <div class="flex items-center gap-2 bg-emerald-500/10 px-3 py-1.5 rounded-full border border-emerald-500/20 shadow-[0_0_15px_-5px_rgba(16,185,129,0.5)]">
+            <span class="relative flex h-2.5 w-2.5">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+            </span>
+            <span class="text-xs font-bold text-emerald-500 uppercase tracking-wider" data-en="Completed" data-ru="Реализован">Реализован</span>
+          </div>
+        </div>
+        <div class="relative z-10 mt-auto">
+          <h3 class="text-xl font-bold text-zinc-200 mb-2" data-en="Pizdelniki Messenger" data-ru="Пиздельники вэб эпп">Пиздельники вэб эпп</h3>
+          <p class="text-zinc-500 text-sm">Прототип мессенджера с волатильной архитектурой и нулевым цифровым следом.</p>
+          <button class="mt-6 flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.2em] transition-all duration-300 hover:scale-110 group/btn" data-project-id="6">
+            <span class="text-zinc-500 transition-colors duration-300 group-hover/btn:text-emerald-400 group-hover/btn:drop-shadow-[0_0_8px_rgba(16,185,129,0.6)]" data-ru="Подробнее">Подробнее</span>
+            <i data-lucide="arrow-right" class="w-3 h-3 text-zinc-600 transition-colors duration-300 group-hover/btn:text-emerald-400"></i>
+          </button>
+        </div>
+      </div>
 
-            // Update toggle UI
-            const enLabel = document.getElementById('lang-en');
-            const ruLabel = document.getElementById('lang-ru');
+      <div class="group relative bg-zinc-950 border border-emerald-500/20 rounded-3xl p-8 transition-all duration-500 hover:scale-[1.03] hover:border-emerald-500/50 hover:shadow-[0_0_30px_-10px_rgba(16,185,129,0.3)] flex flex-col justify-between min-h-[300px] overflow-hidden reveal">
+        <div class="absolute inset-0 bg-gradient-to-br from-emerald-500/5 via-transparent to-transparent pointer-events-none"></div>
+        <div class="flex items-start justify-between mb-6 relative z-10">
+          <div class="text-emerald-500/70 group-hover:scale-110 transition-transform duration-500"><i data-lucide="smartphone" class="w-8 h-8"></i></div>
+          <div class="flex items-center gap-2 bg-emerald-500/10 px-3 py-1.5 rounded-full border border-emerald-500/20 shadow-[0_0_15px_-5px_rgba(16,185,129,0.5)]">
+            <span class="relative flex h-2.5 w-2.5">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+            </span>
+            <span class="text-xs font-bold text-emerald-500 uppercase tracking-wider" data-en="Completed" data-ru="Реализован">Реализован</span>
+          </div>
+        </div>
+        <div class="relative z-10 mt-auto">
+          <h3 class="text-xl font-bold text-zinc-200 mb-2">Что на ужин?</h3>
+          <p class="text-zinc-500 text-sm">Мобильное приложение с Computer Vision для контроля бюджета и генерации рецептов.</p>
+          <button class="mt-6 flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.2em] transition-all duration-300 hover:scale-110 group/btn" data-project-id="7">
+            <span class="text-zinc-500 transition-colors duration-300 group-hover/btn:text-emerald-400 group-hover/btn:drop-shadow-[0_0_8px_rgba(16,185,129,0.6)]" data-ru="Подробнее">Подробнее</span>
+            <i data-lucide="arrow-right" class="w-3 h-3 text-zinc-600 transition-colors duration-300 group-hover/btn:text-emerald-400"></i>
+          </button>
+        </div>
+      </div>
 
-            if (lang === 'en') {
-                enLabel.classList.remove('opacity-50');
-                ruLabel.classList.add('opacity-50');
-            } else {
-                enLabel.classList.add('opacity-50');
-                ruLabel.classList.remove('opacity-50');
+      <div class="group relative bg-zinc-950 border border-orange-500/30 rounded-3xl p-8 transition-all duration-500 hover:scale-[1.03] hover:border-orange-500/60 hover:shadow-[0_0_40px_-10px_rgba(249,115,22,0.4)] flex flex-col justify-between min-h-[300px] overflow-hidden reveal">
+        <div class="absolute inset-0 bg-gradient-to-br from-orange-500/10 via-transparent to-transparent pointer-events-none"></div>
+        <div class="flex items-start justify-between mb-6 relative z-10">
+          <div class="text-orange-500 group-hover:scale-110 transition-transform duration-500"><i data-lucide="layout" class="w-8 h-8"></i></div>
+          <div class="flex items-center gap-2 bg-orange-500/10 px-3 py-1.5 rounded-full border border-orange-500/20 shadow-[0_0_15px_-5px_rgba(249,115,22,0.5)]">
+            <span class="relative flex h-2.5 w-2.5">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-orange-500"></span>
+            </span>
+            <span class="text-xs font-bold text-orange-500 uppercase tracking-wider" data-en="In Progress" data-ru="В разработке">В разработке</span>
+          </div>
+        </div>
+        <div class="relative z-10 mt-auto">
+          <h3 class="text-xl font-bold text-zinc-200 mb-2">Сайт: VtecTeam</h3>
+          <p class="text-zinc-500 text-sm leading-relaxed">Редизайн и обновление сайта автосервиса, который занимается чип-тюнингом автомобилей.</p>
+          <button class="mt-6 flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.2em] transition-all duration-300 hover:scale-110 group/btn" data-project-id="8">
+            <span class="text-zinc-500 transition-colors duration-300 group-hover/btn:text-orange-400 group-hover/btn:drop-shadow-[0_0_8px_rgba(249,115,22,0.6)]" data-en="Details" data-ru="Подробнее">Подробнее</span>
+            <i data-lucide="arrow-right" class="w-3 h-3 text-zinc-600 transition-colors duration-300 group-hover/btn:text-orange-400 group-hover/btn:drop-shadow-[0_0_8px_rgba(249,115,22,0.6)]"></i>
+          </button>
+        </div>
+      </div>
+
+      <div id="project-9" class="group relative bg-zinc-950 border border-zinc-500/30 rounded-3xl p-8 transition-all duration-500 hover:scale-[1.03] hover:border-zinc-500/60 hover:shadow-[0_0_40px_-10px_rgba(161,161,170,0.4)] flex flex-col justify-between min-h-[300px] overflow-hidden reveal">
+        <div class="absolute inset-0 bg-gradient-to-br from-zinc-500/10 via-transparent to-transparent pointer-events-none"></div>
+        <div class="flex items-start justify-between mb-6 relative z-10">
+          <div class="text-zinc-500 group-hover:scale-110 transition-transform duration-500"><i data-lucide="monitor-cog" class="w-8 h-8"></i></div>
+          <div class="flex items-center gap-2 bg-zinc-500/10 px-3 py-1.5 rounded-full border border-zinc-500/20 shadow-[0_0_15px_-5px_rgba(161,161,170,0.5)]">
+            <span class="relative flex h-2.5 w-2.5">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-zinc-400 opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-zinc-500"></span>
+            </span>
+            <span class="text-xs font-bold text-zinc-500 uppercase tracking-wider" data-en="Building Core" data-ru="Сборка ядра">Сборка ядра</span>
+          </div>
+        </div>
+        <div class="relative z-10 mt-auto">
+          <h3 class="text-xl font-bold text-zinc-200 mb-2">Персональный ассистент</h3>
+          <p class="text-zinc-500 text-sm leading-relaxed">Разработка и сбор персонального ассистента для предпринимателя.</p>
+          <button class="mt-6 flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.2em] transition-all duration-300 hover:scale-110 group/btn" data-project-id="9">
+            <span class="text-zinc-500 transition-colors duration-300 group-hover/btn:text-zinc-400 group-hover/btn:drop-shadow-[0_0_8px_rgba(161,161,170,0.6)]" data-ru="Подробнее">Подробнее</span>
+            <i data-lucide="arrow-right" class="w-3 h-3 text-zinc-600 transition-colors duration-300 group-hover/btn:text-zinc-400"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- Footer & Contact -->
+<footer id="contact" class="py-16 px-6 relative overflow-hidden bg-zinc-950">
+    <div class="max-w-6xl mx-auto flex flex-col items-center justify-center gap-6 relative z-10 text-center">
+        <div>
+            <h3 class="text-3xl font-bold text-zinc-100 mb-2"
+                data-en="Ideas are nothing without execution. Let's build."
+                data-ru="Идеи ничего не стоят без реализации.">Ideas are nothing without execution. Let's build.</h3>
+        </div>
+        <div class="mt-4">
+            <a href="https://t.me/jonnynest" target="_blank" rel="noopener noreferrer"
+                class="group relative inline-flex items-center justify-center p-4 rounded-full bg-zinc-900 border border-zinc-800 text-zinc-300 hover:text-white hover:border-indigo-500/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(99,102,241,0.3)]">
+                <div class="absolute inset-0 rounded-full bg-gradient-to-r from-indigo-500/20 to-emerald-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <i data-lucide="send" class="w-6 h-6 relative z-10"></i>
+                <span class="sr-only">Telegram</span>
+            </a>
+        </div>
+    </div>
+    <div class="mt-16 text-center">
+        <p class="text-sm font-medium text-zinc-500 mb-1">© 2026 Eugenio Nesterov.</p>
+        <p class="text-xs text-zinc-600" data-en="MVP engineering &amp; ecosystem architecture."
+            data-ru="Разработка MVP и архитектура экосистем.">MVP engineering &amp; ecosystem architecture.</p>
+    </div>
+</footer>
+
+<!-- Generic Scripts -->
+<script>
+    // Language Switcher Logic
+    let currentLang = 'ru';
+    function switchLanguage(lang) {
+        currentLang = lang;
+        document.documentElement.lang = lang;
+        document.documentElement.setAttribute('data-lang', lang);
+        const elements = document.querySelectorAll('[data-en]');
+        elements.forEach(el => {
+            if (el.hasAttribute(`data-${lang}`)) {
+                el.innerHTML = el.getAttribute(`data-${lang}`);
+            }
+        });
+        const enLabel = document.getElementById('lang-en');
+        const ruLabel = document.getElementById('lang-ru');
+        if (lang === 'en') {
+            enLabel.classList.remove('opacity-50');
+            ruLabel.classList.add('opacity-50');
+        } else {
+            enLabel.classList.add('opacity-50');
+            ruLabel.classList.remove('opacity-50');
+        }
+    }
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Lucide Icons (call once)
+    lucide.createIcons();
+
+    switchLanguage('ru'); // Initial call
+
+    // Burger Button / Mobile Menu
+    const burgerBtn = document.getElementById('burger-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    if (burgerBtn && mobileMenu) {
+        burgerBtn.onclick = () => mobileMenu.classList.toggle('hidden');
+    }
+
+    // Swiper.js Initialization
+    new Swiper('.workSwiper', {
+      slidesPerView: 1, spaceBetween: 24, loop: true,
+      autoplay: { delay: 3000, disableOnInteraction: false, pauseOnMouseEnter: true },
+      grabCursor: true,
+      navigation: { nextEl: '.swiper-btn-next', prevEl: '.swiper-btn-prev' },
+      breakpoints: { 768: { slidesPerView: 2 }, 1024: { slidesPerView: 3 } }
+    });
+
+    // Scroll Reveal Logic
+    const observerOptions = { threshold: 0.15, rootMargin: '0px 0px -50px 0px' };
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Service Modals Logic
+    const serviceModalLinks = { 'bots-info': 'modal-bots', 'web-info': 'modal-web', 'automation-info': 'modal-automation', 'mvp-info': 'modal-mvp', 'ai-info': 'modal-ai' };
+    const closeAllServiceModals = () => {
+        document.querySelectorAll('#services-modals > div').forEach(modal => { modal.classList.add('hidden'); modal.classList.remove('flex'); });
+        document.body.style.overflow = ''; document.documentElement.style.overflow = '';
+    };
+    for (const [blockId, modalId] of Object.entries(serviceModalLinks)) {
+        const block = document.getElementById(blockId);
+        if (block) {
+            const btn = block.querySelector('button');
+            if (btn) {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const modal = document.getElementById(modalId);
+                    if (modal) { modal.classList.replace('hidden', 'flex'); document.body.style.overflow = 'hidden'; document.documentElement.style.overflow = 'hidden'; }
+                });
             }
         }
+    }
+    document.querySelectorAll('.modal-close, .modal-bg').forEach(el => el.onclick = closeAllServiceModals);
 
-        // Init language on load to match UI
-        document.addEventListener('DOMContentLoaded', () => {
-            switchLanguage('en');
-        });
+    // Project Modal Logic & Data
+    const projectData = {
+      "1": { colorClass: "text-white drop-shadow-[0_0_8px_rgba(168,85,247,0.8)]", stack: "Nano Banana Pro, ComfyUI (Custom Workflow), Gen-AI Video.", request: "Полная автономия от фотостудий, моделей и фотографов. Создание уникального «лица» бренда, которое на 100% принадлежит компании.", result: "4 часа на реализацию всего цикла. Создана уникальная модель по заданным параметрам (рост, вес, фигура, лицо, волосы). Реализованы виртуальный фотосет и видео-продакшен. Сокращение расходов на контент." },
+      "2": { colorClass: "text-white drop-shadow-[0_0_8px_rgba(249,115,22,0.8)]", stack: "Tailwind CSS, Vanilla JS, Swiper.js, Intersection Observer.", request: "Создать технологичную витрину, которая сочетает «тяжелый» визуал с молниеносной скоростью загрузки на любых устройствах.", result: "Безупречный UX за счет Zero-Runtime JS. Нативная плавная навигация. Итоговый балл 100/100 Lighthouse по всем параметрам. Сайт служит доказательством скилла в оптимизации интерфейсов." },
+      "3": { colorClass: "text-white drop-shadow-[0_0_8px_rgba(59,130,246,0.8)]", stack: "Python 3, Aiogram 3, Asyncio, Zero-DB Storage, Cloud VPS (Free Tier).", request: "Разработать закрытый инструмент для трекинга ежедневных практик осознанности и дисциплины. Требования: максимальная автономность, нулевая стоимость поддержки и уникальная система мотивации на целый год.", result: "Развернут легковесный бот без тяжелых баз данных. Написан алгоритм ротации 730 уникальных сообщений без повторов. Настроена жесткая система пуш-уведомлений с компенсацией часового пояса сервера. Безотказный личный ассистент." },
+      "4": { colorClass: "text-white drop-shadow-[0_0_8px_rgba(59,130,246,0.8)]", stack: "Python, Aiogram 3, Grok AI (Search Logic), PostgreSQL, Web Scraping (JSON/RSS/Scrapy).", request: "Разработать автономную систему формирования продуктовой корзины под жесткий бюджет и локацию пользователя без использования платных API торговых сетей.", result: "Создан интеллектуальный AI-агент, имитирующий поведение пользователя для поиска цен. Сначала нейросеть подбирает рецепт под ингредиенты, затем ищет позиции в магазинах города и калибрует корзину под бюджет. Погрешность расчетов снижена до 10-15%." },
+      "5": { colorClass: "text-white drop-shadow-[0_0_8px_rgba(161,161,170,0.8)]", stack: "Python 3.12, JSON Scraping (Bypass API limits), Grok AI (Semantic Analysis), Supabase (Postgres), Telegram API.", request: "Разработать систему мониторинга Reddit для поиска заказов на разработку в обход официального API. Главная проблема — жесткие лимиты платформы и 95% информационного мусора (спам, самопиар, вакансии с привязкой к офису).", result: "Развернут многоступенчатый конвейер: парсинг через JSON-эндпоинты (Bypass API bans) -> семантическая фильтрация через LLM (Grok) -> дедупликация в Supabase. Реализована жесткая логика отсева по ключевым словам и гео-меткам (NYC/London). Система заменяет 5 часов ручного поиска на 15-минутный дайджест «горячих» лидов с высоким Score релевантности." },
+      "6": { colorClass: "text-white drop-shadow-[0_0_8px_rgba(16,185,129,0.8)]", stack: "Antigravity Engine, JavaScript (ES6+), In-Memory Processing.", request: "Разработать полностью анонимный мессенджер с волатильной архитектурой. Главная цель — отсутствие любого цифрового следа и хранение данных исключительно в RAM пользователя.", result: "Реализован прототип с концепцией Zero-Trace. Все сообщения и метаданные существуют только в рамках текущей сессии и мгновенно уничтожаются при закрытии вкладки браузера. Интегрирована система волатильного хранения без использования серверных БД." },
+      "7": { colorClass: "text-white drop-shadow-[0_0_8px_rgba(16,185,129,0.8)]", stack: "Python (Back-end), Cross-platform Mobile Framework, AI Vision API, Database (User History).", request: "Масштабировать логику Telegram-бота в полноценное мобильное приложение. Требования: внедрение системы распознавания продуктов по фото (Computer Vision), создание личных кабинетов и системы аналитики расходов.", result: "Разработан кроссплатформенный прототип (iOS/Android). Интегрирован нейро-ассистент для мгновенного анализа содержимого холодильника по фотографии. Реализован модуль «Рандомайзер ужинов» и система сохранения подтвержденных корзин в БД для отслеживания статистики трат в реальном времени. Продукт прошел полевое тестирование на реальных устройствах." }
+    };
 
-        const burgerBtn = document.getElementById('burger-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        if (burgerBtn && mobileMenu) {
-            burgerBtn.onclick = () => mobileMenu.classList.toggle('hidden');
+    const pModal = document.getElementById('project-modal');
+    document.querySelectorAll('[data-project-id]').forEach(btn => {
+      btn.onclick = () => {
+        const data = projectData[btn.dataset.projectId];
+        if (data) {
+          ['stack', 'request', 'result'].forEach(key => {
+            const label = document.getElementById(`label-${key}`);
+            if (label) label.className = `text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] sm:w-1/4 shrink-0 mt-1 transition-colors duration-300 ${data.colorClass}`;
+            const content = document.getElementById(`modal-${key}`);
+            if (content) content.innerText = data[key];
+          });
+          pModal.classList.replace('hidden', 'flex');
+          document.body.style.overflow = 'hidden'; document.documentElement.style.overflow = 'hidden';
         }
-    </script>
+      };
+    });
+    const closePModal = () => { pModal.classList.replace('flex', 'hidden'); document.body.style.overflow = ''; document.documentElement.style.overflow = ''; };
+    document.querySelectorAll('.close-modal, .modal-overlay').forEach(el => el.onclick = closePModal);
+    
+    // Global Shortcuts
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { closeAllServiceModals(); closePModal(); } });
+});
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+
+<!-- Service Modals -->
+<div id="services-modals">
+  <div id="modal-bots" class="fixed inset-0 z-[100] hidden items-center justify-center overscroll-none">
+    <div class="absolute inset-0 bg-black/80 backdrop-blur-sm modal-bg cursor-pointer"></div>
+    <div class="relative bg-zinc-950 border border-zinc-800 rounded-3xl p-6 md:p-8 max-w-2xl w-full mx-4 shadow-[0_0_40px_rgba(59,130,246,0.1)] flex flex-col h-[70vh] max-h-[600px] min-h-[450px]">
+      <button class="absolute top-6 right-6 text-zinc-500 hover:text-white transition-colors modal-close z-10" aria-label="Close modal">
+        <i data-lucide="x" class="w-6 h-6"></i>
+      </button>
+      <div class="overflow-y-auto pr-4 flex-1 hide-scrollbar overscroll-contain">
+        <ul class="list-disc list-inside space-y-4 text-zinc-300 marker:text-indigo-500">
+          <li>Приём и квалификация заявок</li>
+          <li>Автоответы и AI-ассистенты</li>
+          <li>Сценарии продаж и прогрева</li>
+          <li>Продажи и заказы внутри Telegram</li>
+          <li>Интеграции с CRM и сервисами</li>
+          <li>Автоматизация бизнес-процессов</li>
+          <li>Парсинг и сбор данных</li>
+          <li>Модерация и антиспам в чатах</li>
+          <li>Воронки и сегментация пользователей</li>
+          <li>Уведомления и рассылки</li>
+          <li>Личные кабинеты в боте</li>
+          <li>Интеграция оплат</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div id="modal-web" class="fixed inset-0 z-[100] hidden items-center justify-center overscroll-none">
+    <div class="absolute inset-0 bg-black/80 backdrop-blur-sm modal-bg cursor-pointer"></div>
+    <div class="relative bg-zinc-950 border border-zinc-800 rounded-3xl p-6 md:p-8 max-w-2xl w-full mx-4 shadow-[0_0_40px_rgba(249,115,22,0.1)] flex flex-col h-[70vh] max-h-[600px] min-h-[450px]">
+      <button class="absolute top-6 right-6 text-zinc-500 hover:text-white transition-colors modal-close z-10" aria-label="Close modal">
+        <i data-lucide="x" class="w-6 h-6"></i>
+      </button>
+      <div class="overflow-y-auto pr-4 flex-1 hide-scrollbar overscroll-contain">
+        <ul class="list-disc list-inside space-y-4 text-zinc-300 marker:text-amber-500">
+          <li>Сайты для получения заявок</li>
+          <li>Лендинги под рекламу</li>
+          <li>Сайты для продажи услуг</li>
+          <li>Сайты для продажи товаров</li>
+          <li>Каталоги с удобным выбором</li>
+          <li>Сайты для личного бренда</li>
+          <li>Сайты под SEO-трафик</li>
+          <li>Сайты с высокой скоростью загрузки</li>
+          <li>Адаптация под мобильные устройства</li>
+          <li>Интеграции с CRM и сервисами</li>
+          <li>Подключение аналитики и отслеживания</li>
+          <li>Оптимизация конверсии сайта</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div id="modal-automation" class="fixed inset-0 z-[100] hidden items-center justify-center overscroll-none">
+    <div class="absolute inset-0 bg-black/80 backdrop-blur-sm modal-bg cursor-pointer"></div>
+    <div class="relative bg-zinc-950 border border-zinc-800 rounded-3xl p-6 md:p-8 max-w-2xl w-full mx-4 shadow-[0_0_40px_rgba(228,228,231,0.1)] flex flex-col h-[70vh] max-h-[600px] min-h-[450px]">
+      <button class="absolute top-6 right-6 text-zinc-500 hover:text-white transition-colors modal-close z-10" aria-label="Close modal">
+        <i data-lucide="x" class="w-6 h-6"></i>
+      </button>
+      <div class="overflow-y-auto pr-4 flex-1 hide-scrollbar overscroll-contain">
+        <ul class="list-disc list-inside space-y-4 text-zinc-300 marker:text-zinc-400">
+          <li>Связка сервисов и систем в один процесс</li>
+          <li>Передача заявок без потерь между сервисами</li>
+          <li>Автоматическая обработка и распределение заявок</li>
+          <li>Устранение ручной работы в операционке</li>
+          <li>Синхронизация данных между сервисами</li>
+          <li>Автоматическое заполнение таблиц и CRM</li>
+          <li>Уведомления и триггеры по событиям</li>
+          <li>Автоматизация работы с лидами</li>
+          <li>Сбор, фильтрация и отправка данных</li>
+          <li>Автопостинг и работа с контентом</li>
+          <li>Контроль и логика бизнес-процессов</li>
+          <li>Снижение ошибок из-за человеческого фактора</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div id="modal-mvp" class="fixed inset-0 z-[100] hidden items-center justify-center overscroll-none">
+    <div class="absolute inset-0 bg-black/80 backdrop-blur-sm modal-bg cursor-pointer"></div>
+    <div class="relative bg-zinc-950 border border-zinc-800 rounded-3xl p-6 md:p-8 max-w-2xl w-full mx-4 shadow-[0_0_40px_rgba(16,185,129,0.1)] flex flex-col h-[70vh] max-h-[600px] min-h-[450px]">
+      <button class="absolute top-6 right-6 text-zinc-500 hover:text-white transition-colors modal-close z-10" aria-label="Close modal">
+        <i data-lucide="x" class="w-6 h-6"></i>
+      </button>
+      <div class="overflow-y-auto pr-4 flex-1 hide-scrollbar overscroll-contain">
+        <ul class="list-disc list-inside space-y-4 text-zinc-300 marker:text-emerald-500">
+          <li>MVP для проверки идей</li>
+          <li>Запуск продукта с нуля</li>
+          <li>SaaS-платформы</li>
+          <li>Веб-приложения</li>
+          <li>Приложения внутри Telegram (TWA)</li>
+          <li>Личные кабинеты пользователей</li>
+          <li>Дашборды и аналитика</li>
+          <li>Админ-панели</li>
+          <li>API и backend-системы</li>
+          <li>Интеграции с сервисами</li>
+          <li>Масштабирование продукта</li>
+          <li>Подготовка к росту нагрузки</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div id="modal-ai" class="fixed inset-0 z-[100] hidden items-center justify-center overscroll-none">
+    <div class="absolute inset-0 bg-black/80 backdrop-blur-sm modal-bg cursor-pointer"></div>
+    <div class="relative bg-zinc-950 border border-zinc-800 rounded-3xl p-6 md:p-8 max-w-2xl w-full mx-4 shadow-[0_0_40px_rgba(139,92,246,0.1)] flex flex-col h-[70vh] max-h-[600px] min-h-[450px]">
+      <button class="absolute top-6 right-6 text-zinc-500 hover:text-white transition-colors modal-close z-10" aria-label="Close modal">
+        <i data-lucide="x" class="w-6 h-6"></i>
+      </button>
+      <div class="overflow-y-auto pr-4 flex-1 hide-scrollbar overscroll-contain">
+        <ul class="list-disc list-inside space-y-4 text-zinc-300 marker:text-violet-500">
+          <li>Генерация контента для соцсетей</li>
+          <li>Создание AI-персонажей под бренд</li>
+          <li>Визуал для рекламы и маркетинга</li>
+          <li>Карточки товаров для маркетплейсов</li>
+          <li>Баннеры и рекламные креативы</li>
+          <li>Обложки и аватары</li>
+          <li>Контент для сайтов</li>
+          <li>Генерация изображений под задачи</li>
+          <li>Генерация видео с AI-персонажами</li>
+          <li>Массовое производство контента</li>
+          <li>Визуал в едином стиле бренда</li>
+          <li>Замена фотосессий и продакшна</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div id="project-modal" class="fixed inset-0 z-[110] hidden items-center justify-center p-4 overscroll-none">
+  <div class="absolute inset-0 bg-zinc-950/90 backdrop-blur-xl modal-overlay"></div>
+  <div class="relative w-full max-w-4xl bg-zinc-900 border border-zinc-800 rounded-3xl shadow-2xl max-h-[85vh] flex flex-col overflow-hidden">
+    <button class="absolute top-6 right-6 text-zinc-500 hover:text-white transition-colors close-modal z-50 p-2" aria-label="Close">
+      <i data-lucide="x" class="w-6 h-6"></i>
+    </button>
+    <div class="p-8 md:p-14 overflow-y-auto w-full overscroll-contain">
+      <div class="space-y-8 text-zinc-400 text-sm md:text-[15px] leading-relaxed">
+        
+        <div class="flex flex-col sm:flex-row sm:items-baseline gap-2 sm:gap-6 border-b border-zinc-800/50 pb-6">
+          <h4 id="label-stack" class="text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] sm:w-1/4 shrink-0 transition-colors duration-300">Стек технологий</h4>
+          <p id="modal-stack" class="text-zinc-200 font-medium m-0 w-full"></p>
+        </div>
+
+        <div class="flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-6 border-b border-zinc-800/50 pb-6">
+          <h4 id="label-request" class="text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] sm:w-1/4 shrink-0 mt-1 transition-colors duration-300">Запрос клиента</h4>
+          <p id="modal-request" class="m-0 w-full text-zinc-300"></p>
+        </div>
+
+        <div class="flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-6">
+          <h4 id="label-result" class="text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] sm:w-1/4 shrink-0 mt-1 transition-colors duration-300">Результат</h4>
+          <p id="modal-result" class="m-0 w-full text-zinc-300"></p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
 </body>
+
 
 </html>
