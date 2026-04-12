@@ -28,10 +28,20 @@
 
 <body class="text-zinc-50 antialiased selection:bg-amber-500/30 selection:text-amber-200 overflow-x-hidden relative">
 
+<svg class="pointer-events-none absolute inset-0 opacity-0 h-0 w-0">
+  <filter id="grainy-noise">
+    <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" stitchTiles="stitch" />
+    <feColorMatrix type="saturate" values="0" />
+  </filter>
+</svg>
+
+<div class="fixed inset-0 pointer-events-none z-[50]" style="filter: url(#grainy-noise); opacity: 0.04;"></div>
+
     <!-- Background Ambient Glows -->
     <div class="ambient-glow top-0 left-[-10%] w-[100vw] md:w-[80vw] max-w-[500px] h-[500px] bg-amber-600 opacity-40 md:opacity-100"></div>
     <div class="ambient-glow top-[40%] right-[-10%] w-[70vw] max-w-[400px] h-[400px] bg-amber-500 opacity-40 md:opacity-100"></div>
     <div class="ambient-glow bottom-0 left-[20%] w-[90vw] max-w-[600px] h-[600px] bg-orange-700 opacity-40 md:opacity-100"></div>
+    <canvas id="nodes-canvas" class="fixed inset-0 w-full h-full pointer-events-none z-[-1] opacity-60"></canvas>
 
     <!-- Navigation -->
     <header class="fixed top-0 left-0 w-full z-[100] bg-black shadow-md px-4 sm:px-6 py-4 border-b border-zinc-900/50">
@@ -101,7 +111,7 @@
     <main class="pt-24">
         <!-- Hero Section -->
         <section id="hero"
-            class="relative min-h-screen flex flex-col justify-center items-center text-center px-6 pt-20 scroll-mt-[80px]">
+            class="relative min-h-[70vh] flex flex-col items-center text-center px-6 pt-32 md:pt-40 lg:pt-48 pb-24 md:pb-32 scroll-mt-[80px]">
             <h1 class="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold tracking-tight mb-12 max-w-5xl text-transparent bg-clip-text bg-gradient-to-b from-zinc-50 to-zinc-500"
                 data-en="From Idea to Launch in 24 Hours" data-ru="От идеи до запуска за 24 часа">
                 From Idea to Launch in 24 Hours
@@ -139,7 +149,7 @@
                 data-ru="Среднее время ответа: 15 мин">Average response time: 15 mins</p>
         </section>
 
-        <section id="work" class="py-16 md:py-32 px-6 scroll-mt-[80px] reveal">
+        <section id="work" class="py-20 md:py-28 px-6 scroll-mt-[80px] reveal">
             <div class="max-w-6xl mx-auto">
                 <div class="mb-10 md:mb-16 max-w-2xl mx-auto text-center">
                     <h2 class="text-3xl font-bold mb-4 tracking-tight text-zinc-100 reveal"><span data-en="Featured Work"
@@ -221,6 +231,28 @@
                                 </div>
                             </div>
 
+                            <div class="swiper-slide group relative bg-zinc-950 border border-orange-500/30 rounded-3xl p-8 transition-all duration-500 hover:scale-[1.03] hover:border-orange-500/30 hover:shadow-[0_0_40px_-10px_rgba(249,115,22,0.4)] flex flex-col justify-between min-h-[300px] overflow-hidden reveal">
+                                <div class="absolute inset-0 bg-gradient-to-br from-orange-500/10 via-transparent to-transparent pointer-events-none"></div>
+                                <div class="flex items-start justify-between mb-6 relative z-10">
+                                    <div class="text-orange-500 group-hover:scale-110 transition-transform duration-500"><i data-lucide="layout" class="w-8 h-8"></i></div>
+                                    <div class="flex items-center gap-2 bg-orange-500/10 px-3 py-1.5 rounded-full border border-orange-500/20 shadow-[0_0_15px_-5px_rgba(249,115,22,0.5)]">
+                                        <span class="relative flex h-2.5 w-2.5">
+                                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"></span>
+                                            <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-orange-500"></span>
+                                        </span>
+                                        <span class="text-xs font-bold text-orange-500 uppercase tracking-wider" data-en="Completed" data-ru="Реализован">Реализован</span>
+                                    </div>
+                                </div>
+                                <div class="relative z-10 mt-auto">
+                                    <h3 class="text-xl font-bold text-zinc-200 mb-2">Сайт: VtecTeam</h3>
+                                    <p class="text-zinc-500 text-sm leading-relaxed" data-en="Professional landing page for a tuning studio. Redesign, high performance, and conversion optimization." data-ru="Профессиональный лендинг для тюнинг-ателье. Редизайн, высокая производительность и оптимизация конверсии.">Профессиональный лендинг для тюнинг-ателье. Редизайн, высокая производительность и оптимизация конверсии.</p>
+                                    <a href="#project-8" class="mt-6 flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.2em] transition-all duration-300 hover:scale-110 group/btn">
+                                        <span class="text-zinc-500 transition-colors duration-300 group-hover/btn:text-orange-400 group-hover/btn:drop-shadow-[0_0_8px_rgba(249,115,22,0.6)]" data-en="Details" data-ru="Подробнее">Подробнее</span>
+                                        <i data-lucide="arrow-right" class="w-3 h-3 text-zinc-600 transition-colors duration-300 group-hover/btn:text-orange-400 group-hover/btn:drop-shadow-[0_0_8px_rgba(249,115,22,0.6)]"></i>
+                                    </a>
+                                </div>
+                            </div>
+
                             <div class="swiper-slide group relative bg-zinc-950 border border-zinc-500/30 rounded-3xl p-8 transition-all duration-500 hover:scale-[1.03] hover:border-zinc-500/60 hover:shadow-[0_0_40px_-10px_rgba(161,161,170,0.4)] flex flex-col justify-between min-h-[300px] overflow-hidden reveal">
                                 <div class="absolute inset-0 bg-gradient-to-br from-zinc-500/10 via-transparent to-transparent pointer-events-none"></div>
                                 <div class="flex items-start justify-between mb-6 relative z-10">
@@ -296,7 +328,7 @@
                             data-ru="Telegram Боты">Telegram Bots</span>
                     </h3>
                 </div>
-                <ul class="text-zinc-400 text-base leading-relaxed space-y-4">
+                <ul class="text-zinc-100 text-base leading-relaxed space-y-4">
                     <li class="relative pl-5">
                         <span class="absolute left-0 top-2.5 w-1.5 h-1.5 rounded-full bg-indigo-500"></span>
                         <span data-en="Aiogram 3.x development with robust architecture (PostgreSQL, Redis). Your bot will perform flawlessly under any load." data-ru="Разрабатываю ботов с надежной архитектурой, которые стабильно работают даже при высокой нагрузке">Разрабатываю ботов с надежной архитектурой, которые стабильно работают даже при высокой нагрузке</span>
@@ -311,7 +343,7 @@
                     </li>
                 </ul>
                 <button type="button"
-                    class="inline-flex items-center justify-center px-6 py-3 mt-10 rounded-full font-bold text-sm transition-all hover:scale-105 bg-transparent text-zinc-400 hover:text-indigo-400 hover:drop-shadow-[0_0_8px_rgba(99,102,241,0.6)]"
+                    class="inline-flex items-center justify-center px-6 py-3 mt-10 rounded-full font-bold text-sm transition-all hover:scale-105 bg-transparent text-zinc-100 hover:text-indigo-400 hover:drop-shadow-[0_0_8px_rgba(99,102,241,0.6)]"
                     data-en="All services" data-ru="Все услуги">
                     <span data-en="All services" data-ru="Все услуги">Все услуги</span>
                     <i data-lucide="arrow-right" class="ml-2 w-4 h-4"></i>
@@ -327,7 +359,7 @@
                             data-ru="Быстрые Сайты">Fast Web</span>
                     </h3>
                 </div>
-                <ul class="text-zinc-400 text-base leading-relaxed space-y-4">
+                <ul class="text-zinc-100 text-base leading-relaxed space-y-4">
                     <li class="relative pl-5">
                         <span class="absolute left-0 top-2.5 w-1.5 h-1.5 rounded-full bg-amber-500"></span>
                         <span data-en="Maximum performance: clean Tailwind CSS coding with perfect Lighthouse scores (100/100)." data-ru="Сайт загружается быстро и не тормозит даже на телефонах">Сайт загружается быстро и не тормозит даже на телефонах</span>
@@ -342,7 +374,7 @@
                     </li>
                 </ul>
                 <button type="button"
-                    class="inline-flex items-center justify-center px-6 py-3 mt-10 rounded-full font-bold text-sm transition-all hover:scale-105 bg-transparent text-zinc-400 hover:text-amber-400 hover:drop-shadow-[0_0_8px_rgba(251,191,36,0.6)]"
+                    class="inline-flex items-center justify-center px-6 py-3 mt-10 rounded-full font-bold text-sm transition-all hover:scale-105 bg-transparent text-zinc-100 hover:text-amber-400 hover:drop-shadow-[0_0_8px_rgba(251,191,36,0.6)]"
                     data-en="All services" data-ru="Все услуги">
                     <span data-en="All services" data-ru="Все услуги">Все услуги</span>
                     <i data-lucide="arrow-right" class="ml-2 w-4 h-4"></i>
@@ -358,7 +390,7 @@
                             data-ru="Автоматизация процессов">Process Automation</span>
                     </h3>
                 </div>
-                <ul class="text-zinc-400 text-base leading-relaxed space-y-4">
+                <ul class="text-zinc-100 text-base leading-relaxed space-y-4">
                     <li class="relative pl-5">
                         <span class="absolute left-0 top-2.5 w-1.5 h-1.5 rounded-full bg-zinc-400"></span>
                         <span data-en="Connecting isolated services via API into a single reliable mechanism." data-ru="Объединю все сервисы в одну систему, которая работает без сбоев">Объединю все сервисы в одну систему, которая работает без сбоев</span>
@@ -373,7 +405,7 @@
                     </li>
                 </ul>
                 <button type="button"
-                    class="inline-flex items-center justify-center px-6 py-3 mt-10 rounded-full font-bold text-sm transition-all hover:scale-105 bg-transparent text-zinc-400 hover:text-zinc-300 hover:drop-shadow-[0_0_8px_rgba(212,212,216,0.6)]"
+                    class="inline-flex items-center justify-center px-6 py-3 mt-10 rounded-full font-bold text-sm transition-all hover:scale-105 bg-transparent text-zinc-100 hover:text-zinc-300 hover:drop-shadow-[0_0_8px_rgba(212,212,216,0.6)]"
                     data-en="All services" data-ru="Все услуги">
                     <span data-en="All services" data-ru="Все услуги">Все услуги</span>
                     <i data-lucide="arrow-right" class="ml-2 w-4 h-4"></i>
@@ -389,7 +421,7 @@
                             data-ru="MVP и Приложения">MVP &amp; App</span>
                     </h3>
                 </div>
-                <ul class="text-zinc-400 text-base leading-relaxed space-y-4">
+                <ul class="text-zinc-100 text-base leading-relaxed space-y-4">
                     <li class="relative pl-5">
                         <span class="absolute left-0 top-2.5 w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
                         <span data-en="Focus on Time-to-Market. Building the core product on FastAPI in days without overengineering." data-ru="Помогаю запустить продукт без лишней разработки и потери времени">Помогаю запустить продукт без лишней разработки и потери времени</span>
@@ -404,7 +436,7 @@
                     </li>
                 </ul>
                 <button type="button"
-                    class="inline-flex items-center justify-center px-6 py-3 mt-10 rounded-full font-bold text-sm transition-all hover:scale-105 bg-transparent text-zinc-400 hover:text-emerald-400 hover:drop-shadow-[0_0_8px_rgba(52,211,153,0.6)]"
+                    class="inline-flex items-center justify-center px-6 py-3 mt-10 rounded-full font-bold text-sm transition-all hover:scale-105 bg-transparent text-zinc-100 hover:text-emerald-400 hover:drop-shadow-[0_0_8px_rgba(52,211,153,0.6)]"
                     data-en="All services" data-ru="Все услуги">
                     <span data-en="All services" data-ru="Все услуги">Все услуги</span>
                     <i data-lucide="arrow-right" class="ml-2 w-4 h-4"></i>
@@ -420,7 +452,7 @@
                             data-ru="AI Студия">AI Studio</span>
                     </h3>
                 </div>
-                <ul class="text-zinc-400 text-base leading-relaxed space-y-4">
+                <ul class="text-zinc-100 text-base leading-relaxed space-y-4">
                     <li class="relative pl-5">
                         <span class="absolute left-0 top-2.5 w-1.5 h-1.5 rounded-full bg-violet-500"></span>
                         <span
@@ -441,7 +473,7 @@
                     </li>
                 </ul>
                 <button type="button"
-                    class="inline-flex items-center justify-center px-6 py-3 mt-10 rounded-full font-bold text-sm transition-all hover:scale-105 bg-transparent text-zinc-400 hover:text-violet-400 hover:drop-shadow-[0_0_8px_rgba(139,92,246,0.6)]"
+                    class="inline-flex items-center justify-center px-6 py-3 mt-10 rounded-full font-bold text-sm transition-all hover:scale-105 bg-transparent text-zinc-100 hover:text-violet-400 hover:drop-shadow-[0_0_8px_rgba(139,92,246,0.6)]"
                     data-en="All services" data-ru="Все услуги">
                     <span data-en="All services" data-ru="Все услуги">Все услуги</span>
                     <i data-lucide="arrow-right" class="ml-2 w-4 h-4"></i>
@@ -451,7 +483,7 @@
 
 
 
-<section id="all-projects" class="py-24 relative z-10 border-t border-zinc-800/50 bg-zinc-950">
+<section id="all-projects" class="py-24 relative z-10 border-t border-zinc-800/50 bg-transparent">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="mb-12 md:mb-10 md:mb-16 max-w-2xl mx-auto text-center">
         <h2 class="text-3xl font-bold mb-4 tracking-tight text-zinc-100 reveal"><span data-en="My Projects" data-ru="Мои проекты">Мои проекты</span><span class="text-purple-500">.</span></h2>
@@ -614,7 +646,7 @@
         </div>
       </div>
 
-      <div class="group relative bg-zinc-950 border border-orange-500/30 rounded-3xl p-8 transition-all duration-500 hover:scale-[1.03] hover:border-orange-500/60 hover:shadow-[0_0_40px_-10px_rgba(249,115,22,0.4)] flex flex-col justify-between min-h-[300px] overflow-hidden reveal">
+      <div id="project-8" class="group relative bg-zinc-950 border border-orange-500/30 rounded-3xl p-8 transition-all duration-500 hover:scale-[1.03] hover:border-orange-500/30 hover:shadow-[0_0_40px_-10px_rgba(249,115,22,0.4)] flex flex-col justify-between min-h-[300px] overflow-hidden reveal">
         <div class="absolute inset-0 bg-gradient-to-br from-orange-500/10 via-transparent to-transparent pointer-events-none"></div>
         <div class="flex items-start justify-between mb-6 relative z-10">
           <div class="text-orange-500 group-hover:scale-110 transition-transform duration-500"><i data-lucide="layout" class="w-8 h-8"></i></div>
@@ -623,12 +655,12 @@
               <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"></span>
               <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-orange-500"></span>
             </span>
-            <span class="text-xs font-bold text-orange-500 uppercase tracking-wider" data-en="In Progress" data-ru="В разработке">В разработке</span>
+            <span class="text-xs font-bold text-orange-500 uppercase tracking-wider" data-en="Completed" data-ru="Реализован">Реализован</span>
           </div>
         </div>
         <div class="relative z-10 mt-auto">
           <h3 class="text-xl font-bold text-zinc-200 mb-2">Сайт: VtecTeam</h3>
-          <p class="text-zinc-500 text-sm leading-relaxed">Редизайн и обновление сайта автосервиса, который занимается чип-тюнингом автомобилей.</p>
+          <p class="text-zinc-500 text-sm leading-relaxed" data-en="Professional landing page for a tuning studio. Redesign, high performance, and conversion optimization." data-ru="Профессиональный лендинг для тюнинг-ателье. Редизайн, высокая производительность и оптимизация конверсии.">Профессиональный лендинг для тюнинг-ателье. Редизайн, высокая производительность и оптимизация конверсии.</p>
           <button class="mt-6 flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.2em] transition-all duration-300 hover:scale-110 group/btn" data-project-id="8">
             <span class="text-zinc-500 transition-colors duration-300 group-hover/btn:text-orange-400 group-hover/btn:drop-shadow-[0_0_8px_rgba(249,115,22,0.6)]" data-en="Details" data-ru="Подробнее">Подробнее</span>
             <i data-lucide="arrow-right" class="w-3 h-3 text-zinc-600 transition-colors duration-300 group-hover/btn:text-orange-400 group-hover/btn:drop-shadow-[0_0_8px_rgba(249,115,22,0.6)]"></i>
@@ -664,7 +696,7 @@
 </main>
 
 <!-- Footer & Contact -->
-<footer id="contact" class="py-16 px-6 relative overflow-hidden bg-zinc-950">
+<footer id="contact" class="py-16 px-6 relative overflow-hidden bg-transparent scroll-mt-[80px]">
     <div class="max-w-6xl mx-auto flex flex-col items-center justify-center gap-6 relative z-10 text-center">
         <div>
             <h3 class="text-3xl font-bold text-zinc-100 mb-2"
@@ -715,6 +747,113 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Lucide Icons (call once)
     lucide.createIcons();
+
+    // --- Connected Nodes Logic ---
+    const canvas = document.getElementById('nodes-canvas');
+    if (canvas) {
+        const ctx = canvas.getContext('2d');
+        let width, height;
+        let particles = [];
+        // Brand colors: Emerald, Amber, Purple, Gray
+        const colors = ['#10b981', '#f59e0b', '#a855f7', '#71717a']; 
+        
+        let mouse = { x: null, y: null, radius: 150 };
+        window.addEventListener('mousemove', (e) => { mouse.x = e.x; mouse.y = e.y; });
+        window.addEventListener('mouseout', () => { mouse.x = null; mouse.y = null; });
+
+        function resize() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+            initParticles();
+        }
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * width;
+                this.y = Math.random() * height;
+                this.vx = (Math.random() - 0.5) * 0.6; // Speed
+                this.vy = (Math.random() - 0.5) * 0.6;
+                this.radius = Math.random() * 1.5 + 0.5;
+                this.color = colors[Math.floor(Math.random() * colors.length)];
+            }
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+                if (this.x < 0 || this.x > width) this.vx *= -1;
+                if (this.y < 0 || this.y > height) this.vy *= -1;
+            }
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.fillStyle = this.color;
+                ctx.fill();
+            }
+        }
+
+        function initParticles() {
+            particles = [];
+            const numParticles = Math.floor((width * height) / 15000); // Density
+            for (let i = 0; i < numParticles; i++) {
+                particles.push(new Particle());
+            }
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+            ctx.clearRect(0, 0, width, height);
+
+            for (let i = 0; i < particles.length; i++) {
+                particles[i].update();
+                particles[i].draw();
+
+                // Gradient Links between particles
+                for (let j = i + 1; j < particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+
+                    if (dist < 150) {
+                        ctx.beginPath();
+                        const grad = ctx.createLinearGradient(particles[i].x, particles[i].y, particles[j].x, particles[j].y);
+                        grad.addColorStop(0, particles[i].color);
+                        grad.addColorStop(1, particles[j].color);
+                        ctx.strokeStyle = grad;
+                        ctx.globalAlpha = 1 - (dist / 150);
+                        ctx.lineWidth = 1;
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.stroke();
+                        ctx.globalAlpha = 1;
+                    }
+                }
+                
+                // Mouse interaction (repel + connect)
+                if (mouse.x != null) {
+                    const dx = particles[i].x - mouse.x;
+                    const dy = particles[i].y - mouse.y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    if (dist < mouse.radius) {
+                        ctx.beginPath();
+                        ctx.strokeStyle = particles[i].color;
+                        ctx.globalAlpha = 1 - (dist / mouse.radius);
+                        ctx.lineWidth = 1;
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(mouse.x, mouse.y);
+                        ctx.stroke();
+                        ctx.globalAlpha = 1;
+                        
+                        const force = (mouse.radius - dist) / mouse.radius;
+                        particles[i].x += (dx / dist) * force * 0.5;
+                        particles[i].y += (dy / dist) * force * 0.5;
+                    }
+                }
+            }
+        }
+
+        window.addEventListener('resize', resize);
+        resize();
+        animate();
+    }
 
     switchLanguage('ru'); // Initial call
 
@@ -775,7 +914,19 @@ document.addEventListener('DOMContentLoaded', () => {
       "4": { colorClass: "text-white drop-shadow-[0_0_8px_rgba(59,130,246,0.8)]", stack: "Python, Aiogram 3, Grok AI (Search Logic), PostgreSQL, Web Scraping (JSON/RSS/Scrapy).", request: "Разработать автономную систему формирования продуктовой корзины под жесткий бюджет и локацию пользователя без использования платных API торговых сетей.", result: "Создан интеллектуальный AI-агент, имитирующий поведение пользователя для поиска цен. Сначала нейросеть подбирает рецепт под ингредиенты, затем ищет позиции в магазинах города и калибрует корзину под бюджет. Погрешность расчетов снижена до 10-15%." },
       "5": { colorClass: "text-white drop-shadow-[0_0_8px_rgba(161,161,170,0.8)]", stack: "Python 3.12, JSON Scraping (Bypass API limits), Grok AI (Semantic Analysis), Supabase (Postgres), Telegram API.", request: "Разработать систему мониторинга Reddit для поиска заказов на разработку в обход официального API. Главная проблема — жесткие лимиты платформы и 95% информационного мусора (спам, самопиар, вакансии с привязкой к офису).", result: "Развернут многоступенчатый конвейер: парсинг через JSON-эндпоинты (Bypass API bans) -> семантическая фильтрация через LLM (Grok) -> дедупликация в Supabase. Реализована жесткая логика отсева по ключевым словам и гео-меткам (NYC/London). Система заменяет 5 часов ручного поиска на 15-минутный дайджест «горячих» лидов с высоким Score релевантности." },
       "6": { colorClass: "text-white drop-shadow-[0_0_8px_rgba(16,185,129,0.8)]", stack: "Antigravity Engine, JavaScript (ES6+), In-Memory Processing.", request: "Разработать полностью анонимный мессенджер с волатильной архитектурой. Главная цель — отсутствие любого цифрового следа и хранение данных исключительно в RAM пользователя.", result: "Реализован прототип с концепцией Zero-Trace. Все сообщения и метаданные существуют только в рамках текущей сессии и мгновенно уничтожаются при закрытии вкладки браузера. Интегрирована система волатильного хранения без использования серверных БД." },
-      "7": { colorClass: "text-white drop-shadow-[0_0_8px_rgba(16,185,129,0.8)]", stack: "Python (Back-end), Cross-platform Mobile Framework, AI Vision API, Database (User History).", request: "Масштабировать логику Telegram-бота в полноценное мобильное приложение. Требования: внедрение системы распознавания продуктов по фото (Computer Vision), создание личных кабинетов и системы аналитики расходов.", result: "Разработан кроссплатформенный прототип (iOS/Android). Интегрирован нейро-ассистент для мгновенного анализа содержимого холодильника по фотографии. Реализован модуль «Рандомайзер ужинов» и система сохранения подтвержденных корзин в БД для отслеживания статистики трат в реальном времени. Продукт прошел полевое тестирование на реальных устройствах." }
+      "7": { colorClass: "text-white drop-shadow-[0_0_8px_rgba(16,185,129,0.8)]", stack: "Python (Back-end), Cross-platform Mobile Framework, AI Vision API, Database (User History).", request: "Масштабировать логику Telegram-бота в полноценное мобильное приложение. Требования: внедрение системы распознавания продуктов по фото (Computer Vision), создание личных кабинетов и системы аналитики расходов.", result: "Разработан кроссплатформенный прототип (iOS/Android). Интегрирован нейро-ассистент для мгновенного анализа содержимого холодильника по фотографии. Реализован модуль «Рандомайзер ужинов» и система сохранения подтвержденных корзин в БД для отслеживания статистики трат в реальном времени. Продукт прошел полевое тестирование на реальных устройствах." },
+      "8": {
+        colorClass: "text-white drop-shadow-[0_0_8px_rgba(249,115,22,0.8)]",
+        stack: "HTML5, Tailwind CSS, JavaScript, Swiper.js, Lucide Icons, FormSubmit, SEO (Schema.org)",
+        request: {
+          ru: "Глубокий редизайн и полное техническое обновление устаревшей платформы (old.vtec-team.ru). Требовался переход на чистый код без тяжелых CMS для достижения максимальной скорости загрузки. Важные задачи: переработка структуры блоков для повышения конверсии, адаптивность под мобильные устройства и настройка прямой отправки заявок с сайта на почту.",
+          en: "Deep redesign and full technical update of the legacy platform (old.vtec-team.ru). Transition to clean code without heavy CMS for maximum speed. Key tasks: block structure rework for better conversion, mobile responsiveness, and email lead integration."
+        },
+        result: {
+          ru: "Разработан и запущен сверхбыстрый лендинг с агрессивным автомобильным дизайном. Оптимизирована производительность через чистый код и WebP. Реализована система модальных окон для каждой услуги, интерактивные слайдеры работ и FAQ. Интегрирована система сбора лидов FormSubmit и семантическая разметка Schema.org.",
+          en: "Launched an ultra-fast landing page with an aggressive automotive design. Performance optimized via clean code and WebP. Implemented service modals, sliders, and FAQ. Integrated FormSubmit lead system and Schema.org SEO markup."
+        }
+      }
     };
 
     const pModal = document.getElementById('project-modal');
@@ -787,7 +938,10 @@ document.addEventListener('DOMContentLoaded', () => {
             const label = document.getElementById(`label-${key}`);
             if (label) label.className = `text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] sm:w-1/4 shrink-0 mt-1 transition-colors duration-300 ${data.colorClass}`;
             const content = document.getElementById(`modal-${key}`);
-            if (content) content.innerText = data[key];
+            if (content) {
+              const val = data[key];
+              content.innerText = (typeof val === 'object') ? (val[currentLang] || val['ru']) : val;
+            }
           });
           pModal.classList.replace('hidden', 'flex');
           document.body.style.overflow = 'hidden'; document.documentElement.style.overflow = 'hidden';
@@ -944,17 +1098,17 @@ document.addEventListener('DOMContentLoaded', () => {
       <div class="space-y-8 text-zinc-400 text-sm md:text-[15px] leading-relaxed">
         
         <div class="flex flex-col sm:flex-row sm:items-baseline gap-2 sm:gap-6 border-b border-zinc-800/50 pb-6">
-          <h4 id="label-stack" class="text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] sm:w-1/4 shrink-0 transition-colors duration-300">Стек технологий</h4>
+          <h4 id="label-stack" class="text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] sm:w-1/4 shrink-0 transition-colors duration-300" data-en="Tech Stack" data-ru="Стек технологий">Стек технологий</h4>
           <p id="modal-stack" class="text-zinc-200 font-medium m-0 w-full"></p>
         </div>
 
         <div class="flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-6 border-b border-zinc-800/50 pb-6">
-          <h4 id="label-request" class="text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] sm:w-1/4 shrink-0 mt-1 transition-colors duration-300">Запрос клиента</h4>
+          <h4 id="label-request" class="text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] sm:w-1/4 shrink-0 mt-1 transition-colors duration-300" data-en="Request" data-ru="Запрос клиента">Запрос клиента</h4>
           <p id="modal-request" class="m-0 w-full text-zinc-300"></p>
         </div>
 
         <div class="flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-6">
-          <h4 id="label-result" class="text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] sm:w-1/4 shrink-0 mt-1 transition-colors duration-300">Результат</h4>
+          <h4 id="label-result" class="text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] sm:w-1/4 shrink-0 mt-1 transition-colors duration-300" data-en="Result" data-ru="Результат">Результат</h4>
           <p id="modal-result" class="m-0 w-full text-zinc-300"></p>
         </div>
 
