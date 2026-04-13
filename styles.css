@@ -1,0 +1,12 @@
+/* Swiper Asymmetric Buffer to prevent 3D clipping */
+.swiper { overflow: hidden !important; padding: 40px 10px !important; margin: -40px -10px !important; }
+
+
+
+/* Clean Glassmorphism */
+.glass-card {
+    background: rgba(18, 18, 22, 0.05) !important;
+    backdrop-filter: blur(4px) !important;
+    -webkit-backdrop-filter: blur(4px) !important;
+    box-shadow: 0 4px 24px -1px rgba(0, 0, 0, 0.2) !important;
+}

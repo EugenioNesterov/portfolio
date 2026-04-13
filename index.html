@@ -24,6 +24,117 @@
     <!-- Tailwind CSS (Compiled) -->
     <link rel="stylesheet" href="./dist/output.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <style>
+        /* Bypassing uncompiled Tailwind classes */
+        :where(.swiper-wrapper) > div.swiper-slide {
+            border-color: transparent;
+        }
+
+        /* Apple-style Toggle */
+        .lang-switch {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.025em;
+            color: #71717a; /* zinc-400 */
+            user-select: none;
+            transition: color 0.3s;
+        }
+        .lang-switch:hover { color: #a1a1aa; }
+        .toggle-input { display: none; }
+        .toggle-slider {
+            width: 40px;
+            height: 22px;
+            background: #f59e0b; /* amber-500 */
+            border-radius: 20px;
+            position: relative;
+            transition: 0.3s;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+        .toggle-slider::before {
+            content: "";
+            position: absolute;
+            width: 18px;
+            height: 18px;
+            background: white;
+            border-radius: 50%;
+            top: 1px;
+            left: 1px;
+            transition: 0.3s;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        .toggle-input:checked + .toggle-slider { background: #27272a; } /* zinc-800 */
+        .toggle-input:checked + .toggle-slider::before { transform: translateX(20px); }
+        .lang-active { color: #f59e0b !important; }
+
+        /* View Transitions for seamless modal expansion */
+        ::view-transition-old(project-expand),
+        ::view-transition-new(project-expand) {
+            animation-duration: 0.5s;
+            animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        /* Terminal & Radar Scan */
+        .terminal-window {
+            position: relative;
+            background: rgba(9, 9, 11, 0.8);
+            border: 1px solid rgba(39, 39, 42, 0.8);
+            border-radius: 12px;
+            overflow: hidden;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+            text-align: left;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(8px);
+        }
+        .terminal-header {
+            display: flex;
+            gap: 8px;
+            padding: 12px 16px;
+            background: rgba(39, 39, 42, 0.5);
+            border-bottom: 1px solid rgba(63, 63, 70, 0.5);
+        }
+        .terminal-dot { width: 10px; height: 10px; border-radius: 50%; }
+        .dot-red { background: #ef4444; }
+        .dot-yellow { background: #f59e0b; }
+        .dot-green { background: #10b981; }
+
+        .scan-line {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 20%;
+            background: linear-gradient(to bottom, rgba(16,185,129,0) 0%, rgba(16,185,129,0.15) 100%);
+            border-bottom: 1px solid rgba(16,185,129,0.5);
+            opacity: 0.6;
+            animation: radar-scan 3s linear infinite;
+            pointer-events: none;
+            z-index: 10;
+            transform: translateY(-100%);
+        }
+        @keyframes radar-scan {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(500%); }
+        }
+        .terminal-content {
+            padding: 24px;
+            color: #10b981;
+            font-size: 14px;
+            line-height: 1.7;
+            min-height: 280px;
+        }
+        .cursor-blink {
+            display: inline-block;
+            width: 8px; height: 15px;
+            background-color: #10b981;
+            animation: blink 1s step-end infinite;
+            vertical-align: text-bottom;
+            margin-left: 4px;
+        }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+    </style>
 </head>
 
 <body class="text-zinc-50 antialiased selection:bg-amber-500/30 selection:text-amber-200 overflow-x-hidden relative">
@@ -54,12 +165,13 @@
             <!-- Right section (Flags + Burger + Desktop Links) -->
             <div class="flex items-center gap-4 sm:gap-6">
                 <!-- Language Switcher -->
-                <div class="flex items-center gap-3">
-                    <button class="text-2xl opacity-100 hover:opacity-100 transition-opacity flex items-center" id="lang-ru"
-                        onclick="switchLanguage('ru')" title="Русский">🇷🇺</button>
-                    <div class="w-px h-4 bg-zinc-700"></div>
-                    <button class="text-2xl opacity-50 hover:opacity-100 transition-opacity flex items-center" id="lang-en" onclick="switchLanguage('en')"
-                        title="English">🇺🇸</button>
+                <div class="flex items-center">
+                    <label class="lang-switch">
+                        <span id="label-ru" class="lang-active">RU</span>
+                        <input type="checkbox" id="lang-toggle" class="toggle-input">
+                        <div class="toggle-slider"></div>
+                        <span id="label-en">US</span>
+                    </label>
                 </div>
 
                 <!-- Desktop items (hidden on mobile) -->
@@ -95,9 +207,19 @@
         </div>
 
         <!-- Mobile Menu Container -->
-        <div id="mobile-menu" class="hidden md:hidden pt-4 pb-6 flex flex-col gap-6 text-center border-t border-zinc-900 mt-4 bg-black/95 backdrop-blur-md rounded-b-3xl">
+        <div id="mobile-menu" class="hidden md:hidden pt-4 pb-8 flex flex-col gap-6 text-center border-t border-zinc-900 mt-4 bg-black/95 backdrop-blur-md rounded-b-3xl">
             <a href="#work" class="text-zinc-300 text-sm font-medium hover:text-white" data-en="Work" data-ru="Проекты">Work</a>
             <a href="#services-deep-dive" class="text-zinc-300 text-sm font-medium hover:text-white" data-en="Capabilities" data-ru="Услуги">Capabilities</a>
+            
+            <div class="flex justify-center py-2">
+                <label class="lang-switch">
+                    <span id="mobile-label-ru" class="lang-active">RU</span>
+                    <input type="checkbox" id="lang-toggle-mobile" class="toggle-input">
+                    <div class="toggle-slider"></div>
+                    <span id="mobile-label-en">US</span>
+                </label>
+            </div>
+
             <a href="#contact" class="text-zinc-300 text-sm font-medium hover:text-indigo-400 flex items-center justify-center gap-2">
                 <span class="relative flex h-2 w-2">
                     <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
@@ -112,7 +234,7 @@
         <!-- Hero Section -->
         <section id="hero"
             class="relative min-h-[70vh] flex flex-col items-center text-center px-6 pt-32 md:pt-40 lg:pt-48 pb-24 md:pb-32 scroll-mt-[80px]">
-            <h1 class="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold tracking-tight mb-12 max-w-5xl text-transparent bg-clip-text bg-gradient-to-b from-zinc-50 to-zinc-500"
+            <h1 id="scramble-text" style="min-height: 1.2em;" class="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold tracking-tight mb-12 max-w-5xl text-transparent bg-clip-text bg-gradient-to-b from-zinc-50 to-zinc-500"
                 data-en="From Idea to Launch in 24 Hours" data-ru="От идеи до запуска за 24 часа">
                 From Idea to Launch in 24 Hours
             </h1>
@@ -140,7 +262,7 @@
             </p>
 
             <a href="https://t.me/jonnynest" target="_blank" rel="noopener noreferrer"
-                class="inline-flex items-center justify-center px-8 py-4 text-base font-semibold rounded-full text-zinc-950 bg-amber-500 hover:bg-amber-400 transform hover:-translate-y-0.5 transition-all duration-300 shadow-[0_0_30px_rgba(245,158,11,0.2)] hover:shadow-[0_0_45px_rgba(245,158,11,0.4)] mb-4">
+                class="magnetic inline-flex items-center justify-center px-8 py-4 text-base font-semibold rounded-full text-zinc-950 bg-amber-500 hover:bg-amber-400 transform hover:-translate-y-0.5 transition-all duration-300 shadow-[0_0_30px_rgba(245,158,11,0.2)] hover:shadow-[0_0_45px_rgba(245,158,11,0.4)] mb-4">
                 <span data-en="Discuss Your Project" data-ru="Обсудить Проект">Discuss Your Project</span>
                 <i data-lucide="arrow-down" class="ml-2 w-5 h-5"></i>
             </a>
@@ -165,7 +287,7 @@
                     <div class="swiper workSwiper overflow-hidden rounded-3xl p-4 md:p-6 -m-4 md:-m-6">
                         <div class="swiper-wrapper">
                             
-                            <div class="swiper-slide group relative bg-zinc-950 border border-orange-500/20 rounded-3xl p-8 transition-all duration-500 hover:scale-[1.03] hover:border-orange-500/50 hover:shadow-[0_0_30px_-10px_rgba(249,115,22,0.3)] flex flex-col justify-between min-h-[300px] overflow-hidden reveal">
+                            <div class="swiper-slide group relative glass-card border rounded-3xl p-8 transition-all duration-500 hover:scale-[1.03] hover:border-orange-500/50 flex flex-col justify-between min-h-[300px] overflow-hidden reveal">
                                 <div class="absolute inset-0 bg-gradient-to-br from-orange-500/5 via-transparent to-transparent pointer-events-none"></div>
                                 <div class="flex items-start justify-between mb-6 relative z-10">
                                     <div class="text-orange-500/70 group-hover:scale-110 transition-transform duration-500"><i data-lucide="layout" class="w-8 h-8"></i></div>
@@ -187,7 +309,7 @@
                                 </div>
                             </div>
 
-                            <div class="swiper-slide group relative bg-zinc-950 border border-zinc-500/20 rounded-3xl p-8 transition-all duration-500 hover:scale-[1.03] hover:border-zinc-500/50 hover:shadow-[0_0_30px_-10px_rgba(161,161,170,0.3)] flex flex-col justify-between min-h-[300px] overflow-hidden reveal">
+                            <div class="swiper-slide group relative glass-card border rounded-3xl p-8 transition-all duration-500 hover:scale-[1.03] hover:border-zinc-500/50 flex flex-col justify-between min-h-[300px] overflow-hidden reveal">
                                 <div class="absolute inset-0 bg-gradient-to-br from-zinc-500/5 via-transparent to-transparent pointer-events-none"></div>
                                 <div class="flex items-start justify-between mb-6 relative z-10">
                                     <div class="text-zinc-500/70 group-hover:scale-110 transition-transform duration-500"><i data-lucide="monitor-cog" class="w-8 h-8"></i></div>
@@ -209,7 +331,7 @@
                                 </div>
                             </div>
 
-                            <div class="swiper-slide group relative bg-zinc-950 border border-blue-500/20 rounded-3xl p-8 transition-all duration-500 hover:scale-[1.03] hover:border-blue-500/50 hover:shadow-[0_0_30px_-10px_rgba(59,130,246,0.3)] flex flex-col justify-between min-h-[300px] overflow-hidden reveal">
+                            <div class="swiper-slide group relative glass-card border rounded-3xl p-8 transition-all duration-500 hover:scale-[1.03] hover:border-blue-500/50 flex flex-col justify-between min-h-[300px] overflow-hidden reveal">
                                 <div class="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-transparent pointer-events-none"></div>
                                 <div class="flex items-start justify-between mb-6 relative z-10">
                                     <div class="text-blue-500/70 group-hover:scale-110 transition-transform duration-500"><i data-lucide="bot" class="w-8 h-8"></i></div>
@@ -231,8 +353,8 @@
                                 </div>
                             </div>
 
-                            <div class="swiper-slide group relative bg-zinc-950 border border-orange-500/30 rounded-3xl p-8 transition-all duration-500 hover:scale-[1.03] hover:border-orange-500/30 hover:shadow-[0_0_40px_-10px_rgba(249,115,22,0.4)] flex flex-col justify-between min-h-[300px] overflow-hidden reveal">
-                                <div class="absolute inset-0 bg-gradient-to-br from-orange-500/10 via-transparent to-transparent pointer-events-none"></div>
+                            <div class="swiper-slide group relative glass-card border rounded-3xl p-8 transition-all duration-500 hover:scale-[1.03] hover:border-orange-500/50 flex flex-col justify-between min-h-[300px] overflow-hidden reveal">
+                                <div class="absolute inset-0 bg-gradient-to-br from-orange-500/5 via-transparent to-transparent pointer-events-none"></div>
                                 <div class="flex items-start justify-between mb-6 relative z-10">
                                     <div class="text-orange-500 group-hover:scale-110 transition-transform duration-500"><i data-lucide="layout" class="w-8 h-8"></i></div>
                                     <div class="flex items-center gap-2 bg-orange-500/10 px-3 py-1.5 rounded-full border border-orange-500/20 shadow-[0_0_15px_-5px_rgba(249,115,22,0.5)]">
@@ -253,8 +375,8 @@
                                 </div>
                             </div>
 
-                            <div class="swiper-slide group relative bg-zinc-950 border border-zinc-500/30 rounded-3xl p-8 transition-all duration-500 hover:scale-[1.03] hover:border-zinc-500/60 hover:shadow-[0_0_40px_-10px_rgba(161,161,170,0.4)] flex flex-col justify-between min-h-[300px] overflow-hidden reveal">
-                                <div class="absolute inset-0 bg-gradient-to-br from-zinc-500/10 via-transparent to-transparent pointer-events-none"></div>
+                            <div class="swiper-slide group relative glass-card border rounded-3xl p-8 transition-all duration-500 hover:scale-[1.03] hover:border-zinc-500/50 flex flex-col justify-between min-h-[300px] overflow-hidden reveal">
+                                <div class="absolute inset-0 bg-gradient-to-br from-zinc-500/5 via-transparent to-transparent pointer-events-none"></div>
                                 <div class="flex items-start justify-between mb-6 relative z-10">
                                     <div class="text-zinc-500 group-hover:scale-110 transition-transform duration-500"><i data-lucide="monitor-cog" class="w-8 h-8"></i></div>
                                     <div class="flex items-center gap-2 bg-zinc-500/10 px-3 py-1.5 rounded-full border border-zinc-500/20 shadow-[0_0_15px_-5px_rgba(161,161,170,0.5)]">
@@ -278,8 +400,8 @@
                         </div>
                     </div>
                     
-                    <button class="swiper-btn-prev absolute top-1/2 -translate-y-1/2 -left-10 md:-left-16 z-40 p-2 flex items-center justify-center text-zinc-400 hover:text-white hover:scale-125 hover:drop-shadow-[0_0_12px_rgba(255,255,255,0.8)] transition-all duration-300 cursor-pointer hidden sm:flex" title="Previous Project"><i data-lucide="arrow-left" class="w-8 h-8"></i></button>
-                    <button class="swiper-btn-next absolute top-1/2 -translate-y-1/2 -right-10 md:-right-16 z-40 p-2 flex items-center justify-center text-zinc-400 hover:text-white hover:scale-125 hover:drop-shadow-[0_0_12px_rgba(255,255,255,0.8)] transition-all duration-300 cursor-pointer hidden sm:flex" title="Next Project"><i data-lucide="arrow-right" class="w-8 h-8"></i></button>
+                    <button class="magnetic swiper-btn-prev absolute top-1/2 -translate-y-1/2 -left-10 md:-left-16 z-40 p-2 flex items-center justify-center text-zinc-400 hover:text-white hover:scale-125 hover:drop-shadow-[0_0_12px_rgba(255,255,255,0.8)] transition-all duration-300 cursor-pointer hidden sm:flex" title="Previous Project"><i data-lucide="arrow-left" class="w-8 h-8"></i></button>
+                    <button class="magnetic swiper-btn-next absolute top-1/2 -translate-y-1/2 -right-10 md:-right-16 z-40 p-2 flex items-center justify-center text-zinc-400 hover:text-white hover:scale-125 hover:drop-shadow-[0_0_12px_rgba(255,255,255,0.8)] transition-all duration-300 cursor-pointer hidden sm:flex" title="Next Project"><i data-lucide="arrow-right" class="w-8 h-8"></i></button>
                 </div>
             </div>
         </section>
@@ -289,30 +411,20 @@
                 <h2 class="text-3xl font-bold mb-6 tracking-tight text-zinc-100 reveal"><span data-en="Tech Stack"
                         data-ru="Стек Технологий">Tech Stack</span><span class="text-indigo-500">.</span></h2>
 
-                <div class="flex flex-wrap items-center justify-center gap-8 md:gap-12 mt-12 floating-stack">
-                    <!-- Badges -->
-                    <div class="text-zinc-500 hover:text-zinc-100 hover:scale-110 transition-all duration-300 cursor-default flex items-center gap-2"><i data-lucide="code-2" class="w-5 h-5"></i> Python</div>
-                    <div class="text-zinc-500 hover:text-zinc-100 hover:scale-110 transition-all duration-300 cursor-default flex items-center gap-2"><i data-lucide="message-circle" class="w-5 h-5"></i> Aiogram</div>
-                    <div class="text-zinc-500 hover:text-zinc-100 hover:scale-110 transition-all duration-300 cursor-default flex items-center gap-2"><i data-lucide="server" class="w-5 h-5"></i> FastAPI</div>
-                    <div class="text-zinc-500 hover:text-zinc-100 hover:scale-110 transition-all duration-300 cursor-default flex items-center gap-2"><i data-lucide="database" class="w-5 h-5"></i> PostgreSQL</div>
-                    <div class="text-zinc-500 hover:text-zinc-100 hover:scale-110 transition-all duration-300 cursor-default flex items-center gap-2"><i data-lucide="layers" class="w-5 h-5"></i> Redis</div>
-                    <div class="text-zinc-500 hover:text-zinc-100 hover:scale-110 transition-all duration-300 cursor-default flex items-center gap-2"><i data-lucide="cloud" class="w-5 h-5"></i> Supabase</div>
-                    <div class="text-zinc-500 hover:text-zinc-100 hover:scale-110 transition-all duration-300 cursor-default flex items-center gap-2"><i data-lucide="file-code-2" class="w-5 h-5"></i> JavaScript</div>
-                    <div class="text-zinc-500 hover:text-zinc-100 hover:scale-110 transition-all duration-300 cursor-default flex items-center gap-2"><i data-lucide="wind" class="w-5 h-5"></i> Tailwind</div>
-                    <div class="text-zinc-500 hover:text-zinc-100 hover:scale-110 transition-all duration-300 cursor-default flex items-center gap-2"><i data-lucide="brain" class="w-5 h-5"></i> AI / LLMs</div>
-                    <div class="text-zinc-500 hover:text-zinc-100 hover:scale-110 transition-all duration-300 cursor-default flex items-center gap-2"><i data-lucide="git-branch" class="w-5 h-5"></i> Git</div>
-                    <div class="text-zinc-500 hover:text-zinc-100 hover:scale-110 transition-all duration-300 cursor-default flex items-center gap-2"><i data-lucide="container" class="w-5 h-5"></i> Docker</div>
+                <div class="max-w-3xl mx-auto mt-12">
+                    <div class="terminal-window">
+                        <div class="terminal-header">
+                            <div class="terminal-dot dot-red"></div>
+                            <div class="terminal-dot dot-yellow"></div>
+                            <div class="terminal-dot dot-green"></div>
+                        </div>
+                        <div class="scan-line"></div>
+                        <div class="terminal-content" id="terminal-output">
+                            <span class="cursor-blink"></span>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <style>
-                @keyframes floating-tech {
-                    0%, 100% { transform: translateY(0); }
-                    50% { transform: translateY(-10px); }
-                }
-                .floating-stack {
-                    animation: floating-tech 6s ease-in-out infinite;
-                }
-            </style>
         </section>
 
         <!-- Services Deep Dive Section -->
@@ -492,7 +604,7 @@
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-fr">
       
-      <div class="group relative bg-zinc-950 border border-purple-500/20 rounded-3xl p-8 transition-all duration-500 hover:scale-[1.03] hover:border-purple-500/50 hover:shadow-[0_0_30px_-10px_rgba(168,85,247,0.3)] flex flex-col justify-between min-h-[300px] overflow-hidden reveal">
+      <div class="group relative glass-card border border-purple-500/20 rounded-3xl p-8 transition-all duration-500 hover:scale-[1.03] hover:border-purple-500/50 hover:shadow-[0_0_30px_-10px_rgba(168,85,247,0.3)] flex flex-col justify-between min-h-[300px] overflow-hidden reveal">
         <div class="absolute inset-0 bg-gradient-to-br from-purple-500/5 via-transparent to-transparent pointer-events-none"></div>
         <div class="flex items-start justify-between mb-6 relative z-10">
           <div class="text-purple-500/70 group-hover:scale-110 transition-transform duration-500"><i data-lucide="sparkles" class="w-8 h-8"></i></div>
@@ -514,7 +626,7 @@
         </div>
       </div>
 
-      <div id="project-2" class="group relative bg-zinc-950 border border-orange-500/20 rounded-3xl p-8 transition-all duration-500 hover:scale-[1.03] hover:border-orange-500/50 hover:shadow-[0_0_30px_-10px_rgba(249,115,22,0.3)] flex flex-col justify-between min-h-[300px] overflow-hidden reveal">
+      <div id="project-2" class="group relative glass-card border border-orange-500/20 rounded-3xl p-8 transition-all duration-500 hover:scale-[1.03] hover:border-orange-500/50 hover:shadow-[0_0_30px_-10px_rgba(249,115,22,0.3)] flex flex-col justify-between min-h-[300px] overflow-hidden reveal">
         <div class="absolute inset-0 bg-gradient-to-br from-orange-500/5 via-transparent to-transparent pointer-events-none"></div>
         <div class="flex items-start justify-between mb-6 relative z-10">
           <div class="text-orange-500/70 group-hover:scale-110 transition-transform duration-500"><i data-lucide="layout" class="w-8 h-8"></i></div>
@@ -536,7 +648,7 @@
         </div>
       </div>
 
-      <div class="group relative bg-zinc-950 border border-blue-500/20 rounded-3xl p-8 transition-all duration-500 hover:scale-[1.03] hover:border-blue-500/50 hover:shadow-[0_0_30px_-10px_rgba(59,130,246,0.3)] flex flex-col justify-between min-h-[300px] overflow-hidden reveal">
+      <div class="group relative glass-card border border-blue-500/20 rounded-3xl p-8 transition-all duration-500 hover:scale-[1.03] hover:border-blue-500/50 hover:shadow-[0_0_30px_-10px_rgba(59,130,246,0.3)] flex flex-col justify-between min-h-[300px] overflow-hidden reveal">
         <div class="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-transparent pointer-events-none"></div>
         <div class="flex items-start justify-between mb-6 relative z-10">
           <div class="text-blue-500/70 group-hover:scale-110 transition-transform duration-500"><i data-lucide="bot" class="w-8 h-8"></i></div>
@@ -558,7 +670,7 @@
         </div>
       </div>
 
-      <div id="project-4" class="group relative bg-zinc-950 border border-blue-500/20 rounded-3xl p-8 transition-all duration-500 hover:scale-[1.03] hover:border-blue-500/50 hover:shadow-[0_0_30px_-10px_rgba(59,130,246,0.3)] flex flex-col justify-between min-h-[300px] overflow-hidden reveal">
+      <div id="project-4" class="group relative glass-card border border-blue-500/20 rounded-3xl p-8 transition-all duration-500 hover:scale-[1.03] hover:border-blue-500/50 hover:shadow-[0_0_30px_-10px_rgba(59,130,246,0.3)] flex flex-col justify-between min-h-[300px] overflow-hidden reveal">
         <div class="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-transparent pointer-events-none"></div>
         <div class="flex items-start justify-between mb-6 relative z-10">
           <div class="text-blue-500/70 group-hover:scale-110 transition-transform duration-500"><i data-lucide="bot" class="w-8 h-8"></i></div>
@@ -580,7 +692,7 @@
         </div>
       </div>
 
-      <div id="project-5" class="group relative bg-zinc-950 border border-zinc-500/20 rounded-3xl p-8 transition-all duration-500 hover:scale-[1.03] hover:border-zinc-500/50 hover:shadow-[0_0_30px_-10px_rgba(161,161,170,0.3)] flex flex-col justify-between min-h-[300px] overflow-hidden reveal">
+      <div id="project-5" class="group relative glass-card border border-zinc-500/20 rounded-3xl p-8 transition-all duration-500 hover:scale-[1.03] hover:border-zinc-500/50 hover:shadow-[0_0_30px_-10px_rgba(161,161,170,0.3)] flex flex-col justify-between min-h-[300px] overflow-hidden reveal">
         <div class="absolute inset-0 bg-gradient-to-br from-zinc-500/5 via-transparent to-transparent pointer-events-none"></div>
         <div class="flex items-start justify-between mb-6 relative z-10">
           <div class="text-zinc-500/70 group-hover:scale-110 transition-transform duration-500"><i data-lucide="monitor-cog" class="w-8 h-8"></i></div>
@@ -602,7 +714,7 @@
         </div>
       </div>
 
-      <div class="group relative bg-zinc-950 border border-emerald-500/20 rounded-3xl p-8 transition-all duration-500 hover:scale-[1.03] hover:border-emerald-500/50 hover:shadow-[0_0_30px_-10px_rgba(16,185,129,0.3)] flex flex-col justify-between min-h-[300px] overflow-hidden reveal">
+      <div class="group relative glass-card border border-emerald-500/20 rounded-3xl p-8 transition-all duration-500 hover:scale-[1.03] hover:border-emerald-500/50 hover:shadow-[0_0_30px_-10px_rgba(16,185,129,0.3)] flex flex-col justify-between min-h-[300px] overflow-hidden reveal">
         <div class="absolute inset-0 bg-gradient-to-br from-emerald-500/5 via-transparent to-transparent pointer-events-none"></div>
         <div class="flex items-start justify-between mb-6 relative z-10">
           <div class="text-emerald-500/70 group-hover:scale-110 transition-transform duration-500"><i data-lucide="smartphone" class="w-8 h-8"></i></div>
@@ -624,7 +736,7 @@
         </div>
       </div>
 
-      <div class="group relative bg-zinc-950 border border-emerald-500/20 rounded-3xl p-8 transition-all duration-500 hover:scale-[1.03] hover:border-emerald-500/50 hover:shadow-[0_0_30px_-10px_rgba(16,185,129,0.3)] flex flex-col justify-between min-h-[300px] overflow-hidden reveal">
+      <div class="group relative glass-card border border-emerald-500/20 rounded-3xl p-8 transition-all duration-500 hover:scale-[1.03] hover:border-emerald-500/50 hover:shadow-[0_0_30px_-10px_rgba(16,185,129,0.3)] flex flex-col justify-between min-h-[300px] overflow-hidden reveal">
         <div class="absolute inset-0 bg-gradient-to-br from-emerald-500/5 via-transparent to-transparent pointer-events-none"></div>
         <div class="flex items-start justify-between mb-6 relative z-10">
           <div class="text-emerald-500/70 group-hover:scale-110 transition-transform duration-500"><i data-lucide="smartphone" class="w-8 h-8"></i></div>
@@ -646,8 +758,8 @@
         </div>
       </div>
 
-      <div id="project-8" class="group relative bg-zinc-950 border border-orange-500/30 rounded-3xl p-8 transition-all duration-500 hover:scale-[1.03] hover:border-orange-500/30 hover:shadow-[0_0_40px_-10px_rgba(249,115,22,0.4)] flex flex-col justify-between min-h-[300px] overflow-hidden reveal">
-        <div class="absolute inset-0 bg-gradient-to-br from-orange-500/10 via-transparent to-transparent pointer-events-none"></div>
+      <div id="project-8" class="group relative glass-card border border-orange-500/20 rounded-3xl p-8 transition-all duration-500 hover:scale-[1.03] hover:border-orange-500/50 hover:shadow-[0_0_30px_-10px_rgba(249,115,22,0.3)] flex flex-col justify-between min-h-[300px] overflow-hidden reveal">
+        <div class="absolute inset-0 bg-gradient-to-br from-orange-500/5 via-transparent to-transparent pointer-events-none"></div>
         <div class="flex items-start justify-between mb-6 relative z-10">
           <div class="text-orange-500 group-hover:scale-110 transition-transform duration-500"><i data-lucide="layout" class="w-8 h-8"></i></div>
           <div class="flex items-center gap-2 bg-orange-500/10 px-3 py-1.5 rounded-full border border-orange-500/20 shadow-[0_0_15px_-5px_rgba(249,115,22,0.5)]">
@@ -668,8 +780,8 @@
         </div>
       </div>
 
-      <div id="project-9" class="group relative bg-zinc-950 border border-zinc-500/30 rounded-3xl p-8 transition-all duration-500 hover:scale-[1.03] hover:border-zinc-500/60 hover:shadow-[0_0_40px_-10px_rgba(161,161,170,0.4)] flex flex-col justify-between min-h-[300px] overflow-hidden reveal">
-        <div class="absolute inset-0 bg-gradient-to-br from-zinc-500/10 via-transparent to-transparent pointer-events-none"></div>
+      <div id="project-9" class="group relative glass-card border border-zinc-500/20 rounded-3xl p-8 transition-all duration-500 hover:scale-[1.03] hover:border-zinc-500/50 hover:shadow-[0_0_30px_-10px_rgba(161,161,170,0.3)] flex flex-col justify-between min-h-[300px] overflow-hidden reveal">
+        <div class="absolute inset-0 bg-gradient-to-br from-zinc-500/5 via-transparent to-transparent pointer-events-none"></div>
         <div class="flex items-start justify-between mb-6 relative z-10">
           <div class="text-zinc-500 group-hover:scale-110 transition-transform duration-500"><i data-lucide="monitor-cog" class="w-8 h-8"></i></div>
           <div class="flex items-center gap-2 bg-zinc-500/10 px-3 py-1.5 rounded-full border border-zinc-500/20 shadow-[0_0_15px_-5px_rgba(161,161,170,0.5)]">
@@ -705,7 +817,7 @@
         </div>
         <div class="mt-4">
             <a href="https://t.me/jonnynest" target="_blank" rel="noopener noreferrer"
-                class="group relative inline-flex items-center justify-center p-4 rounded-full bg-zinc-900 border border-zinc-800 text-zinc-300 hover:text-white hover:border-indigo-500/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(99,102,241,0.3)]">
+                class="magnetic group relative inline-flex items-center justify-center p-4 rounded-full bg-zinc-900 border border-zinc-800 text-zinc-300 hover:text-white hover:border-indigo-500/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(99,102,241,0.3)]">
                 <div class="absolute inset-0 rounded-full bg-gradient-to-r from-indigo-500/20 to-emerald-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <i data-lucide="send" class="w-6 h-6 relative z-10"></i>
                 <span class="sr-only">Telegram</span>
@@ -733,15 +845,20 @@
                 el.innerHTML = el.getAttribute(`data-${lang}`);
             }
         });
-        const enLabel = document.getElementById('lang-en');
-        const ruLabel = document.getElementById('lang-ru');
-        if (lang === 'en') {
-            enLabel.classList.remove('opacity-50');
-            ruLabel.classList.add('opacity-50');
-        } else {
-            enLabel.classList.add('opacity-50');
-            ruLabel.classList.remove('opacity-50');
-        }
+
+        // Update Toggle UI (Desktop & Mobile)
+        const isEn = lang === 'en';
+        const toggles = [document.getElementById('lang-toggle'), document.getElementById('lang-toggle-mobile')];
+        toggles.forEach(t => { if (t) t.checked = isEn; });
+
+        ['label-ru', 'mobile-label-ru'].forEach(id => {
+            const el = document.getElementById(id);
+            if (el) isEn ? el.classList.remove('lang-active') : el.classList.add('lang-active');
+        });
+        ['label-en', 'mobile-label-en'].forEach(id => {
+            const el = document.getElementById(id);
+            if (el) isEn ? el.classList.add('lang-active') : el.classList.remove('lang-active');
+        });
     }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -885,6 +1002,159 @@ document.addEventListener('DOMContentLoaded', () => {
     }, observerOptions);
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
+    // --- Magnetic Elements Logic ---
+    const magneticElements = document.querySelectorAll('.magnetic');
+    magneticElements.forEach(el => {
+        el.addEventListener('mousemove', (e) => {
+            const rect = el.getBoundingClientRect();
+            // Вычисляем дистанцию от центра элемента (сила притяжения 40%)
+            const x = (e.clientX - rect.left - rect.width / 2) * 0.4;
+            const y = (e.clientY - rect.top - rect.height / 2) * 0.4;
+            
+            el.style.transform = `translate(${x}px, ${y}px)`;
+            el.style.transition = 'none'; // Мгновенное следование за курсором
+        });
+
+        el.addEventListener('mouseleave', () => {
+            // Плавный отскок на исходную позицию
+            el.style.transform = 'translate(0px, 0px)';
+            el.style.transition = 'transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1)'; 
+        });
+    });
+
+    // --- Text Scramble Logic ---
+    class TextScramble {
+      constructor(el) {
+        this.el = el;
+        this.chars = '!<>-_\\/[]{}—=+*^?#________';
+        this.update = this.update.bind(this);
+      }
+      setText(newText) {
+        const oldText = this.el.innerText;
+        const length = Math.max(oldText.length, newText.length);
+        const promise = new Promise((resolve) => this.resolve = resolve);
+        this.queue = [];
+        for (let i = 0; i < length; i++) {
+          const from = oldText[i] || '';
+          const to = newText[i] || '';
+          const start = Math.floor(Math.random() * 40);
+          const end = start + Math.floor(Math.random() * 40);
+          this.queue.push({ from, to, start, end });
+        }
+        cancelAnimationFrame(this.frameRequest);
+        this.frame = 0;
+        this.update();
+        return promise;
+      }
+      update() {
+        let output = '';
+        let complete = 0;
+        for (let i = 0, n = this.queue.length; i < n; i++) {
+          let { from, to, start, end, char } = this.queue[i];
+          if (this.frame >= end) {
+            complete++;
+            output += to;
+          } else if (this.frame >= start) {
+            if (!char || Math.random() < 0.28) {
+              char = this.randomChar();
+              this.queue[i].char = char;
+            }
+            output += `<span class="opacity-40 font-mono">${char}</span>`;
+          } else {
+            output += from;
+          }
+        }
+        this.el.innerHTML = output;
+        if (complete === this.queue.length) {
+          this.resolve();
+        } else {
+          this.frameRequest = requestAnimationFrame(this.update);
+          this.frame++;
+        }
+      }
+      randomChar() {
+        return this.chars[Math.floor(Math.random() * this.chars.length)];
+      }
+    }
+
+    // --- Initialization ---
+    const scrambleEl = document.getElementById('scramble-text');
+    if (scrambleEl) {
+        window.headerScramble = new TextScramble(scrambleEl);
+        const originalText = scrambleEl.innerText;
+        scrambleEl.innerText = ''; // Очищаем перед началом
+        setTimeout(() => window.headerScramble.setText(originalText), 500);
+
+        // --- Trigger Scramble on Language Change via Toggle ---
+        const handleToggle = (e) => {
+            const newLang = e.target.checked ? 'en' : 'ru';
+            switchLanguage(newLang);
+            setTimeout(() => {
+                const el = document.getElementById('scramble-text');
+                if (window.headerScramble && el) window.headerScramble.setText(el.innerText);
+            }, 100);
+        };
+
+        const dT = document.getElementById('lang-toggle');
+        const mT = document.getElementById('lang-toggle-mobile');
+        if (dT) dT.addEventListener('change', handleToggle);
+        if (mT) mT.addEventListener('change', handleToggle);
+    }
+
+    // --- Terminal Typewriter Logic ---
+    const terminalOutput = document.getElementById('terminal-output');
+    if (terminalOutput) {
+        const terminalLines = [
+            "> [SYSTEM] Initialize stack analysis...",
+            "> Loading core: Python 3, FastAPI, Aiogram 3... [OK]",
+            "> Mounting databases: PostgreSQL, Redis, Supabase... [OK]",
+            "> Compiling frontend: JavaScript, Tailwind CSS... [OK]",
+            "> Initializing AI/LLM modules... [OK]",
+            "> Booting containers: Docker deployed... [OK]",
+            "> [STATUS] ALL SYSTEMS NOMINAL. READY FOR LAUNCH."
+        ];
+        
+        let lineIndex = 0;
+        let charIndex = 0;
+        let isTyping = false;
+        
+        const typeWriter = () => {
+            if (lineIndex < terminalLines.length) {
+                if (charIndex === 0) {
+                    const lineDiv = document.createElement('div');
+                    lineDiv.className = 'mb-2 opacity-90';
+                    terminalOutput.insertBefore(lineDiv, terminalOutput.querySelector('.cursor-blink'));
+                }
+                
+                const currentLine = terminalLines[lineIndex];
+                const lineElements = terminalOutput.querySelectorAll('div.mb-2');
+                const currentDiv = lineElements[lineElements.length - 1];
+                
+                if (charIndex < currentLine.length) {
+                    currentDiv.textContent += currentLine.charAt(charIndex);
+                    charIndex++;
+                    // Реалистичная задержка между символами (10-50ms)
+                    setTimeout(typeWriter, Math.random() * 40 + 10);
+                } else {
+                    lineIndex++;
+                    charIndex = 0;
+                    // Пауза перед следующей строкой
+                    setTimeout(typeWriter, 400);
+                }
+            }
+        };
+
+        const termObserver = new IntersectionObserver((entries) => {
+            if (entries[0].isIntersecting && !isTyping) {
+                isTyping = true;
+                setTimeout(typeWriter, 500); // Небольшая пауза перед стартом
+                termObserver.unobserve(terminalOutput);
+            }
+        }, { threshold: 0.5 });
+        
+        termObserver.observe(terminalOutput);
+    }
+
     // Service Modals Logic
     const serviceModalLinks = { 'bots-info': 'modal-bots', 'web-info': 'modal-web', 'automation-info': 'modal-automation', 'mvp-info': 'modal-mvp', 'ai-info': 'modal-ai' };
     const closeAllServiceModals = () => {
@@ -930,10 +1200,17 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const pModal = document.getElementById('project-modal');
+    let activeProjectCard = null;
+    const pModalInner = pModal.querySelector('.max-w-4xl'); // Внутренний контейнер модалки
+
     document.querySelectorAll('[data-project-id]').forEach(btn => {
-      btn.onclick = () => {
+      btn.onclick = (e) => {
         const data = projectData[btn.dataset.projectId];
-        if (data) {
+        if (!data) return;
+
+        activeProjectCard = e.target.closest('.glass-card');
+
+        const openLogic = () => {
           ['stack', 'request', 'result'].forEach(key => {
             const label = document.getElementById(`label-${key}`);
             if (label) label.className = `text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] sm:w-1/4 shrink-0 mt-1 transition-colors duration-300 ${data.colorClass}`;
@@ -945,10 +1222,52 @@ document.addEventListener('DOMContentLoaded', () => {
           });
           pModal.classList.replace('hidden', 'flex');
           document.body.style.overflow = 'hidden'; document.documentElement.style.overflow = 'hidden';
+        };
+
+        if (document.startViewTransition && activeProjectCard && pModalInner) {
+          // 1. Before snapshot: name is ONLY on the card
+          activeProjectCard.style.viewTransitionName = 'project-expand';
+          pModalInner.style.viewTransitionName = '';
+
+          document.startViewTransition(() => {
+            // 2. After snapshot, before render: transfer name to the modal
+            activeProjectCard.style.viewTransitionName = '';
+            pModalInner.style.viewTransitionName = 'project-expand';
+            openLogic();
+          });
+        } else {
+          openLogic();
         }
       };
     });
-    const closePModal = () => { pModal.classList.replace('flex', 'hidden'); document.body.style.overflow = ''; document.documentElement.style.overflow = ''; };
+
+    const closePModal = () => {
+      const closeLogic = () => {
+        pModal.classList.replace('flex', 'hidden');
+        document.body.style.overflow = ''; document.documentElement.style.overflow = '';
+      };
+
+      if (document.startViewTransition && activeProjectCard && pModalInner) {
+        // 1. Before snapshot: name is ONLY on the modal
+        pModalInner.style.viewTransitionName = 'project-expand';
+        activeProjectCard.style.viewTransitionName = '';
+
+        const transition = document.startViewTransition(() => {
+          // 2. After snapshot: transfer name back to the card
+          pModalInner.style.viewTransitionName = '';
+          activeProjectCard.style.viewTransitionName = 'project-expand';
+          closeLogic();
+        });
+
+        transition.finished.finally(() => {
+          if (activeProjectCard) activeProjectCard.style.viewTransitionName = '';
+          if (pModalInner) pModalInner.style.viewTransitionName = '';
+          activeProjectCard = null;
+        });
+      } else {
+        closeLogic();
+      }
+    };
     document.querySelectorAll('.close-modal, .modal-overlay').forEach(el => el.onclick = closePModal);
     
     // Global Shortcuts
