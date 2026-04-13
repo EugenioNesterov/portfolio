@@ -134,10 +134,48 @@
             margin-left: 4px;
         }
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+        /* AI Swarm Custom Cursor */
+        #cursor-swarm-container {
+            position: fixed; top: 0; left: 0;
+            width: 2px; height: 2px;
+            pointer-events: none;
+            z-index: 10000;
+            display: none;
+        }
+        .swarm-core {
+            position: absolute; top: -4px; left: -4px;
+            width: 8px; height: 8px;
+            background-color: #f59e0b; /* Amber */
+            border-radius: 50%;
+            box-shadow: 0 0 10px #f59e0b;
+            transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), background-color 0.3s, box-shadow 0.3s;
+        }
+        .swarm-agent {
+            position: absolute; top: -2px; left: -2px;
+            width: 4px; height: 4px;
+            background-color: #10b981; /* Emerald */
+            border-radius: 50%;
+            box-shadow: 0 0 8px #10b981;
+            will-change: transform;
+        }
+        @media (min-width: 768px) {
+            body, a, button, label, .magnetic, .swiper-btn-prev, .swiper-btn-next, .glass-card, [data-project-id] { 
+                cursor: none !important; 
+            }
+            #cursor-swarm-container { display: block; }
+        }
     </style>
 </head>
 
 <body class="text-zinc-50 antialiased selection:bg-amber-500/30 selection:text-amber-200 overflow-x-hidden relative">
+
+<div id="cursor-swarm-container">
+    <div class="swarm-core"></div>
+    <div class="swarm-agent"></div>
+    <div class="swarm-agent"></div>
+    <div class="swarm-agent"></div>
+</div>
 
 <svg class="pointer-events-none absolute inset-0 opacity-0 h-0 w-0">
   <filter id="grainy-noise">
@@ -185,7 +223,7 @@
                     <a href="#services-deep-dive" class="flex text-zinc-400 hover:text-zinc-100 transition-colors tracking-wide items-center gap-1.5" title="Capabilities">
                         <span data-en="Capabilities" data-ru="Услуги">Capabilities</span>
                     </a>
-                    <a href="#contact" class="flex text-zinc-400 hover:text-indigo-400 transition-colors tracking-wide items-center gap-2">
+                    <a href="#contact" class="flex text-zinc-400 hover:text-white transition-colors tracking-wide items-center gap-2">
                         <span class="relative flex h-2 w-2">
                             <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                             <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
@@ -220,7 +258,7 @@
                 </label>
             </div>
 
-            <a href="#contact" class="text-zinc-300 text-sm font-medium hover:text-indigo-400 flex items-center justify-center gap-2">
+            <a href="#contact" class="text-zinc-300 text-sm font-medium hover:text-white flex items-center justify-center gap-2">
                 <span class="relative flex h-2 w-2">
                     <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                     <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
@@ -400,8 +438,8 @@
                         </div>
                     </div>
                     
-                    <button class="magnetic swiper-btn-prev absolute top-1/2 -translate-y-1/2 -left-10 md:-left-16 z-40 p-2 flex items-center justify-center text-zinc-400 hover:text-white hover:scale-125 hover:drop-shadow-[0_0_12px_rgba(255,255,255,0.8)] transition-all duration-300 cursor-pointer hidden sm:flex" title="Previous Project"><i data-lucide="arrow-left" class="w-8 h-8"></i></button>
-                    <button class="magnetic swiper-btn-next absolute top-1/2 -translate-y-1/2 -right-10 md:-right-16 z-40 p-2 flex items-center justify-center text-zinc-400 hover:text-white hover:scale-125 hover:drop-shadow-[0_0_12px_rgba(255,255,255,0.8)] transition-all duration-300 cursor-pointer hidden sm:flex" title="Next Project"><i data-lucide="arrow-right" class="w-8 h-8"></i></button>
+                    <button class="swiper-btn-prev absolute top-1/2 -translate-y-1/2 -left-10 md:-left-16 z-40 p-2 flex items-center justify-center text-zinc-400 hover:text-white hover:scale-125 hover:drop-shadow-[0_0_12px_rgba(255,255,255,0.8)] transition-all duration-300 cursor-pointer hidden sm:flex" title="Previous Project"><i data-lucide="arrow-left" class="w-8 h-8"></i></button>
+                    <button class="swiper-btn-next absolute top-1/2 -translate-y-1/2 -right-10 md:-right-16 z-40 p-2 flex items-center justify-center text-zinc-400 hover:text-white hover:scale-125 hover:drop-shadow-[0_0_12px_rgba(255,255,255,0.8)] transition-all duration-300 cursor-pointer hidden sm:flex" title="Next Project"><i data-lucide="arrow-right" class="w-8 h-8"></i></button>
                 </div>
             </div>
         </section>
@@ -865,6 +903,69 @@ document.addEventListener('DOMContentLoaded', () => {
     // Lucide Icons (call once)
     lucide.createIcons();
 
+    // --- AI Swarm Cursor Logic ---
+    if (window.innerWidth >= 768) {
+        const swarmContainer = document.getElementById('cursor-swarm-container');
+        const core = swarmContainer.querySelector('.swarm-core');
+        const agents = swarmContainer.querySelectorAll('.swarm-agent');
+        
+        let mX = window.innerWidth / 2, mY = window.innerHeight / 2;
+        let cX = mX, cY = mY;
+        
+        // Physics variables
+        let angle = 0;
+        let targetRadius = 15;
+        let currentRadius = 15;
+        let targetSpeed = 0.03;
+        let currentSpeed = 0.03;
+
+        window.addEventListener('mousemove', (e) => {
+            mX = e.clientX;
+            mY = e.clientY;
+        });
+
+        const interactives = document.querySelectorAll('a, button, label, .magnetic, [data-project-id]');
+        interactives.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                targetRadius = 35; // Expand orbit
+                targetSpeed = 0.12; // Speed up agents
+                core.style.transform = 'scale(0.3)'; // Shrink core
+                core.style.backgroundColor = '#ffffff'; // Turn white
+                core.style.boxShadow = '0 0 10px #ffffff';
+            });
+            el.addEventListener('mouseleave', () => {
+                targetRadius = 15; // Normal orbit
+                targetSpeed = 0.03; // Normal speed
+                core.style.transform = 'scale(1)'; // Restore core
+                core.style.backgroundColor = '#f59e0b'; // Turn amber
+                core.style.boxShadow = '0 0 10px #f59e0b';
+            });
+        });
+
+        function renderSwarm() {
+            // Smooth mouse follow (Lerp)
+            cX += (mX - cX) * 0.25;
+            cY += (mY - cY) * 0.25;
+            swarmContainer.style.transform = `translate(${cX}px, ${cY}px)`;
+
+            // Smooth transitions for radius and speed
+            currentRadius += (targetRadius - currentRadius) * 0.1;
+            currentSpeed += (targetSpeed - currentSpeed) * 0.05;
+            angle += currentSpeed;
+
+            // Position agents mathematically
+            agents.forEach((agent, index) => {
+                const offset = index * ((Math.PI * 2) / 3); // 120 degrees apart
+                const x = Math.cos(angle + offset) * currentRadius;
+                const y = Math.sin(angle + offset) * currentRadius;
+                agent.style.transform = `translate(${x}px, ${y}px)`;
+            });
+
+            requestAnimationFrame(renderSwarm);
+        }
+        renderSwarm();
+    }
+
     // --- Connected Nodes Logic ---
     const canvas = document.getElementById('nodes-canvas');
     if (canvas) {
@@ -1105,12 +1206,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const terminalOutput = document.getElementById('terminal-output');
     if (terminalOutput) {
         const terminalLines = [
-            "> [SYSTEM] Initialize stack analysis...",
-            "> Loading core: Python 3, FastAPI, Aiogram 3... [OK]",
-            "> Mounting databases: PostgreSQL, Redis, Supabase... [OK]",
-            "> Compiling frontend: JavaScript, Tailwind CSS... [OK]",
-            "> Initializing AI/LLM modules... [OK]",
-            "> Booting containers: Docker deployed... [OK]",
+            "> [SYSTEM] Initialize infrastructure...",
+            "> Loading core languages: Python 3.12, Node.js, JavaScript (ES6+)... [OK]",
+            "> Compiling frontend: HTML5, Tailwind CSS, Vanilla JS... [OK]",
+            "> Mounting frameworks: FastAPI, Aiogram 3.x, Asyncio... [OK]",
+            "> Connecting data layer: PostgreSQL, Redis, Supabase... [OK]",
+            "> Booting AI engines: LLM APIs... [OK]",
+            "> Establishing integrations: Telegram API, MAX Protocol, Instagram API, VK API... [OK]",
+            "> Deploying containers: Docker, Vercel... [OK]",
+            "> Syncing version control: Git VCS, CI/CD pipelines... [OK]",
             "> [STATUS] ALL SYSTEMS NOMINAL. READY FOR LAUNCH."
         ];
         
