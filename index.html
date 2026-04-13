@@ -74,7 +74,9 @@
 
         /* View Transitions for seamless modal expansion */
         ::view-transition-old(project-expand),
-        ::view-transition-new(project-expand) {
+        ::view-transition-new(project-expand),
+        ::view-transition-old(service-expand),
+        ::view-transition-new(service-expand) {
             animation-duration: 0.5s;
             animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
         }
@@ -160,7 +162,7 @@
             will-change: transform;
         }
         @media (min-width: 768px) {
-            body, a, button, label, .magnetic, .swiper-btn-prev, .swiper-btn-next, .glass-card, [data-project-id] { 
+            *, *::before, *::after { 
                 cursor: none !important; 
             }
             #cursor-swarm-container { display: block; }
@@ -493,7 +495,7 @@
                     </li>
                 </ul>
                 <button type="button"
-                    class="inline-flex items-center justify-center px-6 py-3 mt-10 rounded-full font-bold text-sm transition-all hover:scale-105 bg-transparent text-zinc-100 hover:text-indigo-400 hover:drop-shadow-[0_0_8px_rgba(99,102,241,0.6)]"
+                    class="self-start inline-flex items-center justify-center px-6 py-3 mt-10 rounded-full font-bold text-sm transition-all hover:scale-105 bg-transparent text-zinc-100 hover:text-indigo-400 hover:drop-shadow-[0_0_8px_rgba(99,102,241,0.6)]"
                     data-en="All services" data-ru="Все услуги">
                     <span data-en="All services" data-ru="Все услуги">Все услуги</span>
                     <i data-lucide="arrow-right" class="ml-2 w-4 h-4"></i>
@@ -524,7 +526,7 @@
                     </li>
                 </ul>
                 <button type="button"
-                    class="inline-flex items-center justify-center px-6 py-3 mt-10 rounded-full font-bold text-sm transition-all hover:scale-105 bg-transparent text-zinc-100 hover:text-amber-400 hover:drop-shadow-[0_0_8px_rgba(251,191,36,0.6)]"
+                    class="self-start inline-flex items-center justify-center px-6 py-3 mt-10 rounded-full font-bold text-sm transition-all hover:scale-105 bg-transparent text-zinc-100 hover:text-amber-400 hover:drop-shadow-[0_0_8px_rgba(251,191,36,0.6)]"
                     data-en="All services" data-ru="Все услуги">
                     <span data-en="All services" data-ru="Все услуги">Все услуги</span>
                     <i data-lucide="arrow-right" class="ml-2 w-4 h-4"></i>
@@ -555,7 +557,7 @@
                     </li>
                 </ul>
                 <button type="button"
-                    class="inline-flex items-center justify-center px-6 py-3 mt-10 rounded-full font-bold text-sm transition-all hover:scale-105 bg-transparent text-zinc-100 hover:text-zinc-300 hover:drop-shadow-[0_0_8px_rgba(212,212,216,0.6)]"
+                    class="self-start inline-flex items-center justify-center px-6 py-3 mt-10 rounded-full font-bold text-sm transition-all hover:scale-105 bg-transparent text-zinc-100 hover:text-zinc-300 hover:drop-shadow-[0_0_8px_rgba(212,212,216,0.6)]"
                     data-en="All services" data-ru="Все услуги">
                     <span data-en="All services" data-ru="Все услуги">Все услуги</span>
                     <i data-lucide="arrow-right" class="ml-2 w-4 h-4"></i>
@@ -586,7 +588,7 @@
                     </li>
                 </ul>
                 <button type="button"
-                    class="inline-flex items-center justify-center px-6 py-3 mt-10 rounded-full font-bold text-sm transition-all hover:scale-105 bg-transparent text-zinc-100 hover:text-emerald-400 hover:drop-shadow-[0_0_8px_rgba(52,211,153,0.6)]"
+                    class="self-start inline-flex items-center justify-center px-6 py-3 mt-10 rounded-full font-bold text-sm transition-all hover:scale-105 bg-transparent text-zinc-100 hover:text-emerald-400 hover:drop-shadow-[0_0_8px_rgba(52,211,153,0.6)]"
                     data-en="All services" data-ru="Все услуги">
                     <span data-en="All services" data-ru="Все услуги">Все услуги</span>
                     <i data-lucide="arrow-right" class="ml-2 w-4 h-4"></i>
@@ -623,7 +625,7 @@
                     </li>
                 </ul>
                 <button type="button"
-                    class="inline-flex items-center justify-center px-6 py-3 mt-10 rounded-full font-bold text-sm transition-all hover:scale-105 bg-transparent text-zinc-100 hover:text-violet-400 hover:drop-shadow-[0_0_8px_rgba(139,92,246,0.6)]"
+                    class="self-start inline-flex items-center justify-center px-6 py-3 mt-10 rounded-full font-bold text-sm transition-all hover:scale-105 bg-transparent text-zinc-100 hover:text-violet-400 hover:drop-shadow-[0_0_8px_rgba(139,92,246,0.6)]"
                     data-en="All services" data-ru="Все услуги">
                     <span data-en="All services" data-ru="Все услуги">Все услуги</span>
                     <i data-lucide="arrow-right" class="ml-2 w-4 h-4"></i>
@@ -863,7 +865,7 @@
         </div>
     </div>
     <div class="mt-16 text-center">
-        <p class="text-sm font-medium text-zinc-500 mb-1">© 2026 Eugenio Nesterov.</p>
+        <p class="text-sm font-medium text-zinc-500 mb-1">© 2021-2026 Eugenio Nesterov.</p>
         <p class="text-xs text-zinc-600" data-en="MVP engineering &amp; ecosystem architecture."
             data-ru="Разработка MVP и архитектура экосистем.">MVP engineering &amp; ecosystem architecture.</p>
     </div>
@@ -1261,10 +1263,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Service Modals Logic
     const serviceModalLinks = { 'bots-info': 'modal-bots', 'web-info': 'modal-web', 'automation-info': 'modal-automation', 'mvp-info': 'modal-mvp', 'ai-info': 'modal-ai' };
-    const closeAllServiceModals = () => {
-        document.querySelectorAll('#services-modals > div').forEach(modal => { modal.classList.add('hidden'); modal.classList.remove('flex'); });
-        document.body.style.overflow = ''; document.documentElement.style.overflow = '';
-    };
+    let activeServiceBlock = null;
+
     for (const [blockId, modalId] of Object.entries(serviceModalLinks)) {
         const block = document.getElementById(blockId);
         if (block) {
@@ -1273,11 +1273,69 @@ document.addEventListener('DOMContentLoaded', () => {
                 btn.addEventListener('click', (e) => {
                     e.preventDefault();
                     const modal = document.getElementById(modalId);
-                    if (modal) { modal.classList.replace('hidden', 'flex'); document.body.style.overflow = 'hidden'; document.documentElement.style.overflow = 'hidden'; }
+                    if (!modal) return;
+                    const modalInner = modal.querySelector('.relative.bg-zinc-950');
+                    
+                    activeServiceBlock = block;
+
+                    const openLogic = () => {
+                        modal.classList.replace('hidden', 'flex');
+                        document.body.style.overflow = 'hidden'; 
+                        document.documentElement.style.overflow = 'hidden';
+                    };
+
+                    if (document.startViewTransition && modalInner) {
+                        activeServiceBlock.style.viewTransitionName = 'service-expand';
+                        modalInner.style.viewTransitionName = '';
+
+                        document.startViewTransition(() => {
+                            activeServiceBlock.style.viewTransitionName = '';
+                            modalInner.style.viewTransitionName = 'service-expand';
+                            openLogic();
+                        });
+                    } else {
+                        openLogic();
+                    }
                 });
             }
         }
     }
+
+    const closeAllServiceModals = () => {
+        const openModal = Array.from(document.querySelectorAll('#services-modals > div')).find(m => m.classList.contains('flex'));
+        
+        const closeLogic = () => {
+            document.querySelectorAll('#services-modals > div').forEach(modal => { 
+                modal.classList.add('hidden'); 
+                modal.classList.remove('flex'); 
+            });
+            document.body.style.overflow = ''; 
+            document.documentElement.style.overflow = '';
+        };
+
+        if (document.startViewTransition && openModal && activeServiceBlock) {
+            const modalInner = openModal.querySelector('.relative.bg-zinc-950');
+            
+            if (modalInner) {
+                modalInner.style.viewTransitionName = 'service-expand';
+                activeServiceBlock.style.viewTransitionName = '';
+
+                const transition = document.startViewTransition(() => {
+                    modalInner.style.viewTransitionName = '';
+                    activeServiceBlock.style.viewTransitionName = 'service-expand';
+                    closeLogic();
+                });
+
+                transition.finished.finally(() => {
+                    if (activeServiceBlock) activeServiceBlock.style.viewTransitionName = '';
+                    if (modalInner) modalInner.style.viewTransitionName = '';
+                    activeServiceBlock = null;
+                });
+                return;
+            }
+        }
+        closeLogic();
+    };
     document.querySelectorAll('.modal-close, .modal-bg').forEach(el => el.onclick = closeAllServiceModals);
 
     // Project Modal Logic & Data
