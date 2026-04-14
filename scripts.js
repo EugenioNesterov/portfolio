@@ -145,10 +145,15 @@ document.addEventListener('DOMContentLoaded', () => {
         window.addEventListener('mousemove', (e) => { mouse.x = e.x; mouse.y = e.y; });
         window.addEventListener('mouseout', () => { mouse.x = null; mouse.y = null; });
 
+        let lastWidth = 0;
         function resize() {
-            width = canvas.width = window.innerWidth;
-            height = canvas.height = window.innerHeight;
-            initParticles();
+            // Re-init only if width changes (prevents mobile scroll jump when address bar hides)
+            if (window.innerWidth !== lastWidth) {
+                lastWidth = window.innerWidth;
+                width = canvas.width = window.innerWidth;
+                height = canvas.height = window.innerHeight;
+                initParticles();
+            }
         }
 
         class Particle {
