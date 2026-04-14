@@ -124,8 +124,15 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         };
 
+        let ticking = false;
         window.addEventListener('scroll', () => {
-            requestAnimationFrame(updateCardsPhysics);
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    updateCardsPhysics();
+                    ticking = false;
+                });
+                ticking = true;
+            }
         }, { passive: true });
         
         // Initial call to set starting positions
@@ -145,10 +152,10 @@ document.addEventListener('DOMContentLoaded', () => {
         window.addEventListener('mousemove', (e) => { mouse.x = e.x; mouse.y = e.y; });
         window.addEventListener('mouseout', () => { mouse.x = null; mouse.y = null; });
 
-        let lastWidth = 0;
+        let lastWidth = window.innerWidth;
         function resize() {
-            // Re-init only if width changes (prevents mobile scroll jump when address bar hides)
-            if (window.innerWidth !== lastWidth) {
+            // Only trigger if width changes significantly (ignores 1px scrollbar UI changes)
+            if (Math.abs(window.innerWidth - lastWidth) > 20) {
                 lastWidth = window.innerWidth;
                 width = canvas.width = window.innerWidth;
                 height = canvas.height = window.innerHeight;
