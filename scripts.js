@@ -153,13 +153,17 @@ document.addEventListener('DOMContentLoaded', () => {
         window.addEventListener('mouseout', () => { mouse.x = null; mouse.y = null; });
 
         let lastWidth = window.innerWidth;
+        
+        function setDimensions() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+            initParticles();
+        }
+
         function resize() {
-            // Only trigger if width changes significantly (ignores 1px scrollbar UI changes)
             if (Math.abs(window.innerWidth - lastWidth) > 20) {
                 lastWidth = window.innerWidth;
-                width = canvas.width = window.innerWidth;
-                height = canvas.height = window.innerHeight;
-                initParticles();
+                setDimensions();
             }
         }
 
@@ -247,7 +251,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         window.addEventListener('resize', resize);
-        resize();
+        // Safari initialization fix
+        setDimensions();
+        setTimeout(setDimensions, 100);
+        setTimeout(setDimensions, 500);
         animate();
     }
 

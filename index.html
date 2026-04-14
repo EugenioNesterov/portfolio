@@ -47,7 +47,7 @@
 
     <!-- Background Ambient Glows -->
 
-    <div class="ambient-glow top-[40%] right-[-10%] w-[70vw] max-w-[400px] h-[400px] bg-amber-500/10"></div>
+    <div class="ambient-glow top-[40%] right-0 w-[70vw] max-w-[400px] h-[400px] bg-amber-500/10"></div>
 
     <canvas id="nodes-canvas" class="fixed inset-0 w-full h-full pointer-events-none z-[-1] opacity-60"></canvas>
 
@@ -116,18 +116,11 @@
                 <span data-en="Contact" data-ru="Связаться">Contact</span>
             </a>
 
-            <div class="mt-8 pt-8 border-t border-white/[0.05] flex justify-center">
-                <label class="lang-switch">
-                    <span id="mobile-label-ru" class="lang-active">RU</span>
-                    <input type="checkbox" id="lang-toggle-mobile" class="toggle-input">
-                    <div class="toggle-slider"></div>
-                    <span id="mobile-label-en">US</span>
-                </label>
-            </div>
+
         </div>
     </header>
 
-    <main class="pt-24">
+    <main class="pt-24 overflow-x-hidden w-full">
         <!-- Hero Section -->
         <section id="hero" class="relative min-h-[calc(100vh-96px)] gap-16 pb-20 flex flex-col items-center justify-center text-center px-6 scroll-mt-[80px]">
             <h1 id="scramble-text" style="min-height: 1.2em;" class="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold tracking-tight max-w-5xl text-transparent bg-clip-text bg-gradient-to-b from-zinc-50 to-zinc-500"
@@ -707,7 +700,7 @@
 </main>
 
 <!-- Footer & Contact -->
-<footer id="contact" class="py-16 px-6 relative overflow-hidden bg-transparent scroll-mt-[80px] reveal">
+<footer id="contact" class="py-16 px-6 relative overflow-hidden overflow-x-hidden bg-transparent scroll-mt-[80px] reveal">
     <div class="max-w-6xl mx-auto flex flex-col items-center justify-center gap-6 relative z-10 text-center">
         <div>
             <h3 class="text-3xl font-bold text-zinc-100 mb-2"
